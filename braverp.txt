@@ -1,0 +1,19 @@
+"brave"
+{
+	"base"		"sandbox"
+	"title"		"BraveRP"
+	"version"		"1.0.0"
+	"menusystem"	"1"
+	
+	"settings"
+	{
+		1
+		{
+			"name"		"ex_test"
+			"text"		"Test"
+			"help"		"Testing schnizzle"
+			"type"		"numeric"
+			"default"	"1"
+		}
+	}
+}
