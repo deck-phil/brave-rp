@@ -117,3 +117,5 @@ function ConBuyDoor( ply, command, args, commandstring)
 
 end
 concommand.Add("BRP_BuyDoor", ConBuyDoor)
+
+hook.Add("ShowSpare1", "Paying Menu", ConBuyDoor)

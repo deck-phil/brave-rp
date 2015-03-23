@@ -10,7 +10,6 @@ if SERVER then
 		net.Start("paymenu")
 		net.Send(ply)
 	end
-	hook.Add("ShowSpare1", "Paying Menu", PayMenu)
 	
 	
 	net.Receive( "sendPay", function( len, ply )

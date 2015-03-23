@@ -130,21 +130,24 @@ function HoveringCrateNames( crate )
 		end
 		
 		
-		/*if (crate:IsDoor()) then
+		if (crate:IsDoor()) then
+		
+			if !(crate:GetClass() == "prop_door_rotating") then return end
 
-			local targetPos = crate:GetPos() + Vector(0,0,15)
+			local targetPos = crate:LocalToWorld(Vector(0,22,0))
 			local targetDistance = math.floor((LocalPlayer():GetPos():Distance( targetPos ))/40)
 			local targetScreenpos = targetPos:ToScreen()
 		
 			if targetDistance < 5 then	
 				
 				if crate:IsOwned() then
-					draw.SimpleText( crate:GetRPOwner():GetRPName(), "DermaLarge", tonumber(targetScreenpos.x), (tonumber(targetScreenpos.y + 26)), Color(255,20,20,255), TEXT_ALIGN_CENTER)
+					//draw.SimpleText( crate:GetRPOwner():GetRPName(), "Trebuchet18", tonumber(targetScreenpos.x), (tonumber(targetScreenpos.y + 26)), Color(255,20,20,255), TEXT_ALIGN_CENTER)
 				else
-					draw.SimpleText( "Unowned", "DermaLarge", tonumber(targetScreenpos.x), (tonumber(targetScreenpos.y + 26)), Color(255,20,20,255), TEXT_ALIGN_CENTER)
+					draw.SimpleText( "Unowned", "Trebuchet18", tonumber(targetScreenpos.x), (tonumber(targetScreenpos.y)), Color(255,255,255,200), TEXT_ALIGN_CENTER)
+					draw.SimpleText( "Press F3 to buy this door.", "Trebuchet18", tonumber(targetScreenpos.x), (tonumber(targetScreenpos.y + 13)), Color(255,255,255,200), TEXT_ALIGN_CENTER)
 				end 
 			end
-		end	*/
+		end
 
 		
 end
@@ -157,13 +160,17 @@ hook.Add( "PostDrawOpaqueRenderables", "DrawDoorsNames", function()
 		print(tostring(ent))
 		//if math.floorLocalPlayer():GetPos():Distance( ent:GetPos() ) < 5 then return end
 	
+	if IsValid(ent:GetRPOwner()) then
+	
 		cam.Start3D2D( ent:LocalToWorld(Vector(3,24,0)), ent:LocalToWorldAngles( Angle(0,90,90) ), 1 )
-			draw.DrawText("Door", "Trebuchet18", 0, 0, Color(255, 255, 255, 255), TEXT_ALIGN_CENTER )
+			draw.DrawText(ent:GetRPOwner():GetRPName(), "Trebuchet18", 0, 0, Color(255, 255, 255, 255), TEXT_ALIGN_CENTER )
 		cam.End3D2D()
 		
 		cam.Start3D2D( ent:LocalToWorld(Vector(-3,24,0)), ent:LocalToWorldAngles( Angle(0,-90,90) ), 1 )
-			draw.DrawText("Door", "Trebuchet18", 0, 0, Color(255, 255, 255, 255), TEXT_ALIGN_CENTER )
+			draw.DrawText(ent:GetRPOwner():GetRPName(), "Trebuchet18", 0, 0, Color(255, 255, 255, 255), TEXT_ALIGN_CENTER )
 		cam.End3D2D()
+	
+	end
 	
 	end
 

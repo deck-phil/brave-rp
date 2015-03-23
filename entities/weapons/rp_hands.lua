@@ -10,7 +10,6 @@ SWEP.HoldType	 = "normal"
 SWEP.Author = "BolONYz"
 SWEP.Instructions = "Walk around with these to look normal and lock doors."
 SWEP.Base = "weapon_base"
-SWEP.PrintName = "Hands"
 
 SWEP.Category	 = "BraveRP Weapons"
 

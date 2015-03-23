@@ -36,8 +36,12 @@ hook.Add("PlayerUse", "OpenDoorFunction", function( ply, ent)
 	
 	if ent:IsDoor() then
 	
-		if ent.IsLocked then return false end
-	
+		if ent.IsLocked then 
+		
+			ent:EmitSound("doors/door_locked2.wav")
+			return false 
+			
+		end
 	end
 
 end)
