@@ -208,7 +208,7 @@ elseif CLIENT then
 						if v:isRegistered() then 
 							RegList:AddLine( v:GetRPName(), v:GetRegister(), GetPlayerNameID( v:GetRegister() ):isWantedCaps())
 						elseif v:GetNWBool("wanted") then
-							RegList:AddLine( v:GetRPName(), "@@@@", "True")
+							RegList:AddLine( v:GetRPName(), "****", "True")
 						end
 						
 					end
@@ -241,7 +241,7 @@ elseif CLIENT then
 				WantBut:SetPos( 10, 60 )					
 				WantBut.DoClick = function ()
 			
-					if RegList:GetLine(lineID):GetValue(2) == "@@@@" then
+					if RegList:GetLine(lineID):GetValue(2) == "****" then
 						SendWantedPly(GetPlayerNameRPName( RegList:GetLine(lineID):GetValue(1) ), true)
 					else
 						SendWantedPly(GetPlayerNameID( RegList:GetLine(lineID):GetValue(2)), true)
@@ -259,7 +259,7 @@ elseif CLIENT then
 				UnWantBut:SetPos( 10, 110 )					
 				UnWantBut.DoClick = function ()
 				
-					if RegList:GetLine(lineID):GetValue(2) == "@@@@" then
+					if RegList:GetLine(lineID):GetValue(2) == "****" then
 						SendWantedPly(GetPlayerNameRPName( RegList:GetLine(lineID):GetValue(1) ), false)
 					else
 						SendWantedPly(GetPlayerNameID( RegList:GetLine(lineID):GetValue(2)), false)
@@ -289,7 +289,7 @@ elseif CLIENT then
 					for k, v in pairs( player.GetAll()) do
 						local CitID = v:GetRegister()
 						
-						if CitID == "" then CitID = "@@@@" end
+						if CitID == "" then CitID = "****" end
 						if v:GetNWBool("WantReq") then 
 							ReqList:AddLine( v:GetRPName(), CitID, GetPlayerNameID( v:GetRegister() ):GetNWString("WantReason"))
 						end
@@ -300,7 +300,7 @@ elseif CLIENT then
 					local Menu = vgui.Create( "DMenu" )
 						Menu:AddOption("Accept", function()
 						
-						if ReqList:GetLine(POPOPO):GetValue(2) == "@@@@" then
+						if ReqList:GetLine(POPOPO):GetValue(2) == "****" then
 
 							SendWantedPly(GetPlayerNameRPName( ReqList:GetLine(POPOPO):GetValue(1)), true) 
 							
@@ -313,7 +313,7 @@ elseif CLIENT then
 						
 						Menu:AddOption("Decline", function()
 						
-							if ReqList:GetLine(POPOPO):GetValue(2) == "@@@@" then
+							if ReqList:GetLine(POPOPO):GetValue(2) == "****" then
 
 								SendWantedPly(RemoveWantedRequest( ReqList:GetLine(POPOPO):GetValue(1))) 
 								
