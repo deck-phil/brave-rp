@@ -22,16 +22,33 @@ elseif CLIENT then
 	function openDoorMenu()
 	
 		local ply = LocalPlayer()
-	
-		local DoorFrame = vgui.Create( "DFrame" )
-			DoorFrame:SetSize( 185, 385 )
-			DoorFrame:SetTitle( "Door Menu" )
-			DoorFrame:SetVisible( true )
-			DoorFrame:SetDraggable( false )
-			DoorFrame:ShowCloseButton( true )
-			DoorFrame:Center()
-			DoorFrame:MakePopup()		
+		
+		//Need to add a diff menu for admins to set door group
+		
+		if ply:IsRPAdmin() then
+		
+			local DoorFrame = vgui.Create( "DFrame" )
+				DoorFrame:SetSize( 185, 385 )
+				DoorFrame:SetTitle( "Door Menu" )
+				DoorFrame:SetVisible( true )
+				DoorFrame:SetDraggable( false )
+				DoorFrame:ShowCloseButton( true )
+				DoorFrame:Center()
+				DoorFrame:MakePopup()		
 
+		else
+		
+			local DoorFrame = vgui.Create( "DFrame" )
+				DoorFrame:SetSize( 185, 385 )
+				DoorFrame:SetTitle( "Door Menu" )
+				DoorFrame:SetVisible( true )
+				DoorFrame:SetDraggable( false )
+				DoorFrame:ShowCloseButton( true )
+				DoorFrame:Center()
+				DoorFrame:MakePopup()		
+
+		end
+		
 		local BuyBtn = vgui.Create( "DButton", DoorFrame )
 			BuyBtn:SetText( "Buy Door" )
 			BuyBtn:SetPos( 10, 35 )
