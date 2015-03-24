@@ -38,6 +38,8 @@ AddCSLuaFile("shared/outfits.lua")
 
 AddCSLuaFile("shared/props.lua")
 
+AddCSLuaFile("shared/doormenu.lua")
+
 AddCSLuaFile("client/hovername.lua")
 AddCSLuaFile("client/hud.lua")
 AddCSLuaFile("add.lua")
@@ -70,6 +72,8 @@ include("server/props.lua")
 include("shared/outfits.lua")
 
 include("shared/props.lua")
+
+include("shared/doormenu.lua")
 
 include("server/concommands.lua")
 

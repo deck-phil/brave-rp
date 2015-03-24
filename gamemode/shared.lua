@@ -28,6 +28,8 @@ include("shared/screeneffects.lua")
 
 include("shared/props.lua")
 
+include("shared/doormenu.lua")
+
 include("add.lua")
 
 

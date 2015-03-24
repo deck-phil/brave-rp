@@ -30,7 +30,7 @@ elseif CLIENT then
 			PayingFrame:SetSize( 300, 175 )
 			PayingFrame:SetTitle( "Paying Menu" )
 			PayingFrame:SetVisible( true )
-			PayingFrame:SetDraggable( false )
+			PayingFrame:SetDraggable( true )
 			PayingFrame:ShowCloseButton( true )
 			PayingFrame:Center()
 			PayingFrame:MakePopup()		

@@ -157,17 +157,17 @@ hook.Add( "PostDrawOpaqueRenderables", "DrawDoorsNames", function()
 
 	for id, ent in pairs( ents.FindByClass( "prop_door_rotating" ) ) do
 
-		print(tostring(ent))
-		//if math.floorLocalPlayer():GetPos():Distance( ent:GetPos() ) < 5 then return end
+		//print(tostring(ent))
+		//if math.floorLocalPlayer():GetPos():Distance( ent:GetPos() ) < 5 then return end .DoorName
 	
 	if IsValid(ent:GetRPOwner()) then
 	
 		cam.Start3D2D( ent:LocalToWorld(Vector(3,24,0)), ent:LocalToWorldAngles( Angle(0,90,90) ), 1 )
-			draw.DrawText(ent:GetRPOwner():GetRPName(), "Trebuchet18", 0, 0, Color(255, 255, 255, 255), TEXT_ALIGN_CENTER )
+			draw.DrawText(ent:GetDoorName(), "Trebuchet18", 0, 0, Color(255, 255, 255, 255), TEXT_ALIGN_CENTER )
 		cam.End3D2D()
 		
 		cam.Start3D2D( ent:LocalToWorld(Vector(-3,24,0)), ent:LocalToWorldAngles( Angle(0,-90,90) ), 1 )
-			draw.DrawText(ent:GetRPOwner():GetRPName(), "Trebuchet18", 0, 0, Color(255, 255, 255, 255), TEXT_ALIGN_CENTER )
+			draw.DrawText(ent:GetDoorName(), "Trebuchet18", 0, 0, Color(255, 255, 255, 255), TEXT_ALIGN_CENTER )
 		cam.End3D2D()
 	
 	end

@@ -19,6 +19,11 @@ defaultOmegaSalary = 15
 
 defaultPropPrice = 10
 
+defaultBuyDoorPrice = 0
+
+defaultSellDoorPrice = 0
+
+
 defaultOutfitTime = 3
 
 defaultShipmentPrice = 80

@@ -132,7 +132,16 @@ elseif CLIENT then
 				BuyDoorBtn.DoClick = function ()
 					MainMenuFrame:Close()
 					RunConsoleCommand("BRP_BuyDoor")
-				end					
+				end			
+
+			local SellAllBtn = vgui.Create( "DButton", CommandsTab )
+				SellAllBtn:SetText( "Sell All Doors" )
+				SellAllBtn:SetSize(100, 40)
+				SellAllBtn:SetPos( 305, 60 )					
+				SellAllBtn.DoClick = function ()
+					MainMenuFrame:Close()
+					RunConsoleCommand("BRP_SellAllDoors")
+				end		
 
 			local DropButton = vgui.Create( "DButton", CommandsTab )
 				DropButton:SetText( "Drop Weapon" )

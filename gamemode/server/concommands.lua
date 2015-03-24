@@ -118,4 +118,82 @@ function ConBuyDoor( ply, command, args, commandstring)
 end
 concommand.Add("BRP_BuyDoor", ConBuyDoor)
 
-hook.Add("ShowSpare1", "Paying Menu", ConBuyDoor)
+function ConSellDoor( ply, command, args, commandstring)
+
+	local tr = util.GetPlayerTrace(ply)
+	local trace = util.TraceLine(tr)
+		
+	if (!trace.Hit) then return end
+	if (!trace.HitNonWorld) then return end	
+			
+	local door = trace.Entity
+			
+		if !(door:GetRPOwner() == ply) then return end
+			
+		if (door:IsDoor()) then
+					
+			local targetPos = door:GetPos() + Vector(0,0,84)
+			local targetDistance = math.floor((ply:GetPos():Distance( targetPos ))/40)
+						
+			if targetDistance < 5 then
+			
+			door:SellDoor( ply )
+			door:SetNWString("DoorName", "" ) 
+			
+			end
+		end
+	
+	print( ply:GetRPName().." has bought " ..tostring(door))
+
+end
+concommand.Add("BRP_SellDoor", ConSellDoor)
+
+function ConNameDoor( ply, command, args, commandstring)
+
+	local tr = util.GetPlayerTrace(ply)
+	local trace = util.TraceLine(tr)
+		
+	if (!trace.Hit) then return end
+	if (!trace.HitNonWorld) then return end	
+			
+	local door = trace.Entity
+			
+		if !(door:GetRPOwner() == ply) then return end
+			
+		if (door:IsDoor()) then
+					
+			local targetPos = door:GetPos() + Vector(0,0,84)
+			local targetDistance = math.floor((ply:GetPos():Distance( targetPos ))/40)
+						
+			if targetDistance < 5 then
+			
+				door:SetNWString("DoorName", args[1]) 
+			
+			end
+		end
+	
+	print( ply:GetRPName().." named their " ..args[1])
+
+end
+concommand.Add("BRP_NameDoor", ConNameDoor)
+
+
+function ConSellAllDoors( ply, command, args, commandstring)
+
+	for k, v in pairs(ents.GetAll()) do
+	print("")
+		if !v:IsDoor() then return end
+		print("")
+		if v:GetRPOwner() == ply then
+		
+			v:SellDoor( ply )
+		
+		end
+	
+	end
+	
+	print( ply:GetRPName().." has sold all their doors. ")
+
+end
+concommand.Add("BRP_SellAllDoors", ConSellAllDoors)
+

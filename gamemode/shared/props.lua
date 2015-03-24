@@ -12,20 +12,43 @@ function prop:GetRPOwner()
 
 end
 
+function prop:GetDoorName()
+
+	if self:GetNWString("DoorName") == "" then return self:GetRPOwner():GetRPName() end
+	
+	return self:GetNWString("DoorName")
+
+end
 
 function prop:BuyDoor( ply )
 
-	if self:IsDoor() then
+	if !(self:IsDoor()) then return end
 
-		self:SetNWEntity( "RPOwner", ply )
-
-	end
+	self:SetNWEntity( "RPOwner", ply )
 	
 	ply:SendLua("notification.AddLegacy(\"You buy this door.\", NOTIFY_GENERIC, 5)")
+	
+	ply:TakeMoney(defaultBuyDoorPrice)
 	
 	print( ply:GetRPName().." has bought "..tostring(self))
 	
 end
+
+
+function prop:SellDoor( ply )
+
+	if !(self:IsDoor()) then return end
+
+	self:SetNWEntity( "RPOwner", NULL )
+
+	ply:SendLua("notification.AddLegacy(\"You sell this door.\", NOTIFY_GENERIC, 5)")
+	
+	ply:GiveMoney(defaultSellDoorPrice)
+	
+	print( ply:GetRPName().." has sold "..tostring(self))
+	
+end
+
 
 function prop:IsOwned()
 
