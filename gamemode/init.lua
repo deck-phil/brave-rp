@@ -42,6 +42,8 @@ AddCSLuaFile("shared/doormenu.lua")
 
 AddCSLuaFile("client/hovername.lua")
 AddCSLuaFile("client/hud.lua")
+
+AddCSLuaFile("client/scoreboard.lua")
 AddCSLuaFile("add.lua")
 
 //Include Other Files

@@ -138,7 +138,6 @@ function ConSellDoor( ply, command, args, commandstring)
 			if targetDistance < 5 then
 			
 			door:SellDoor( ply )
-			door:SetNWString("DoorName", "" ) 
 			
 			end
 		end
@@ -181,15 +180,14 @@ concommand.Add("BRP_NameDoor", ConNameDoor)
 function ConSellAllDoors( ply, command, args, commandstring)
 
 	for k, v in pairs(ents.GetAll()) do
-	print("")
-		if !v:IsDoor() then return end
-		print("")
-		if v:GetRPOwner() == ply then
-		
-			v:SellDoor( ply )
-		
+	print("NIGGER")
+		if v:IsDoor() then 
+			if v:GetRPOwner() == ply then
+			
+				v:SellDoor( ply )
+			
+			end
 		end
-	
 	end
 	
 	print( ply:GetRPName().." has sold all their doors. ")

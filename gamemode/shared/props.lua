@@ -40,6 +40,8 @@ function prop:SellDoor( ply )
 	if !(self:IsDoor()) then return end
 
 	self:SetNWEntity( "RPOwner", NULL )
+	
+	self:SetNWString("DoorName", "" ) 
 
 	ply:SendLua("notification.AddLegacy(\"You sell this door.\", NOTIFY_GENERIC, 5)")
 	

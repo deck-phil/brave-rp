@@ -83,6 +83,26 @@ function meta:GetCasteColor()
 	
 end 
 
+function meta:GetPlayerCasteColor()
+
+	local t = self:Team()
+
+	if t == 1 or t == 2 then
+		return Color(200, 200, 200, 255)
+	elseif t == 3 or t == 4 then
+		return Color(200, 0, 0, 255)
+	elseif t == 5 or t == 6 then
+		return Color(84, 255, 84, 255)	
+	elseif t == 7 or t == 8 then
+		return Color(255, 222, 166, 255)
+	elseif t == 9 or t == 10 then
+		return Color(0, 0, 0, 255)
+	elseif t == 11 then
+		return Color(0, 200, 255, 255)		
+	end
+	
+end 
+
 function meta:SetUpCaste( caste )
 
 	self:SetTeam( caste )

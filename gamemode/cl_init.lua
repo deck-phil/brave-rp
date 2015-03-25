@@ -1,6 +1,8 @@
 include("shared.lua")
 include("client/hovername.lua")	
 include("client/hud.lua")
+
+include("client/scoreboard.lua")
 include("add.lua")
 
 local credits = [[
