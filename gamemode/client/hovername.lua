@@ -18,12 +18,8 @@ function HoveringNames()
 						draw.SimpleText( target:GetRPName(), "Trebuchet18", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y), Color(200,200,200,210), TEXT_ALIGN_CENTER)
 					else	
 						draw.SimpleText( 'CP.'..target:GetCPRegister(), "Trebuchet18", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y), Color(190,40,40,210), TEXT_ALIGN_CENTER)
-						
-						//print("dsadawds")
-						//PrintTable(GetWaypointTable())
 					end
 			
-					//draw.SimpleText( target:GetRPName(), "Trebuchet18", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y), Color(200,200,200,210), TEXT_ALIGN_CENTER)
 					draw.SimpleText( target:GetRPTitle(), "Trebuchet18", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y + 12), Color(200,200,200,210), TEXT_ALIGN_CENTER)
 					draw.SimpleText(team.GetName( target:Team() ), "Trebuchet18", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y + 24), team.GetColor( target:Team() ), TEXT_ALIGN_CENTER)
 					

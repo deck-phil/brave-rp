@@ -62,7 +62,7 @@ function DeleteRPSalary( ply )
 	timer.Destroy( ""..ply:SteamID().. "|salary")
 
 end
-hook.Add( "PlayerDeath", "playerDeathSalary", DeleteRPSalary )
+//hook.Add( "PlayerDeath", "playerDeathSalary", DeleteRPSalary )
 hook.Add( "PlayerDisconnected", "playerDisconnectSalary", DeleteRPSalary )
 
 function meta:canAfford( amount )

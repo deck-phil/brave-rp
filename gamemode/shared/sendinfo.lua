@@ -320,6 +320,8 @@ elseif CLIENT then
 	
 	function SendDemote( target )
 
+	if !(IsValid(target)) or !(target:Alive()) then return end
+	
 	net.Start("SendDemote")
 	net.WriteEntity( target )
 	net.SendToServer()

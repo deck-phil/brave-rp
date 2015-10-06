@@ -13,7 +13,10 @@ if SERVER then
 
 	
 elseif CLIENT then
+
 	function openCharacter()
+	
+	if !(CLIENT) then return end
 	
 	if 	LocalPlayer():GetNWInt("openmenu") == 1 then return end
 				
@@ -64,7 +67,7 @@ elseif CLIENT then
 			end		
 			
 			
-		
+
 		local SteamLabel = Label( ply:GetName(), f )
 			SteamLabel:SetSize( 10000, 100)
 			SteamLabel:SetPos( 10, 10 )

@@ -19,6 +19,7 @@ local function blockProps( ply, mdl )
 			return true
 		end
 	end
+	ply:SendLua("notification.AddLegacy(\"You are not allowed to spawn that.\", NOTIFY_GENERIC, 5)") 
 	return false
 end
 
@@ -29,22 +30,6 @@ hook.Add("PlayerSpawnedProp", "PropOwnerFunc", function(ply, model, ent)
 	print( ply:GetName().." spawned a "..tostring(ent).."  //  "..model )
 	
 end )
-
-hook.Add("PlayerUse", "OpenDoorFunction", function( ply, ent) 
-
-	if !IsValid(ent) then return end
-	
-	if ent:IsDoor() then
-	
-		if ent.IsLocked then 
-		
-			ent:EmitSound("doors/door_locked2.wav")
-			return false 
-			
-		end
-	end
-
-end)
 
 hook.Add( "CanTool", "BlockRemoverandother", function( ply, tr, tool)
 

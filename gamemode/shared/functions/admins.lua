@@ -1,7 +1,7 @@
 local meta = FindMetaTable("Player")
 
 
-RPAdmins = {"Pythagoras", "Cruisin' to Uranus", "Haski"}
+RPAdmins = {"localhost", "Cruisin' to Uranus", "Haski"}
 
 
 
@@ -20,6 +20,8 @@ end
 
 
 function meta:isRPAdmin()
+
+	if self:IsAdmin() then return true end
 
 	if table.HasValue( RPAdmins, self:Nick() ) then
 

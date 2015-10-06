@@ -2,84 +2,77 @@
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 AddCSLuaFile("config.lua")
+AddCSLuaFile("add.lua")
 
 include("config.lua")
 include("shared.lua")
+include("add.lua")
 
-//Add Other Files
-AddCSLuaFile("shared/money.lua")
-
-AddCSLuaFile("shared/dhc.lua")
-
-AddCSLuaFile("shared/name.lua")
-AddCSLuaFile("shared/model.lua")
-AddCSLuaFile("shared/caste.lua")
-AddCSLuaFile("shared/charcreation.lua")
-AddCSLuaFile("shared/charmenu.lua")
-AddCSLuaFile("shared/paymenu.lua")
-AddCSLuaFile("shared/commandmenu.lua")
-AddCSLuaFile("shared/addmodel.lua")
-
-AddCSLuaFile("shared/screeneffects.lua")
-
-AddCSLuaFile("shared/sendinfo.lua")
-AddCSLuaFile("shared/stamina.lua")
-AddCSLuaFile("shared/addweapon.lua")
-AddCSLuaFile("shared/addammo.lua")
-
-AddCSLuaFile("server/admins.lua")
+		----SERVER FILES----
 AddCSLuaFile("server/chatcommands.lua")
-AddCSLuaFile("server/roles.lua")
 AddCSLuaFile("server/props.lua")
-
 AddCSLuaFile("server/concommands.lua")
 
-AddCSLuaFile("shared/outfits.lua")
-
-AddCSLuaFile("shared/props.lua")
-
-AddCSLuaFile("shared/doormenu.lua")
-
-AddCSLuaFile("client/hovername.lua")
-AddCSLuaFile("client/hud.lua")
-
-AddCSLuaFile("client/scoreboard.lua")
-AddCSLuaFile("add.lua")
-
-//Include Other Files
-include("shared/money.lua")
-
-include("shared/dhc.lua")
-
-include("shared/name.lua")
-include("shared/model.lua")
-include("shared/caste.lua")
-include("shared/charcreation.lua")
-include("shared/charmenu.lua")
-include("shared/paymenu.lua")
-include("shared/addmodel.lua")
-include("shared/commandmenu.lua")
-include("shared/sendinfo.lua")
-include("shared/stamina.lua")
-include("shared/addweapon.lua")
-include("shared/addammo.lua")
-
-include("shared/screeneffects.lua")
-
-include("server/admins.lua")
 include("server/chatcommands.lua")
-include("server/roles.lua")
 include("server/props.lua")
-
-include("shared/outfits.lua")
-
-include("shared/props.lua")
-
-include("shared/doormenu.lua")
-
 include("server/concommands.lua")
 
-include("add.lua")
+
+		----SHARED FILES----
+AddCSLuaFile("shared/screeneffects.lua")
+AddCSLuaFile("shared/sendinfo.lua")
+AddCSLuaFile("shared/props.lua")
+
+include("shared/sendinfo.lua")
+include("shared/screeneffects.lua")
+include("shared/props.lua")
+
+//FUNCTIONS
+AddCSLuaFile("shared/functions/money.lua")
+AddCSLuaFile("shared/functions/dhc.lua")
+AddCSLuaFile("shared/functions/name.lua")
+AddCSLuaFile("shared/functions/model.lua")
+AddCSLuaFile("shared/functions/caste.lua")
+AddCSLuaFile("shared/functions/outfits.lua")
+AddCSLuaFile("shared/functions/admins.lua")
+AddCSLuaFile("shared/functions/roles.lua")
+
+include("shared/functions/money.lua")
+include("shared/functions/dhc.lua")
+include("shared/functions/name.lua")
+include("shared/functions/model.lua")
+include("shared/functions/caste.lua")
+include("shared/functions/outfits.lua")
+include("shared/functions/admins.lua")
+include("shared/functions/roles.lua")
+
+
+//DERMA
+AddCSLuaFile("shared/derma/charmenu.lua")
+AddCSLuaFile("shared/derma/paymenu.lua")
+AddCSLuaFile("shared/derma/charcreation.lua")
+AddCSLuaFile("shared/derma/commandmenu.lua")
+AddCSLuaFile("shared/derma/doormenu.lua")
+
+include("shared/derma/charcreation.lua")
+include("shared/derma/charmenu.lua")
+include("shared/derma/paymenu.lua")
+include("shared/derma/commandmenu.lua")
+include("shared/derma/doormenu.lua")
+
+//ADD
+AddCSLuaFile("shared/add/addmodel.lua")
+AddCSLuaFile("shared/add/addweapon.lua")
+AddCSLuaFile("shared/add/addammo.lua")
+
+include("shared/add/addmodel.lua")
+include("shared/add/addweapon.lua")
+include("shared/add/addammo.lua")
+
+		----CLIENT FILES----
+AddCSLuaFile("client/hovername.lua")
+AddCSLuaFile("client/hud.lua")
+AddCSLuaFile("client/scoreboard.lua")
 
 
 
@@ -92,14 +85,14 @@ end
 function GM:PlayerSpawn( ply )
 	
 	ply:SetCollisionGroup( COLLISION_GROUP_WEAPON )
-	ply:Freeze( true )
 	
 	ply:SetRunSpeed( defaultRunSpeed )
 	ply:SetWalkSpeed( defaultWalkSpeed )	
 	
 	ply:AllowFlashlight( true )
 	
-	if ply:Deaths() > 0 then
+	if ply:GetRPName() == "" and ply:Deaths() > 0 then
+		ply:Freeze( true )
 		CharMenu( ply )
 	end
 	

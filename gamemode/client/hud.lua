@@ -5,12 +5,12 @@ local tohide = { -- This is a table where the keys are the HUD items to hide
 	["CHudSecondaryAmmo"] = true
 }
 
-local function HUDShouldDraw(name) -- This is a local function because all functions should be local unless another file needs to run it
+local function HUDHider(name) -- This is a local function because all functions should be local unless another file needs to run it
 	if (tohide[name]) then     -- If the HUD name is a key in the table
-		return false;      -- Return false.
+		return false      -- Return false.
 	end
 end
-hook.Add("HUDShouldDraw", "HUDHider", HUDShouldDraw)
+hook.Add("HUDShouldDraw", "HUDHider", HUDHider)
 
 local hudconvar = CreateClientConVar("BRP_RedHud", 1, false, false)
 

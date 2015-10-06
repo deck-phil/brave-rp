@@ -73,6 +73,8 @@ function prop:LockDoor( ply )
 	
 	self.IsLocked = true
 	
+	self:Fire("lock", "", 0)
+	
 	ply:SendLua("notification.AddLegacy(\"You lock your door.\", NOTIFY_GENERIC, 5)") 
 	
 	print( tostring(self).." is locked." )
@@ -86,6 +88,8 @@ function prop:UnLockDoor( ply )
 	if !(self:GetRPOwner() == ply) then return end
 	
 	self.IsLocked = false
+	
+	self:Fire("unlock", "", 0)
 	
 	ply:SendLua("notification.AddLegacy(\"You unlock your door.\", NOTIFY_GENERIC, 5)") 
 	

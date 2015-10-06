@@ -88,8 +88,6 @@ function meta:demoteRP()
 
 	self:SetRPName("")
 	
-	DeleteRPSalary( self )
-	
 	self:UnRegister()
 	
 	self:CreateOutfitList()

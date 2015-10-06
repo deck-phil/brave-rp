@@ -4,36 +4,35 @@ GM.Email = "N/A"
 GM.Website = "N/A"
 DeriveGamemode( "sandbox" )
 
-//Include Other Files
-include("shared/money.lua")
-include("shared/name.lua")
-include("shared/model.lua")
-include("shared/caste.lua")
-include("shared/charcreation.lua")
-include("shared/charmenu.lua")
-include("shared/paymenu.lua")
-include("shared/addmodel.lua")
-include("shared/commandmenu.lua")
-include("shared/sendinfo.lua")
-include("shared/stamina.lua")
-include("shared/addweapon.lua")
-include("server/admins.lua")
-include("shared/addammo.lua")
-
-include("shared/dhc.lua")
-
-include("shared/outfits.lua")
-
-include("shared/screeneffects.lua")
-
+ ----SHARED----
+ include("add.lua")
+ include("shared/sendinfo.lua")
+ include("shared/screeneffects.lua")
 include("shared/props.lua")
 
-include("shared/doormenu.lua")
+ //functions
+include("shared/functions/money.lua")
+include("shared/functions/name.lua")
+include("shared/functions/model.lua")
+include("shared/functions/caste.lua")
+include("shared/functions/dhc.lua")
+include("shared/functions/outfits.lua")
+include("shared/functions/roles.lua")
+include("shared/functions/admins.lua")
+ 
+ 
+ //derma
+include("shared/derma/doormenu.lua")
+include("shared/derma/charcreation.lua")
+include("shared/derma/charmenu.lua")
+include("shared/derma/paymenu.lua")
+include("shared/derma/commandmenu.lua")
 
-include("add.lua")
+//add
+include("shared/add/addmodel.lua")
+include("shared/add/addammo.lua")
+include("shared/add/addweapon.lua")
 
-
-include("server/roles.lua")
 
 function GM:Initialize()
 	self.BaseClass.Initialize( self )
