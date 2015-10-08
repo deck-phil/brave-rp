@@ -1,3 +1,4 @@
+	//Add More weapons to the table 
 	RPWeapons =
 	
 	{
@@ -10,7 +11,7 @@
 		["brp_launcher"] = { name = "Improvised Launcher", model = "models/weapons/w_rocket_launcher.mdl", role = "watcher", weapon = "brp_launcher", price = 0, clipsize = 5, priammo = "SMG1_Grenade" } 	
 	}
 	
-	
+	//Add Entities
 	RPEnts = 
 	
 	{
@@ -20,6 +21,7 @@
 		["Alcohol"] = { name = "Alcohol", model = "models/drug_mod/alcohol_can.mdl", role = "bartender", ent = "durgz_alcohol", price = 0, crate = true }
 	}
 	
+	//Add model with carac
 	RPModels =
 	
 	{
@@ -29,10 +31,10 @@
 			name = "Citizen Outfit", 
 			model = "models/player/Group01/", 
 			role = "default", 
-			gasProof = false, 
-			default = true, 
-			droppable = false,
-			diffModel = true},//Default
+			gasProof = false, //Protects from soma gas
+			default = true, //default model, no role req
+			droppable = false, //can drop?
+			diffModel = true},//different model for each citizen
 		
 		["Rebel"] = { 
 			tblName = "Rebel", 
@@ -144,6 +146,7 @@
 		"police"
 	}
 	
+	//Add Roles
 	RPRoles =
 	
 	{
@@ -171,6 +174,7 @@
 	
 	} 
 	
+	//Types of valid doors
 	RPDoors = {
 	
 		"prop_door_rotating",
