@@ -1,4 +1,5 @@
 
+//Find player by Name
 function findPlayers( str )
 
 	local matches = {}
@@ -34,6 +35,7 @@ function findPlayers( str )
 
 end
 
+//Find ply by RPName
 function findRPPlayers( str )
 
 	local matches = {}

@@ -1,3 +1,5 @@
+//Straight up config, not sure if they all work yet.
+
 defaultModel = "models/player/group01/male_07.mdl"
 
 defaultMoney = 100

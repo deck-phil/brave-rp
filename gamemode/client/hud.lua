@@ -12,8 +12,10 @@ local function HUDHider(name) -- This is a local function because all functions 
 end
 hook.Add("HUDShouldDraw", "HUDHider", HUDHider)
 
+//Disable the red jelly screenq
 local hudconvar = CreateClientConVar("BRP_RedHud", 1, false, false)
 
+//Draw red jelly
 function RedHUD()
 	
 	if hudconvar:GetInt() == 1 then
@@ -33,6 +35,7 @@ function RedHUD()
 end
 hook.Add("HUDPaint", "RedHUD", RedHUD)
 
+//Bleach, dull colors
 local bleachedhud =
 	{
 	 [ "$pp_colour_addr" ] = 0,

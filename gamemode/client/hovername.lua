@@ -1,5 +1,6 @@
 function HoveringNames()
 
+	//Init ent getter
 	local tr = util.GetPlayerTrace( LocalPlayer() )
 	local trace = util.TraceLine( tr )
 	if (!trace.Hit) then return end
@@ -7,30 +8,38 @@ function HoveringNames()
 	
 	local target = trace.Entity
 	
+		//if ent is a player and not himself
 		if target:IsPlayer() and target != LocalPlayer() then
 		
+			//Get the distance
 			local targetPos = target:GetPos() + Vector(0,0,84)
 			local targetDistance = math.floor((LocalPlayer():GetPos():Distance( targetPos ))/40)
 			local targetScreenpos = targetPos:ToScreen()
-			//Players
+			
+			//If the distance is cloe enough
 			if targetDistance < 5 then
+					//Draw either the name or CopID
 					if !table.HasValue( ModelTech, OutfitsGetValue( "model",target:GetRPModel(), "id")) then
 						draw.SimpleText( target:GetRPName(), "Trebuchet18", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y), Color(200,200,200,210), TEXT_ALIGN_CENTER)
+						draw.SimpleText( target:GetRPTitle(), "Trebuchet18", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y + 12), Color(200,200,200,210), TEXT_ALIGN_CENTER)
 					else	
 						draw.SimpleText( 'CP.'..target:GetCPRegister(), "Trebuchet18", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y), Color(190,40,40,210), TEXT_ALIGN_CENTER)
 					end
-			
-					draw.SimpleText( target:GetRPTitle(), "Trebuchet18", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y + 12), Color(200,200,200,210), TEXT_ALIGN_CENTER)
+					
+					//Draw their caste on screen
 					draw.SimpleText(team.GetName( target:Team() ), "Trebuchet18", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y + 24), team.GetColor( target:Team() ), TEXT_ALIGN_CENTER)
 					
+					//Draw their cop GUI
 					if table.HasValue( ModelTech, OutfitsGetValue( "model",LocalPlayer():GetRPModel(), "id")) and !(table.HasValue( ModelTech, OutfitsGetValue( "model",target:GetRPModel(), "id"))) then
 					
+						//Draw citizens ID or unregistered
 						if target:isRegistered() == true then
 							draw.SimpleText( 'CITIZEN.'..target:GetRegister(), "Trebuchet18", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y - 14), Color(190,40,40,210), TEXT_ALIGN_CENTER)
 						else
 							draw.SimpleText( 'UNREGISTERED', "Trebuchet18", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y - 14), Color(190,40,40,210), TEXT_ALIGN_CENTER)
 						end
 						
+						//Draw if their wanted
 						if target:isWanted() == true then
 							draw.SimpleText( 'WANTED', "Trebuchet18", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y - 28), Color(190,40,40,210), TEXT_ALIGN_CENTER)
 						end
@@ -46,6 +55,7 @@ hook.Add("HUDPaint", "HoveringNames", HoveringNames)
 
 function HoveringWaypointNames()
 
+	//Only cops have this, if they have their suits
 	if !(table.HasValue( RPCops, LocalPlayer():GetRPRole())) then return end
 	if !(table.HasValue( ModelTech, OutfitsGetValue( "model",LocalPlayer():GetRPModel(), "id"))) then return end
 
@@ -63,7 +73,7 @@ function HoveringWaypointNames()
 		local angle = trace.HitNormal:Angle()
 		
 		
-		
+		//Drawthe waypoint
 		if targetDistance < 25 then	
 
 			draw.SimpleText( v:GetWaypointName() , "DermaLarge", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y - 14), Color(190,40,40,210), TEXT_ALIGN_CENTER)

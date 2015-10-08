@@ -91,6 +91,8 @@ concommand.Add("BRP_SetRole", ConSetRole)
 
 function ConBuyDoor( ply, command, args, commandstring)
 
+	//Buys the door you looking at
+
 	local tr = util.GetPlayerTrace(ply)
 	local trace = util.TraceLine(tr)
 		
@@ -120,6 +122,8 @@ concommand.Add("BRP_BuyDoor", ConBuyDoor)
 
 function ConSellDoor( ply, command, args, commandstring)
 
+	//Player sells door
+	
 	local tr = util.GetPlayerTrace(ply)
 	local trace = util.TraceLine(tr)
 		
@@ -142,12 +146,14 @@ function ConSellDoor( ply, command, args, commandstring)
 			end
 		end
 	
-	print( ply:GetRPName().." has bought " ..tostring(door))
+	print( ply:GetRPName().." has sold " ..tostring(door))
 
 end
 concommand.Add("BRP_SellDoor", ConSellDoor)
 
 function ConNameDoor( ply, command, args, commandstring)
+
+	//Player names their door
 
 	local tr = util.GetPlayerTrace(ply)
 	local trace = util.TraceLine(tr)
@@ -171,13 +177,15 @@ function ConNameDoor( ply, command, args, commandstring)
 			end
 		end
 	
-	print( ply:GetRPName().." named their " ..args[1])
+	print( ply:GetRPName().." named their door to " ..args[1])
 
 end
 concommand.Add("BRP_NameDoor", ConNameDoor)
 
 
 function ConSellAllDoors( ply, command, args, commandstring)
+
+	//Player sells all their doors
 
 	for k, v in pairs(ents.GetAll()) do
 	print("NIGGER")
@@ -194,4 +202,3 @@ function ConSellAllDoors( ply, command, args, commandstring)
 
 end
 concommand.Add("BRP_SellAllDoors", ConSellAllDoors)
-

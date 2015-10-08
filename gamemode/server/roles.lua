@@ -1,6 +1,6 @@
 local meta = FindMetaTable("Player")
 
-
+//Set role players
 function meta:SetRPRole( role )
 
 	if !(HasRole( role )) then
@@ -35,24 +35,28 @@ function meta:SetRPRole( role )
 	
 end
 
+//Get Role
 function meta:GetRPRole()
 	
 	return self:GetNWString("rprole", "")
 	
 end
 
+//Save for later sessions
 function meta:SaveRPRole()
 
 	self:SetPData("SQLrole", self:GetNWString("rprole") )
 
 end
 
+//Load from earlier sessions
 function meta:LoadRPRole()
 
 	self:SetNWInt("rprole", self:GetPData("SQLrole") )
 	
 end
 
+//Checks to make sure, role is valid
 function HasRole( role )
 	
 	for k, v in pairs( RPRoles ) do
@@ -63,27 +67,35 @@ function HasRole( role )
 		return false
 end
 
+//Get weapons specific to that role
 function meta:GetRoleWeapons( role )
 	
+	//also give hands
 	self:Give("rp_hands")
 	
+	//nothing more for nulls
 	if role == "null" then return end
 	
+	//Also give basic tools
 	self:Give("weapon_physgun")
 	self:Give("weapon_physcannon")
 	
+	//Check the weapon list
 	for k, v in pairs(RPRoles[role]["weps"]) do
 		self:Give(v)
 	end
 
 end
 
+//Weapon Strip
+//Obsolete???
 function meta:StripRoleWeapons()
 	
 	self:StripWeapons()
 	
 end
 
+//Perma deaths the player
 function meta:demoteRP()
 
 	self:SetRPName("")

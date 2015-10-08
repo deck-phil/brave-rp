@@ -1,4 +1,5 @@
 
+//Aw
 local allowedModels = {} --All or part of model name.
 allowedModels[1] = "models/props_c17/" 
 allowedModels[2] = "models/props_junk/"
@@ -13,6 +14,7 @@ local function blockProps( ply, mdl )
 	
 	if !(ply:canAfford( defaultPropPrice )) then return false end
 			
+	//Make sure its on the list, and make they pay
 	for _, v in pairs( allowedModels ) do
 		if string.find( mdl, v ) then
 			ply:TakeMoney(defaultPropPrice)
@@ -23,6 +25,7 @@ local function blockProps( ply, mdl )
 	return false
 end
 
+//Sets player as RP Owner of that item.
 hook.Add("PlayerSpawnedProp", "PropOwnerFunc", function(ply, model, ent) 
 
 	ent:SetRPOwner( ply )
@@ -31,6 +34,7 @@ hook.Add("PlayerSpawnedProp", "PropOwnerFunc", function(ply, model, ent)
 	
 end )
 
+//Remover tool restrictions
 hook.Add( "CanTool", "BlockRemoverandother", function( ply, tr, tool)
 
 	print( ply:Name().." tried removing "..tostring(tr.Entity))
@@ -45,6 +49,8 @@ hook.Add( "CanTool", "BlockRemoverandother", function( ply, tr, tool)
 	
 end)
 
+//Admins can pickup players
+//Players can only pickup their stuff
 function EntPickup(ply, ent)
 	/*
 	if ply:isRPAdmin() and ent:GetClass():lower() == "player" then
@@ -62,16 +68,16 @@ function EntPickup(ply, ent)
 end
 hook.Add("PhysgunPickup", "PhysgunPickupThing", EntPickup)
 
+//Restrict all nongamemode weapons
 local function RestrictWeapons(ply, class, weapon)
     return ply:IsAdmin()
 end
 hook.Add("PlayerSpawnSWEP", "RestrictWeapons", RestrictWeapons)
 hook.Add("PlayerGiveSWEP", "RestrictWeapons", RestrictWeapons)
 
-
-
 hook.Add( "PlayerSpawnProp", "blockProps", blockProps )
 
+//Set the values
 RunConsoleCommand("sbox_maxragdolls", MaxRagdolls)
 RunConsoleCommand("sbox_maxnpcs", MaxNPCs)
 RunConsoleCommand("sbox_maxballoons", MaxBalloons)

@@ -78,32 +78,41 @@ AddCSLuaFile("client/scoreboard.lua")
 
 function GM:PlayerConnect( name, ip )
 
+	//Cool message when spawning
 	PrintMessage(  HUD_PRINTTALK, "" .. name .. " is being conditioned.")
 	
 end
 
 function GM:PlayerSpawn( ply )
 	
+	//To avoid spawn clusters
 	ply:SetCollisionGroup( COLLISION_GROUP_WEAPON )
 	
+	//just in case they were somad
 	ply:SetRunSpeed( defaultRunSpeed )
 	ply:SetWalkSpeed( defaultWalkSpeed )	
 	
+	//Jimmy watned flash
 	ply:AllowFlashlight( true )
 	
+	//If they have not authed, and permad
 	if ply:GetRPName() == "" and ply:Deaths() > 0 then
 		ply:Freeze( true )
 		CharMenu( ply )
 	end
 	
+	//Classic hands code
 	ply:SetupHands()
 	
+	//To avoid spawn clusters	
 	ply:SetPos(ply:LocalToWorld(Vector(math.Rand(50,400),0,0)))
 	
+	//If they werent permad, keep their role
 	ply:SetRPRole( ply:GetRPRole() )
 	
 end
 
+//Classic hands
 function GM:PlayerSetHandsModel( ply, ent )
 
 	local simplemodel = player_manager.TranslateToPlayerModelName( ply:GetModel() )
@@ -118,18 +127,25 @@ end
 
 function GM:PlayerAuthed( ply, steamID, uniqueID )
 	
-	print("Player: " .. ply:Nick() .. ", has gotten authed.")	
+	print("Player: " .. ply:Nick() .. ", has gotten authed.")
+	
+	//default model, to prevent no model error
 	ply:SetModel(defaultModel)
+	
+	//Load values
 	/*
 	ply:LoadMoney()
 	ply:LoadRPName()
 	ply:LoadRPModel()
 	ply:LoadCaste()
 	*/
+	
 	CharMenu( ply )
 end
 
 function GM:PlayerDisconnected( ply )
+
+	//Save values
 	/*
 	ply:SaveMoney()
 	ply:SaveRPName()
@@ -140,27 +156,31 @@ end
 
 function GM:PlayerDeath( victim, inflictor, attacker )
 
+	//Death indicators
     if ( victim == attacker ) then
-        //PrintMessage( HUD_PRINTTALK, victim:GetRPName() .. " committed suicide." )
+        PrintMessage( HUD_PRINTTALK, victim:GetRPName() .. " committed suicide." )
     elseif (attacker:IsPlayer()) then
         print( victim:GetRPName() .. " was killed by " .. attacker:GetRPName() .. "." )
     end
 	
 end
 
-
+//Distant voices
 hook.Add("PlayerCanHearPlayersVoice", "Wat" , function( p1, p2 )  
     return (p1:GetPos():Distance(p2:GetPos()) <= 500) 
 end ) 
 
+//Can hear chat?
 hook.Add("PlayerCanSeePlayersChat", "DoubleWat", function(text, teamBool, p1, p2)
 	
 	if string.sub(text, 1, 2) == "//" then
+		//all can hear ooc
 		return true
 	end
 	
 	if string.sub(text, 1, 2) == "/r" then
 	
+		//Only cops can hear radio
 		if !table.HasValue( RPCops, OutfitsGetValue( "model", p1:GetRPModel(), "id")) then return false end
 	
 		if table.HasValue( RPCops, OutfitsGetValue( "model", p2:GetRPModel(), "id")) then
@@ -169,6 +189,7 @@ hook.Add("PlayerCanSeePlayersChat", "DoubleWat", function(text, teamBool, p1, p2
 		
 	end	
 
+	//else, only in a radius
 	return (p1:GetPos():Distance(p2:GetPos()) <= 500) 
 	
 end)
