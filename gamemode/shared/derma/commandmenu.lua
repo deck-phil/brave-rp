@@ -22,10 +22,16 @@ elseif CLIENT then
 			MainMenuFrame:SetDraggable( true )
 			MainMenuFrame:MakePopup()
 			MainMenuFrame:Center()
+			MainMenuFrame.Paint = function(self, w, h)
+				draw.RoundedBox( 0, 0, 0, w, h, Color(25, 68, 131, 150))
+			end
 			
 		local MainMenuSheet = vgui.Create( "DPropertySheet", MainMenuFrame )
 			MainMenuSheet:SetPos( 5, 27 )
-			MainMenuSheet:SetSize( 430, 196 )			
+			MainMenuSheet:SetSize( 430, 196 )		
+			MainMenuSheet.Paint = function(self, w, h)
+				draw.RoundedBox(0, 0, 0, w, h, Color(255,255,255))
+			end
 			
 			
 		local CommandsTab = vgui.Create( "DPanelList" )
@@ -519,10 +525,23 @@ elseif CLIENT then
 				AdminRole:SetPos( 10, 110 )					
 				AdminRole.DoClick = function ()
 					MainMenuFrame:Close()
-					openRoleMenu()
+					openRoleMenu(RPName)
 				end						
 				
 		end	
+		
+		
+		for k, v in pairs(MainMenuSheet.Items) do
+			if (!v.Tab) then continue end
+				v.Tab:SetColor(Color(0,0,0))
+				v.Tab.Paint = function(self,w,h)
+					if MainMenuSheet:GetActiveTab() == self then
+						draw.RoundedBox(0, 0, 0, w, h, Color(25, 68, 210, 150))
+					else
+						draw.RoundedBox(0, 0, 0, w, h, Color(255,255,255))
+					end
+			end
+		end
 		
 			
 		
@@ -669,7 +688,7 @@ elseif CLIENT then
 	
 	end
 	
-	function openRoleMenu()
+	function openRoleMenu( default )
 	
 		local RoleFrame = vgui.Create( "DFrame" )
 			RoleFrame:SetSize( 300, 200 )
@@ -693,6 +712,9 @@ elseif CLIENT then
 			PlayerText:SetPos( 75, 100 )
 			PlayerText:SetTall( 20 )
 			PlayerText:SetWide( 150 )
+			if default then
+				PlayerText:SetValue(default)
+			end
 			PlayerText:SetTextColor( Color(0,0,0,255) )
 
 		for k,v in pairs(getPlayers()) do				

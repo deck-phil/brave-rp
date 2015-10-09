@@ -37,39 +37,37 @@ elseif CLIENT then
 			CreateFrame:ShowCloseButton( false )
 			CreateFrame:Center()
 			CreateFrame:MakePopup()		
-			CreateFrame.Paint = function()
-				draw.RoundedBox( 8, 0, 0, CreateFrame:GetWide(), CreateFrame:GetTall(), Color( 25, 68, 131, 255 ) )
-				draw.RoundedBox( 8, 5, 5, CreateFrame:GetWide() - 10, CreateFrame:GetTall() - 10, Color( 255, 255, 255, 255 ) )
-			end				
+			CreateFrame.Paint = function(self, w, h)
+				draw.RoundedBox( 8, 0, 0, w, h, Color( 25, 68, 131, 255 ) )
+				draw.RoundedBox( 8, 5, 5, w - 10, h - 10, Color( 255, 255, 255, 255 ) )
+			end							
 			
 		local NameText = vgui.Create("DLabel", CreateFrame )		
-			NameText:SetPos( 32, 90 )
+			NameText:SetPos( 32, 70 )
 			NameText:SetTall( 20 )
 			NameText:SetWide( 150 )
 			NameText:SetText("Name:")
 			NameText:SetColor(Color(0,0,0,255))
+			
+		local DermaName = vgui.Create("DTextEntry", CreateFrame )		
+			DermaName:SetPos( 32, 90 )
+			DermaName:SetTall( 20 )
+			DermaName:SetWide( 150 )		
 			
 		local InfoText = vgui.Create("DLabel", CreateFrame )		
 			InfoText:SetPos( 32, 130 )
 			InfoText:SetTall( 60 )
 			InfoText:SetWide( 150 )
 			InfoText:SetColor(Color(0,0,0,255))
-			InfoText:SetText("(Note: Your caste will be \nrandomly generated upon \ncreation. )")			
-			
-
-			local DermaName = vgui.Create("DTextEntry", CreateFrame )		
-			DermaName:SetPos( 32, 110 )
-			DermaName:SetTall( 20 )
-			DermaName:SetWide( 150 )		
-			
-			local y = 1
-			
+			InfoText:SetText("(Note: Your caste will be \nrandomly generated upon \ncreation. )")					
+						
 		local DChar = vgui.Create("DModelPanel", CreateFrame )
 			DChar:SetHeight( CreateFrame:GetTall()/1.2 )
 			DChar:SetWidth( CreateFrame:GetWide()/1.3 )
 			DChar:SetPos(CreateFrame:GetWide() - DChar:GetWide()+ 80, (CreateFrame:GetTall() / 2) - (DChar:GetTall() / 2)  )
 			DChar:SetModel( "models/player/Group01/Male_01.mdl" )
 			function DChar:LayoutEntity( Entity ) return end
+			local y = 1
 			DChar.DoClick = function ()
 				y = y + 1
 				
@@ -85,6 +83,18 @@ elseif CLIENT then
 			DermaButton:SetText( "Create Character" )
 			DermaButton:SetPos( 32, 250 )
 			DermaButton:SetSize( 150, 50 )
+			
+			local c = Color( 255, 255, 255)
+			DermaButton.OnCursorExited = function ()
+				c = Color( 255, 255, 255)
+			end
+			DermaButton.OnCursorEntered = function ()
+				c = Color( 230, 230, 250)
+			end
+			DermaButton.Paint = function ()
+				draw.RoundedBox( 0, 0, 0, DermaButton:GetWide(), DermaButton:GetTall(), c )
+			end
+
 			DermaButton.DoClick = function ()
 			
 				if DermaName:GetValue() == "" then return end

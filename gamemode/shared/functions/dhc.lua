@@ -77,8 +77,8 @@ function meta:GetRegister()
 	if num == "" then return "" end
 	
 	if tonumber(num, 10) < 1000 then num = "0"..num end
-	if tonumber(num, 10) < 100 then num = "0"..num end
-	if tonumber(num, 10) < 10 then num = "0"..num end
+	if tonumber(num, 10) < 100 then num = "00"..num end
+	if tonumber(num, 10) < 10 then num = "000"..num end
 	
 	return num
 
@@ -92,7 +92,7 @@ function meta:GetCPRegister()
 	
 	if tonumber(num, 10 ) < 100 then num = "0"..num end
 
-	if tonumber(num, 10 ) < 10 then num = "0"..num end	
+	if tonumber(num, 10 ) < 10 then num = "00"..num end	
 	
 	return num
 

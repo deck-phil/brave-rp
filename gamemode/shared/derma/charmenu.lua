@@ -98,7 +98,7 @@ elseif CLIENT then
 			if !(ply:GetRPTitle() == "") then
 		local TitleLabel = Label( "TITLE: " .. ply:GetRPTitle() .. "", f )
 			TitleLabel:SetSize( 500, 32)
-			TitleLabel:SetPos( 10,  10 + SteamLabel:GetTall() + 50 + NameLabel:GetTall() +10 + 32 + 10 + 42)
+			TitleLabel:SetPos( 10,  10 + SteamLabel:GetTall() + 50 + NameLabel:GetTall() +10 + 32 + 10 + 42 +42)
 			TitleLabel:SetFont("BebasR")
 			TitleLabel:SetColor( color_black )			
 			end
@@ -109,9 +109,9 @@ elseif CLIENT then
 				CITID = 'UNREGISTERED'
 			end
 			
-		local RegNum = Label( "CitID#: " .. CITID .. "", f )
+		local RegNum = Label( "CIT.ID#: " .. CITID .. "", f )
 			RegNum:SetSize( 500, 32)
-			RegNum:SetPos( 10,  10 + SteamLabel:GetTall() + 50 + NameLabel:GetTall() +10 + 32 + 10 + 42 + 42)
+			RegNum:SetPos( 10,  10 + SteamLabel:GetTall() + 50 + NameLabel:GetTall() +10 + 32 + 10 + 42)
 			RegNum:SetFont("BebasR")
 			RegNum:SetColor( color_black )			
 			
@@ -133,14 +133,26 @@ elseif CLIENT then
 			local PlayButton = vgui.Create( "DButton", f )
 				PlayButton:SetFont( "BebasB" )
 				PlayButton:SetText( "PLAY" )
-				PlayButton:SetSize( ScreenScale(100), ScreenScale(30) )
+				PlayButton:SetSize( 340, 150 )
 				PlayButton:AlignLeft()
 				PlayButton:SetPos( 10, ScrH() - PlayButton:GetTall() - 10 )	
-				PlayButton:SetColor( color_black )			
-				PlayButton.Paint = function()
-					draw.RoundedBox( 8, 10, 10, PlayButton:GetWide(), PlayButton:GetTall(), Color( 255, 255, 255, 0 ) )
+				PlayButton:SetColor( color_black )
+				
+			local c = Color( 255, 255, 255, 0)
+				PlayButton.OnCursorExited = function ()
+					c = Color( 255, 255, 255, 0)
 				end
+				PlayButton.OnCursorEntered = function ()
+					c = Color( 25, 68, 131, 150)
+				end	
+				
+				PlayButton.Paint = function()
+					draw.RoundedBox( 0, 0, 0, PlayButton:GetWide(), PlayButton:GetTall(), c )
+				end
+				
 				PlayButton.DoClick = function ()
+				
+					print(PlayButton:GetTall())
 					f:Close()
 				end
 	end	
