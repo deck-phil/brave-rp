@@ -52,12 +52,14 @@ AddCSLuaFile("shared/derma/charmenu.lua")
 AddCSLuaFile("shared/derma/paymenu.lua")
 AddCSLuaFile("shared/derma/charcreation.lua")
 AddCSLuaFile("shared/derma/commandmenu.lua")
+AddCSLuaFile("shared/derma/rulesmenu.lua")
 AddCSLuaFile("shared/derma/doormenu.lua")
 
 include("shared/derma/charcreation.lua")
 include("shared/derma/charmenu.lua")
 include("shared/derma/paymenu.lua")
 include("shared/derma/commandmenu.lua")
+include("shared/derma/rulesmenu.lua")
 include("shared/derma/doormenu.lua")
 
 //ADD
@@ -167,7 +169,7 @@ end
 
 //Distant voices
 hook.Add("PlayerCanHearPlayersVoice", "Wat" , function( p1, p2 )  
-    return (p1:GetPos():Distance(p2:GetPos()) <= 500) 
+    return (p1:GetPos():Distance(p2:GetPos()) <= 500), true 
 end ) 
 
 //Can hear chat?
@@ -179,7 +181,7 @@ hook.Add("PlayerCanSeePlayersChat", "DoubleWat", function(text, teamBool, p1, p2
 	end
 	
 	if string.sub(text, 1, 2) == "/r" then
-	
+		
 		//Only cops can hear radio
 		if !table.HasValue( RPCops, OutfitsGetValue( "model", p1:GetRPModel(), "id")) then return false end
 	

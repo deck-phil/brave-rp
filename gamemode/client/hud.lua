@@ -2,7 +2,9 @@ local tohide = { -- This is a table where the keys are the HUD items to hide
 	["CHudHealth"] = true,
 	["CHudBattery"] = true,
 	["CHudAmmo"] = true,
-	["CHudSecondaryAmmo"] = true
+	["CHudSecondaryAmmo"] = true,
+	["CHudVoiceStatus"] = true,
+	["CHudVoiceSelfStatus"] = true
 }
 
 local function HUDHider(name) -- This is a local function because all functions should be local unless another file needs to run it

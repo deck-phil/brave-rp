@@ -19,7 +19,7 @@
 ********************************************************/
 
 SWEP.PrintName	 = "Soma Gun"	 // 'Nice' Weapon name (Shown on HUD)	
-SWEP.Slot	 = 1	 // Slot in the weapon selection menu
+SWEP.Slot	 = 4	 // Slot in the weapon selection menu
 SWEP.SlotPos	 = 3	 // Position in the slot
 
 SWEP.DrawAmmo = false

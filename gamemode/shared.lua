@@ -26,6 +26,7 @@ include("shared/derma/doormenu.lua")
 include("shared/derma/charcreation.lua")
 include("shared/derma/charmenu.lua")
 include("shared/derma/paymenu.lua")
+include("shared/derma/rulesmenu.lua")
 include("shared/derma/commandmenu.lua")
 
 //add

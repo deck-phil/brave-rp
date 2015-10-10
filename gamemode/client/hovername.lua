@@ -131,14 +131,15 @@ function HoveringCrateNames( crate )
 			local targetScreenpos = targetPos:ToScreen()
 			
 			if targetDistance < 5 then
-				//draw.SimpleText( OutfitsGetValue( "model", crate:GetNWString("outfitmodel"), "name"  ), "DermaLarge", tonumber(targetScreenpos.x), (tonumber(targetScreenpos.y + 26)), Color(255,20,20,255), TEXT_ALIGN_CENTER)
+				draw.SimpleText( OutfitsGetValue( "model", crate:GetNWString("outfitmodel"), "name"  ), "DermaLarge", tonumber(targetScreenpos.x), (tonumber(targetScreenpos.y + 26)), Color(255,20,20,255), TEXT_ALIGN_CENTER)
 				//not tested
+				/*
 				if holo then return end
 				local holoModel = ClientsideModel( crate:GetNWString("outfitmodel"), RENDERGROUP_BOTH)
 				local holo = true
 				holoModel:SetPos(crate:GetPos())
 				holoModel:SetColor( Color(255,255,255,100))
-			else
+				*/
 			
 			end
 		end

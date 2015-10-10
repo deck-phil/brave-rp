@@ -23,14 +23,14 @@ elseif CLIENT then
 			MainMenuFrame:MakePopup()
 			MainMenuFrame:Center()
 			MainMenuFrame.Paint = function(self, w, h)
-				draw.RoundedBox( 0, 0, 0, w, h, Color(25, 68, 131, 150))
+				draw.RoundedBox( 4, 0, 0, w, h, Color(25, 68, 131, 150))
 			end
 			
 		local MainMenuSheet = vgui.Create( "DPropertySheet", MainMenuFrame )
 			MainMenuSheet:SetPos( 5, 27 )
 			MainMenuSheet:SetSize( 430, 196 )		
 			MainMenuSheet.Paint = function(self, w, h)
-				draw.RoundedBox(0, 0, 0, w, h, Color(255,255,255))
+				draw.RoundedBox(4, 0, 0, w, h, Color(255,255,255))
 			end
 			
 			
@@ -38,7 +38,7 @@ elseif CLIENT then
 			CommandsTab:SetPos( 0, 0 )
 			CommandsTab:SetSize( MainMenuFrame:GetWide(), MainMenuFrame:GetTall() )
 			CommandsTab:SetSpacing( 5 )
-			CommandsTab:EnableVerticalScrollbar( true )		
+			CommandsTab:EnableVerticalScrollbar( true )
 			
 		local OptionsTab = vgui.Create( "DPanelList" )
 			OptionsTab:SetPos( 0, 0 )
@@ -116,7 +116,21 @@ elseif CLIENT then
 			local PayButton = vgui.Create( "DButton", CommandsTab )
 				PayButton:SetText( "Pay Menu" )
 				PayButton:SetSize(100, 40)
-				PayButton:SetPos( 10, 10 )					
+				PayButton:SetPos( 10, 10 )	
+				PayButton:SetColor(Color(255,255,255))
+				local c = Color( 25, 68, 131, 0)
+				PayButton.OnCursorExited = function ()
+					c = Color( 25, 68, 131, 0)
+				end
+				PayButton.OnCursorEntered = function ()
+					c = Color( 255, 255, 255, 100)
+				end	
+				
+				PayButton.Paint = function(self, w,h )
+					draw.RoundedBox( 4, 0, 0, w, h, Color( 25, 68, 131) )
+					draw.RoundedBoxEx(4, 0, 0, w, h-34, c, true, true)
+				end	
+				
 				PayButton.DoClick = function ()
 					MainMenuFrame:Close()
 					openPaying()
@@ -167,7 +181,7 @@ elseif CLIENT then
 		MainMenuSheet:AddSheet( "Commands", CommandsTab, nil, false, false, "All your commands" )	
 		MainMenuSheet:AddSheet( "Outfits", ModelTab, nil, false, false, "Change your outfit" )
 		MainMenuSheet:AddSheet( "Shop", ShopTab, nil, false, false, "Buy weapons and shipments" )				
-		MainMenuSheet:AddSheet( "Options", OptionsTab, nil, false, false, "Change your options" )
+
 		
 		local DHCTab = vgui.Create( "DPanelList" )
 			DHCTab:SetPos( 0, 0 )
@@ -287,6 +301,7 @@ elseif CLIENT then
 			
 				
 		end
+		
 
 		//REQ WANTED TAB
 	if (LocalPlayer():GetRPRole() == "dhc") then 
@@ -529,16 +544,25 @@ elseif CLIENT then
 				end						
 				
 		end	
-		
+		MainMenuSheet:AddSheet( "Options", OptionsTab, nil, false, false, "Change your options" )	
 		
 		for k, v in pairs(MainMenuSheet.Items) do
 			if (!v.Tab) then continue end
 				v.Tab:SetColor(Color(0,0,0))
-				v.Tab.Paint = function(self,w,h)
+				
+				local c = Color( 255, 255, 255)
+				v.Tab.OnCursorExited = function ()
+					c = Color( 255, 255, 255)
+				end
+				v.Tab.OnCursorEntered = function ()
+					c = Color( 25, 68, 210, 150)
+				end	
+					
+				v.Tab.Paint = function(self,w,h)		
 					if MainMenuSheet:GetActiveTab() == self then
-						draw.RoundedBox(0, 0, 0, w, h, Color(25, 68, 210, 150))
+						draw.RoundedBox(0, 0, 0, w, h-5, Color(25, 68, 210, 150))
 					else
-						draw.RoundedBox(0, 0, 0, w, h, Color(255,255,255))
+						draw.RoundedBox(0, 5, 0, w-10, h-17, c)
 					end
 			end
 		end

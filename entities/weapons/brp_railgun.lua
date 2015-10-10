@@ -18,7 +18,7 @@
 		and only have to be visible to the client.
 ********************************************************/
 SWEP.PrintName	 = "Rail Rifle"	 // 'Nice' Weapon name (Shown on HUD)	
-SWEP.Slot	 = 1	 // Slot in the weapon selection menu
+SWEP.Slot	 = 2	 // Slot in the weapon selection menu
 SWEP.SlotPos	 = 3	 // Position in the slot
 
 SWEP.DrawAmmo = false

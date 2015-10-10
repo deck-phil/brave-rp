@@ -95,6 +95,7 @@ function meta:demoteRP()
 	self:SetRPRole("null")
 	self:StripRoleWeapons()
 	
+	self:Kill()
 	self:KillSilent()
 	
 end
