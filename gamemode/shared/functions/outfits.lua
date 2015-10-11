@@ -8,7 +8,7 @@ function meta:CreateOutfitList()
 end
 
 
-function meta:GetOutfitLits()
+function meta:GetOutfitList()
 
 	return self:GetNWString("OutfitList")
 
@@ -100,6 +100,24 @@ function OutfitsGetValue( Iput, value, Oput )
 
 end
 
+function meta:hasOutfitTimes( num, id )
+
+//num = amount of times
+
+	local n = 0
+	local outfitlist = string.Explode("#", self:GetOutfitList())
+	
+	for k, v in pairs(outfitlist) do
+		if v == id then 
+			n = 1 + n
+		end
+	end
+	
+	if n >= num then return true end
+	
+	return false
+	
+end
 
 
 function meta:CreateOutfit( id )
@@ -122,7 +140,7 @@ function meta:DropOutfit( id )
 
 	local path = OutfitsGetValue( "id", id, "model" )
 
-	if (path == self:GetRPModel()) then self:SendLua("notification.AddLegacy(\"You can't drop an outfit you're wearing.\", NOTIFY_GENERIC, 5)") return end
+	if (path == self:GetRPModel()) && !(self:hasOutfitTimes(2,id)) then self:SendLua("notification.AddLegacy(\"You can't drop an outfit you're wearing.\", NOTIFY_GENERIC, 5)") return end
 	if !(OutfitsGetValue( "id", id, "droppable" )) then self:SendLua("notification.AddLegacy(\"You can't drop that outfit.\", NOTIFY_GENERIC, 5)") return end
 
 	self:SendLua("notification.AddLegacy(\"You dropped "..OutfitsGetValue("id", id, "name")..".\", NOTIFY_GENERIC, 5)")
@@ -134,13 +152,9 @@ end
 
 function meta:UseOutfit( path )
 
-	print(path)
-
 	local id = OutfitsGetValue( "model", path, "id" )
 	
 	self:SendLua("notification.AddLegacy(\"You picked up "..OutfitsGetValue("id", id, "name")..".\", NOTIFY_GENERIC, 5)")
-	
-	//print(id)
 	
 	self:AddOutfit(id)
 

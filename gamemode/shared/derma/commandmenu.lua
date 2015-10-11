@@ -103,6 +103,11 @@ elseif CLIENT then
 							
 							MainMenuFrame:Close() 
 							if (LocalPlayer():GetRPModel() == v.model) then notification.AddLegacy( "You're already wearing that!", NOTIFY_HINT, 5 ) return end
+							
+							if (string.StartWith(LocalPlayer():GetRPModel(), v.model)) && (OutfitsGetValue("model",v.model,"diffModel")) then 
+								notification.AddLegacy( "You're already wearing that!", NOTIFY_HINT, 5 ) 
+							return end
+							
 							SendOutfit( v.model, "use" ) 
 							
 							end
@@ -893,7 +898,11 @@ elseif CLIENT then
 			RoleFrame:SetDraggable( false )
 			RoleFrame:ShowCloseButton( true )
 			RoleFrame:Center()
-			RoleFrame:MakePopup()		
+			RoleFrame:MakePopup()	
+			RoleFrame.Paint = function(self, w, h)
+				draw.RoundedBox( 8, 0, 0, w, h, Color(25, 68, 131, 150))
+				//draw.RoundedBox( 4, 5, 22, w-10, h-15, COLOR_WHITE)
+			end			
 	
 		local RoleText = vgui.Create("DComboBox", RoleFrame )		
 			RoleText:SetPos( 75, 50 )
@@ -920,8 +929,15 @@ elseif CLIENT then
 		local RoleButton = vgui.Create( "DButton", RoleFrame )
 			RoleButton:SetText( "Set Role" )
 			RoleButton:SetPos( 100, 150 )
-			RoleButton:SetSize( 100, 25 )				
+			RoleButton:SetSize( 100, 25 )
+			RoleButton:SetColor(COLOR_BLACK)
+			RoleButton.Paint = function(self, w,h )
+				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE )
+			end				
 			RoleButton.DoClick = function ()
+				
+				if RoleText:GetValue() == "" then notification.AddLegacy( "Please select a role.", NOTIFY_HINT, 5 ) return end
+				
 				RoleFrame:Close()
 				
 				if !(HasRole(getRoleName(RoleText:GetValue()))) then notification.AddLegacy( "That is not a valid role!", NOTIFY_HINT, 5 )	return end			

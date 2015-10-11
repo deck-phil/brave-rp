@@ -68,7 +68,7 @@ elseif CLIENT then
 		
 		local w = 0
 		
-		local rolestr = ply:GetOutfitLits()
+		local rolestr = ply:GetOutfitList()
 		local roletbl = string.Split( rolestr, "#" )
 		//print(table.ToString(roletbl))
 		
@@ -126,10 +126,11 @@ elseif CLIENT then
 			
 			
 		local LoadingText = vgui.Create("DLabel", LoadingFrame )		
-			LoadingText:SetPos( 100, -75/2 )
-			LoadingText:SetSize( 150,150 )
+			LoadingText:SetSize( 250,150 )
 			LoadingText:SetColor(Color(0,0,0,255))
-			LoadingText:SetText("Changing Outfits...")	
+			LoadingText:SetText("Changing into ".. OutfitsGetValue("model", model, "name"))	
+			LoadingText:SizeToContentsX()
+			LoadingText:SetPos( 150-(LoadingText:GetWide()/2), -75/2 )
 	
 		timer.Create( LocalPlayer():SteamID().."ClientOutfit", defaultOutfitTime, 1, function() LoadingFrame:Close() notification.AddLegacy( "You have changed your outfit!", NOTIFY_HINT, 5 ) timer.Remove(LocalPlayer():SteamID().."ClientOutfit")  end )	
 	

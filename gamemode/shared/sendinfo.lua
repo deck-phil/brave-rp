@@ -212,7 +212,7 @@ elseif CLIENT then
 		net.Start("sendOutfit")
 		net.WriteString( model )
 		net.SendToServer()	
-		LoadingOutfit()	
+		LoadingOutfit(model)	
 		
 	elseif use == "drop" then
 	

@@ -111,7 +111,15 @@ elseif CLIENT then
 
 			CreateButton.DoClick = function ()
 			
-				if DermaName:GetValue() == "" then return end
+				if DermaName:GetValue() == "" then notification.AddLegacy( "Enter a name!", NOTIFY_HINT, 5 ) return end
+				
+				local same = false
+				
+				for k, v in pairs(player.GetAll()) do
+					if v:GetRPName() == DermaName:GetValue() then same = true return end
+				end
+					
+				if same then notification.AddLegacy( "Someone already has that name!", NOTIFY_HINT, 5 ) return end	
 					
 				SendCharCreation( DermaName:GetValue(), "", DChar.Entity:GetModel() )
 				
