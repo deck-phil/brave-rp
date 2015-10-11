@@ -78,8 +78,8 @@ local PLAYER_LINE = {
 			return
 		end
 
-		if ( self.PName == nil || self.PName != self.Player:GetRPName() ) then
-			self.PName = self.Player:GetRPName()
+		if ( self.PName == nil || self.PName != self.Player:GetName() ) then
+			self.PName = self.Player:GetName()
 			self.Name:SetText( self.PName )
 		end
 		
@@ -136,8 +136,8 @@ local PLAYER_LINE = {
 		if ( !IsValid( self.Player ) ) then
 			return
 		end
-
-		draw.RoundedBox( 4, 0, 0, w, h, self.Player:GetPlayerCasteColor() )
+	
+		draw.RoundedBox( 4, 5, 0, w-10, h, Color(255,255,255) )
 
 	end
 }
@@ -180,14 +180,20 @@ local SCORE_BOARD = {
 
 	PerformLayout = function( self )
 
-		self:SetSize( 700, ScrH() - 200 )
+		local space = 0
+	
+		for k, v in pairs(getRPAdmins()) do
+			space = space + 200
+		end
+	
+		self:SetSize( 700,space )
 		self:SetPos( ScrW() / 2 - 350, 100 )
 
 	end,
 
 	Paint = function( self, w, h )
 
-		--draw.RoundedBox( 4, 0, 0, w, h, Color( 0, 0, 0, 200 ) )
+		draw.RoundedBox( 4, 0, 0, w, h, Color( 25, 68, 131, 75 ) )
 
 	end,
 
@@ -198,11 +204,11 @@ local SCORE_BOARD = {
 		--
 		-- Loop through each player, and if one doesn't have a score entry - create it.
 		--
-		local plyrs = player.GetAll()
+
+		local plyrs = getRPAdmins()
 		for id, pl in pairs( plyrs ) do
 
 			if ( IsValid( pl.ScoreEntry ) ) then continue end
-
 			pl.ScoreEntry = vgui.CreateFromTable( PLAYER_LINE, pl.ScoreEntry )
 			pl.ScoreEntry:Setup( pl )
 

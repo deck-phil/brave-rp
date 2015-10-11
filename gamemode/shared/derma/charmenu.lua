@@ -61,9 +61,9 @@ elseif CLIENT then
 			f:Center()
 			f:ShowCloseButton( false )
 			f:SetScreenLock( true)
-			f.Paint = function()
-				draw.RoundedBox( 8, 0, 0, f:GetWide(), f:GetTall(), Color( 25, 68, 131, 75 ) )
-				draw.RoundedBox( 8, 5, 5, f:GetWide() - 10, f:GetTall() - 10, Color( 255, 255, 255, 100 ) )
+			f.Paint = function( self, w, h)
+				draw.RoundedBox( 8, 0, 0, w,h, Color( 25, 68, 131, 75 ) )
+				draw.RoundedBox( 8, 5, 5,w - 10, h - 10, Color( 255, 255, 255, 100 ) )
 			end		
 			
 			

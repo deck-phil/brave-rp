@@ -27,25 +27,32 @@ elseif CLIENT then
 		local ply = LocalPlayer()
 	
 		local PayingFrame = vgui.Create( "DFrame" )
-			PayingFrame:SetSize( 300, 175 )
+			PayingFrame:SetSize( 250, 175 )
 			PayingFrame:SetTitle( "Paying Menu" )
 			PayingFrame:SetVisible( true )
 			PayingFrame:SetDraggable( true )
 			PayingFrame:ShowCloseButton( true )
 			PayingFrame:Center()
 			PayingFrame:MakePopup()		
+			PayingFrame.Paint = function(self, w, h)
+				draw.RoundedBox( 8, 0, 0, w, h, Color(25, 68, 131, 150))
+			end	
 	
 		local DermaText = vgui.Create("DTextEntry", PayingFrame )		
-			DermaText:SetPos( 75, 50 )
+			DermaText:SetPos( 50, 50 )
 			DermaText:SetTall( 20 )
 			DermaText:SetWide( 150 )
 			DermaText:SetNumeric(true)
 
-		local DermaButton = vgui.Create( "DButton", PayingFrame )
-			DermaButton:SetText( "Give Money" )
-			DermaButton:SetPos( 100, 90 )
-			DermaButton:SetSize( 100, 25 )
-			DermaButton.DoClick = function ()
+		local GiveBtn = vgui.Create( "DButton", PayingFrame )
+			GiveBtn:SetText( "Give Money" )
+			GiveBtn:SetPos( 75, 90 )
+			GiveBtn:SetSize( 100, 25 )
+			GiveBtn:SetColor(COLOR_BLACK)
+			GiveBtn.Paint = function(self, w, h)
+				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE)
+			end	
+			GiveBtn.DoClick = function ()
 				
 				if DermaText:GetValue() == "" then notification.AddLegacy( "Enter a number!", NOTIFY_HINT, 5 ) return end
 				if DermaText:GetInt() < 0 then notification.AddLegacy( "You can't give that much!", NOTIFY_HINT, 5 ) return end
@@ -84,8 +91,12 @@ elseif CLIENT then
 			
 		local DropButton = vgui.Create( "DButton", PayingFrame )
 			DropButton:SetText( "Drop" )
-			DropButton:SetPos( 100, 125 )
+			DropButton:SetPos( 75, 125 )
 			DropButton:SetSize( 100, 25 )
+			DropButton:SetColor(COLOR_BLACK)
+			DropButton.Paint = function(self, w, h)
+				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE)
+			end				
 			DropButton.DoClick = function ()		
 	
 				if DermaText:GetValue() == "" then notification.AddLegacy( "Enter a number!", NOTIFY_HINT, 5 ) return end

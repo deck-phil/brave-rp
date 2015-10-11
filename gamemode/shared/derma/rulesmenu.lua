@@ -19,7 +19,7 @@ elseif CLIENT then
 	
 		local ply = LocalPlayer()	
 	
-		RulesFrame = vgui.Create( "DFrame" )
+	local RulesFrame = vgui.Create( "DFrame" )
 		RulesFrame:SetSize( ScrW(), ScrH() )
 		RulesFrame:SetTitle( "RULES" )
 		RulesFrame:SetVisible( true )
@@ -30,8 +30,11 @@ elseif CLIENT then
 		RulesFrame.Paint = function(self, w, h)
 			draw.RoundedBox( 8, 0, 0, w, h, Color( 25, 68, 131, 50 ) )
 		end		
-	
-	
+		
+	local HTML = vgui.Create("HTML", RulesFrame)
+		HTML:SetPos(50,50)
+		HTML:SetSize(ScrW() - 100, ScrH() - 100)
+		HTML:OpenURL("http://www.braverp.com/rules.html")
 	
 	end
 	

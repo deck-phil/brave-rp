@@ -10,8 +10,10 @@ if SERVER then
 	
 		local tr = util.GetPlayerTrace(ply)
 		local trace = util.TraceLine(tr)
-		
 		if !(trace.Entity:IsDoor()) then return end
+		local tar = trace.Entity
+		
+		if math.floor((ply:GetPos():Distance( tar:GetPos() ))/40) > 5 then return end
 	
 		net.Start("doormenu")
 		net.Send(ply)
@@ -30,31 +32,49 @@ elseif CLIENT then
 			DoorFrame:SetDraggable( false )
 			DoorFrame:ShowCloseButton( true )
 			DoorFrame:Center()
-			DoorFrame:MakePopup()		
+			DoorFrame:MakePopup()	
+			DoorFrame.Paint = function(self,w,h)
+				draw.RoundedBox( 8, 0, 0, w, h, Color( 25, 68, 131, 75 ) )
+			end
 
 		local BuyBtn = vgui.Create( "DButton", DoorFrame )
 			BuyBtn:SetText( "Buy Door" )
 			BuyBtn:SetPos( 10, 35 )
 			BuyBtn:SetSize( 165, 105 )
+			BuyBtn:SetColor(COLOR_BLACK)
+			BuyBtn.Paint = function (self, w ,h)
+				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE )
+			end
 			BuyBtn.DoClick = function ()
 				RunConsoleCommand("BRP_BuyDoor")
 				DoorFrame:Close()
-			end								
+			end	
+			
 			
 		local SellBtn = vgui.Create( "DButton", DoorFrame )
 			SellBtn:SetText( "Sell Door" )
 			SellBtn:SetPos( 10, 150 )
 			SellBtn:SetSize( 165, 105 )
+			SellBtn:SetColor(COLOR_BLACK)
+
+			SellBtn.Paint = function (self, w ,h)
+				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE )
+			end
 			SellBtn.DoClick = function ()	
 				RunConsoleCommand("BRP_SellDoor")	
 				DoorFrame:Close()				
 			end
 			
+			
 		local ChangeNameBtn = vgui.Create( "DButton", DoorFrame )
 			ChangeNameBtn:SetText( "Change Door Name" )
 			ChangeNameBtn:SetPos( 10, 265 )
 			ChangeNameBtn:SetSize( 165, 105 )
-			ChangeNameBtn.DoClick = function ()		
+			ChangeNameBtn:SetColor(COLOR_BLACK)
+			ChangeNameBtn.Paint = function (self, w ,h)
+				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE )
+			end
+			ChangeNameBtn.DoClick = function ()	
 				openNameMenu()
 				DoorFrame:Close()
 			end			

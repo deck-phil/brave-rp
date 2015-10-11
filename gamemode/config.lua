@@ -1,5 +1,10 @@
 //Straight up config, not sure if they all work yet.
 
+COLOR_UNHOVER = Color( 25, 68, 131, 255)
+COLOR_HOVER = Color( 25, 68, 131, 240)
+COLOR_WHITE = Color( 255, 255, 255, 255)
+COLOR_BLACK = Color( 0,0,0,255)
+
 defaultModel = "models/player/group01/male_07.mdl"
 
 defaultMoney = 100

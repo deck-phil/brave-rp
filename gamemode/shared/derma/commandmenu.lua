@@ -31,6 +31,7 @@ elseif CLIENT then
 			MainMenuSheet:SetSize( 430, 196 )		
 			MainMenuSheet.Paint = function(self, w, h)
 				draw.RoundedBox(4, 0, 0, w, h, Color(255,255,255))
+				draw.RoundedBox(0, 0, 23, w, 4, Color(25, 68, 131, 150))
 			end
 			
 			
@@ -118,19 +119,17 @@ elseif CLIENT then
 				PayButton:SetSize(100, 40)
 				PayButton:SetPos( 10, 10 )	
 				PayButton:SetColor(Color(255,255,255))
-				local c = Color( 25, 68, 131, 0)
+			local c = COLOR_UNHOVER
 				PayButton.OnCursorExited = function ()
-					c = Color( 25, 68, 131, 0)
+					c = COLOR_UNHOVER
 				end
 				PayButton.OnCursorEntered = function ()
-					c = Color( 255, 255, 255, 100)
+					c = COLOR_HOVER
 				end	
 				
 				PayButton.Paint = function(self, w,h )
-					draw.RoundedBox( 4, 0, 0, w, h, Color( 25, 68, 131) )
-					draw.RoundedBoxEx(4, 0, 0, w, h-34, c, true, true)
+					draw.RoundedBox( 4, 0, 0, w, h, c )
 				end	
-				
 				PayButton.DoClick = function ()
 					MainMenuFrame:Close()
 					openPaying()
@@ -139,7 +138,18 @@ elseif CLIENT then
 			local TitleButton = vgui.Create( "DButton", CommandsTab )
 				TitleButton:SetText( "Change Title" )
 				TitleButton:SetSize(100, 40)
-				TitleButton:SetPos( 120, 10 )					
+				TitleButton:SetPos( 120, 10 )	
+				TitleButton:SetColor( Color(255,255,255))	
+			local c = COLOR_UNHOVER
+				TitleButton.OnCursorExited = function ()
+					c = COLOR_UNHOVER
+				end
+				TitleButton.OnCursorEntered = function ()
+					c = COLOR_HOVER
+				end	
+				TitleButton.Paint = function(self, w,h )
+					draw.RoundedBox( 4, 0, 0, w, h, c )
+				end					
 				TitleButton.DoClick = function ()
 					MainMenuFrame:Close()
 					openTitleMenu()
@@ -148,7 +158,18 @@ elseif CLIENT then
 			local BuyDoorBtn = vgui.Create( "DButton", CommandsTab )
 				BuyDoorBtn:SetText( "Buy Door" )
 				BuyDoorBtn:SetSize(100, 40)
-				BuyDoorBtn:SetPos( 305, 10 )					
+				BuyDoorBtn:SetPos( 305, 10 )	
+				BuyDoorBtn:SetColor(Color(255,255,255))
+			local c = COLOR_UNHOVER
+				BuyDoorBtn.OnCursorExited = function ()
+					c = COLOR_UNHOVER
+				end
+				BuyDoorBtn.OnCursorEntered = function ()
+					c = COLOR_HOVER
+				end	
+				BuyDoorBtn.Paint = function(self, w,h )
+					draw.RoundedBox( 4, 0, 0, w, h, c )
+				end						
 				BuyDoorBtn.DoClick = function ()
 					MainMenuFrame:Close()
 					RunConsoleCommand("BRP_BuyDoor")
@@ -157,7 +178,18 @@ elseif CLIENT then
 			local SellAllBtn = vgui.Create( "DButton", CommandsTab )
 				SellAllBtn:SetText( "Sell All Doors" )
 				SellAllBtn:SetSize(100, 40)
-				SellAllBtn:SetPos( 305, 60 )					
+				SellAllBtn:SetPos( 305, 60 )		
+				SellAllBtn:SetColor(Color(255,255,255))
+			local c = COLOR_UNHOVER
+				SellAllBtn.OnCursorExited = function ()
+					c = COLOR_UNHOVER
+				end
+				SellAllBtn.OnCursorEntered = function ()
+					c = COLOR_HOVER
+				end	
+				SellAllBtn.Paint = function(self, w,h )
+					draw.RoundedBox( 4, 0, 0, w, h, c )
+				end										
 				SellAllBtn.DoClick = function ()
 					MainMenuFrame:Close()
 					RunConsoleCommand("BRP_SellAllDoors")
@@ -166,7 +198,18 @@ elseif CLIENT then
 			local DropButton = vgui.Create( "DButton", CommandsTab )
 				DropButton:SetText( "Drop Weapon" )
 				DropButton:SetSize(100, 40)
-				DropButton:SetPos( 10, 60 )					
+				DropButton:SetPos( 10, 60 )	
+				DropButton:SetColor(Color(255,255,255))				
+			local c = COLOR_UNHOVER
+				DropButton.OnCursorExited = function ()
+					c = COLOR_UNHOVER
+				end
+				DropButton.OnCursorEntered = function ()
+					c = COLOR_HOVER
+				end	
+				DropButton.Paint = function(self, w,h )
+					draw.RoundedBox( 4, 0, 0, w, h, c )
+				end						
 				DropButton.DoClick = function ()
 					MainMenuFrame:Close()
 					RunConsoleCommand("BRP_DropWeapon")
@@ -249,7 +292,18 @@ elseif CLIENT then
 			local RegButton = vgui.Create( "DButton", LeftPanel )
 				RegButton:SetText( "Register Citizen" )
 				RegButton:SetSize(100, 40)
-				RegButton:SetPos( 10, 10 )					
+				RegButton:SetPos( 10, 10 )
+				RegButton:SetColor( COLOR_WHITE )		
+				local c = COLOR_UNHOVER
+					RegButton.OnCursorExited = function ()
+						c = COLOR_UNHOVER
+					end
+					RegButton.OnCursorEntered = function ()
+						c = COLOR_HOVER
+					end	
+					RegButton.Paint = function(self, w,h )
+						draw.RoundedBox( 4, 0, 0, w, h, c )
+					end					
 				RegButton.DoClick = function ()
 					MainMenuFrame:Close()
 					openRegister()
@@ -258,7 +312,18 @@ elseif CLIENT then
 			local OfficeButton = vgui.Create( "DButton", LeftPanel )
 				OfficeButton:SetText( "Set Office" )
 				OfficeButton:SetSize(100, 40)
-				OfficeButton:SetPos( 120, 10 )					
+				OfficeButton:SetPos( 120, 10 )	
+				OfficeButton:SetColor( COLOR_WHITE )		
+				local c = COLOR_UNHOVER
+					OfficeButton.OnCursorExited = function ()
+						c = COLOR_UNHOVER
+					end
+					OfficeButton.OnCursorEntered = function ()
+						c = COLOR_HOVER
+					end	
+					OfficeButton.Paint = function(self, w,h )
+						draw.RoundedBox( 4, 0, 0, w, h, c )
+					end					
 				OfficeButton.DoClick = function ()
 					MainMenuFrame:Close()
 					SendLocation("dhc")
@@ -267,7 +332,18 @@ elseif CLIENT then
 			local WantBut = vgui.Create( "DButton", LeftPanel )
 				WantBut:SetText( "Make Wanted" )
 				WantBut:SetSize(100, 40)
-				WantBut:SetPos( 10, 60 )					
+				WantBut:SetPos( 10, 60 )	
+				WantBut:SetColor( COLOR_WHITE )		
+				local c = COLOR_UNHOVER
+					WantBut.OnCursorExited = function ()
+						c = COLOR_UNHOVER
+					end
+					WantBut.OnCursorEntered = function ()
+						c = COLOR_HOVER
+					end	
+					WantBut.Paint = function(self, w,h )
+						draw.RoundedBox( 4, 0, 0, w, h, c )
+					end					
 				WantBut.DoClick = function ()
 			
 					if RegList:GetLine(lineID):GetValue(2) == "****" then
@@ -285,7 +361,18 @@ elseif CLIENT then
 			local UnWantBut = vgui.Create( "DButton", LeftPanel )
 				UnWantBut:SetText( "Make UnWanted" )
 				UnWantBut:SetSize(100, 40)
-				UnWantBut:SetPos( 10, 110 )					
+				UnWantBut:SetPos( 10, 110 )		
+				UnWantBut:SetColor( COLOR_WHITE )		
+				local c = COLOR_UNHOVER
+					UnWantBut.OnCursorExited = function ()
+						c = COLOR_UNHOVER
+					end
+					UnWantBut.OnCursorEntered = function ()
+						c = COLOR_HOVER
+					end	
+					UnWantBut.Paint = function(self, w,h )
+						draw.RoundedBox( 4, 0, 0, w, h, c )
+					end					
 				UnWantBut.DoClick = function ()
 				
 					if RegList:GetLine(lineID):GetValue(2) == "****" then
@@ -418,7 +505,18 @@ elseif CLIENT then
 				local UpAgenda = vgui.Create( "DButton", LeftPanel )
 					UpAgenda:SetText( "Update Agenda" )
 					UpAgenda:SetSize(100, 40)
-					UpAgenda:SetPos( 10, 110 )					
+					UpAgenda:SetPos( 10, 110 )
+					UpAgenda:SetColor( COLOR_WHITE )
+				local c = COLOR_UNHOVER
+					UpAgenda.OnCursorExited = function ()
+						c = COLOR_UNHOVER
+					end
+					UpAgenda.OnCursorEntered = function ()
+						c = COLOR_HOVER
+					end	
+					UpAgenda.Paint = function(self, w,h )
+						draw.RoundedBox( 4, 0, 0, w, h, c )
+					end							
 					UpAgenda.DoClick = function ()
 						SendPoliceAgenda(TextEntry:GetValue())
 					end
@@ -426,7 +524,18 @@ elseif CLIENT then
 				local Waypoint = vgui.Create( "DButton", LeftPanel )
 					Waypoint:SetText( "Set Waypoint" )
 					Waypoint:SetSize(100, 40)
-					Waypoint:SetPos( 10, 60 )					
+					Waypoint:SetPos( 10, 60 )		
+					Waypoint:SetColor(COLOR_WHITE)
+				local c = COLOR_UNHOVER
+					Waypoint.OnCursorExited = function ()
+						c = COLOR_UNHOVER
+					end
+					Waypoint.OnCursorEntered = function ()
+						c = COLOR_HOVER
+					end	
+					Waypoint.Paint = function(self, w,h )
+						draw.RoundedBox( 4, 0, 0, w, h, c )
+					end						
 					Waypoint.DoClick = function ()
 						openWaypoint()
 						MainMenuFrame:Close()
@@ -435,29 +544,51 @@ elseif CLIENT then
 				local PoliceBtn = vgui.Create( "DButton", LeftPanel )
 					PoliceBtn:SetText( "Set Jail" )
 					PoliceBtn:SetSize(100, 40)
-					PoliceBtn:SetPos( 120, 10 )					
+					PoliceBtn:SetPos( 120, 10 )	
+					PoliceBtn:SetColor( COLOR_WHITE )	
+				local c = COLOR_UNHOVER
+					PoliceBtn.OnCursorExited = function ()
+						c = COLOR_UNHOVER
+					end
+					PoliceBtn.OnCursorEntered = function ()
+						c = COLOR_HOVER
+					end	
+					PoliceBtn.Paint = function(self, w,h )
+						draw.RoundedBox( 4, 0, 0, w, h, c )
+					end						
 					PoliceBtn.DoClick = function ()
 						MainMenuFrame:Close()
 						SendLocation("jail")
 						notification.AddLegacy( "You have set the jail location.", NOTIFY_HINT, 5 )
-				end							
+					end							
 
 				else
 				
-				local TextEntry = vgui.Create( "DTextEntry", RightPanel )	-- create the form as a child of frame
-					TextEntry:SetPos( 25, 50 )
-					TextEntry:Dock( FILL )
-					TextEntry:DockMargin( 2, 2, 2, 90 )
-					TextEntry:SetText( GetAgenda() )
-					TextEntry:SetEditable( false )
-					TextEntry:SetMultiline(true)			
+					local TextEntry = vgui.Create( "DTextEntry", RightPanel )	-- create the form as a child of frame
+						TextEntry:SetPos( 25, 50 )
+						TextEntry:Dock( FILL )
+						TextEntry:DockMargin( 2, 2, 2, 90 )
+						TextEntry:SetText( GetAgenda() )
+						TextEntry:SetEditable( false )
+						TextEntry:SetMultiline(true)			
 			
-			end
+				end
 				
 			local WantBut = vgui.Create( "DButton", LeftPanel )
 				WantBut:SetText( "Request Wanted" )
 				WantBut:SetSize(100, 40)
-				WantBut:SetPos( 10, 10 )					
+				WantBut:SetPos( 10, 10 )
+				WantBut:SetColor( COLOR_WHITE )
+			local c = COLOR_UNHOVER
+				WantBut.OnCursorExited = function ()
+					c = COLOR_UNHOVER
+				end
+				WantBut.OnCursorEntered = function ()
+					c = COLOR_HOVER
+				end	
+				WantBut.Paint = function(self, w,h )
+					draw.RoundedBox( 4, 0, 0, w, h, c )
+				end					
 				WantBut.DoClick = function ()
 					openReqWanted()
 				end					
@@ -505,7 +636,18 @@ elseif CLIENT then
 			local RegButton = vgui.Create( "DButton", LeftPanel )
 				RegButton:SetText( "Kick" )
 				RegButton:SetSize(100, 40)
-				RegButton:SetPos( 10, 10 )					
+				RegButton:SetPos( 10, 10 )		
+				RegButton:SetColor( COLOR_WHITE )		
+				local c = COLOR_UNHOVER
+					RegButton.OnCursorExited = function ()
+						c = COLOR_UNHOVER
+					end
+					RegButton.OnCursorEntered = function ()
+						c = COLOR_HOVER
+					end	
+					RegButton.Paint = function(self, w,h )
+						draw.RoundedBox( 4, 0, 0, w, h, c )
+					end					
 				RegButton.DoClick = function ()
 					MainMenuFrame:Close()
 					
@@ -522,11 +664,22 @@ elseif CLIENT then
 			
 			end
 
-			local WantBut = vgui.Create( "DButton", LeftPanel )
-				WantBut:SetText( "Perma Death" )
-				WantBut:SetSize(100, 40)
-				WantBut:SetPos( 10, 60 )					
-				WantBut.DoClick = function ()
+			local PermaBtn = vgui.Create( "DButton", LeftPanel )
+				PermaBtn:SetText( "Perma Death" )
+				PermaBtn:SetSize(100, 40)
+				PermaBtn:SetPos( 10, 60 )	
+				PermaBtn:SetColor( COLOR_WHITE )		
+				local c = COLOR_UNHOVER
+					PermaBtn.OnCursorExited = function ()
+						c = COLOR_UNHOVER
+					end
+					PermaBtn.OnCursorEntered = function ()
+						c = COLOR_HOVER
+					end	
+					PermaBtn.Paint = function(self, w,h )
+						draw.RoundedBox( 4, 0, 0, w, h, c )
+					end						
+				PermaBtn.DoClick = function ()
 				
 					print(GetNamePlayer(RPName))
 					SendDemote(GetNamePlayer(RPName))
@@ -537,7 +690,18 @@ elseif CLIENT then
 			local AdminRole = vgui.Create( "DButton", LeftPanel )
 				AdminRole:SetText( "Set Role" )
 				AdminRole:SetSize(100, 40)
-				AdminRole:SetPos( 10, 110 )					
+				AdminRole:SetPos( 10, 110 )
+				AdminRole:SetColor( COLOR_WHITE )		
+				local c = COLOR_UNHOVER
+					AdminRole.OnCursorExited = function ()
+						c = COLOR_UNHOVER
+					end
+					AdminRole.OnCursorEntered = function ()
+						c = COLOR_HOVER
+					end	
+					AdminRole.Paint = function(self, w,h )
+						draw.RoundedBox( 4, 0, 0, w, h, c )
+					end					
 				AdminRole.DoClick = function ()
 					MainMenuFrame:Close()
 					openRoleMenu(RPName)
@@ -550,9 +714,9 @@ elseif CLIENT then
 			if (!v.Tab) then continue end
 				v.Tab:SetColor(Color(0,0,0))
 				
-				local c = Color( 255, 255, 255)
+				local c = COLOR_WHITE
 				v.Tab.OnCursorExited = function ()
-					c = Color( 255, 255, 255)
+					c = COLOR_WHITE
 				end
 				v.Tab.OnCursorEntered = function ()
 					c = Color( 25, 68, 210, 150)
@@ -575,12 +739,15 @@ elseif CLIENT then
 	
 		local TitleFrame = vgui.Create( "DFrame" )
 			TitleFrame:SetSize( 300, 150 )
-			TitleFrame:SetTitle( "Change Player Role" )
+			TitleFrame:SetTitle( "Change Player Title" )
 			TitleFrame:SetVisible( true )
 			TitleFrame:SetDraggable( false )
 			TitleFrame:ShowCloseButton( true )
 			TitleFrame:Center()
 			TitleFrame:MakePopup()		
+			TitleFrame.Paint = function(self, w, h)
+				draw.RoundedBox( 8, 0, 0, w, h, Color(25, 68, 131, 150))
+			end
 	
 		local DermaText = vgui.Create("DTextEntry", TitleFrame )		
 			DermaText:SetPos( 75, 50 )
@@ -590,7 +757,12 @@ elseif CLIENT then
 		local TitleButton = vgui.Create( "DButton", TitleFrame )
 			TitleButton:SetText( "Change Title" )
 			TitleButton:SetPos( 100, 100 )
-			TitleButton:SetSize( 100, 25 )				
+			TitleButton:SetSize( 100, 25 )		
+			TitleButton:SetColor(COLOR_BLACK)
+			TitleButton.Paint = function(self, w,h )
+				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE )
+			end			
+			
 			TitleButton.DoClick = function ()
 				TitleFrame:Close()
 				SendTitle( DermaText:GetValue() )

@@ -8,7 +8,8 @@
 		["brp_railgun"] = { name = "Railgun", model = "models/weapons/w_annabelle.mdl", role = "rebelleader", weapon = "brp_railgun", price = 0, clipsize = 24, priammo = "XBowBolt" },	
 		["weapon_smg1"] = { name = "SMG", model = "models/weapons/w_smg1.mdl", role = "rebelleader", weapon = "weapon_smg1", price = 0, clipsize = 45, priammo = "SMG1" },
 		["brp_spraygun"] = { name = "Spraygun", model = "models/weapons/w_smg1.mdl", role = "watcher", weapon = "brp_spraygun", price = 0, clipsize = 3, priammo = "357" },
-		["brp_launcher"] = { name = "Improvised Launcher", model = "models/weapons/w_rocket_launcher.mdl", role = "watcher", weapon = "brp_launcher", price = 0, clipsize = 5, priammo = "SMG1_Grenade" } 	
+		["brp_launcher"] = { name = "Improvised Launcher", model = "models/weapons/w_rocket_launcher.mdl", role = "watcher", weapon = "brp_launcher", price = 0, clipsize = 5, priammo = "SMG1_Grenade" }//,	
+		//["m9k_usp"] = { name = "HK USP", model = "models/weapons/w_pist_fokkususp.mdl", role = "headpolice", weapon = "m9k_usp", price = 0, clipsize = 14, priammo = "SMG1_Grenade" } 	
 	}
 	
 	//Add Entities

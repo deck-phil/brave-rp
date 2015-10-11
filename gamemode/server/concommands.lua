@@ -188,7 +188,6 @@ function ConSellAllDoors( ply, command, args, commandstring)
 	//Player sells all their doors
 
 	for k, v in pairs(ents.GetAll()) do
-	print("NIGGER")
 		if v:IsDoor() then 
 			if v:GetRPOwner() == ply then
 			

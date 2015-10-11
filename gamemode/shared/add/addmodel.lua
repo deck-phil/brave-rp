@@ -109,26 +109,29 @@ elseif CLIENT then
 	
 	function LoadingOutfit( model )
 	
-	local LoadingFrame = vgui.Create( "DFrame" )
-		LoadingFrame:SetSize( 300, 150)
-		LoadingFrame:SetVisible( true )
-		LoadingFrame:SetDraggable( false )
-		LoadingFrame:ShowCloseButton( false )		
-		LoadingFrame:MakePopup()
-		LoadingFrame:Center()
-		LoadingFrame.Paint = function()
-			draw.RoundedBox( 8, 0, 0, LoadingFrame:GetWide(), LoadingFrame:GetTall(), Color( 25, 68, 131, 200 ) )
-			draw.RoundedBox( 8, 5, 5, LoadingFrame:GetWide() - 10, LoadingFrame:GetTall() - 10, Color( 255, 255, 255, 200 ) )
-		end			
-		
-		
-	local LoadingText = vgui.Create("DLabel", LoadingFrame )		
-		LoadingText:SetPos( 100, 0 )
-		LoadingText:SetSize( 150,150 )
-		LoadingText:SetColor(Color(0,0,0,255))
-		LoadingText:SetText("Changing Outfits...")	
+		local timeStart = SysTime()
 	
-		timer.Create( LocalPlayer():SteamID().."ClientOutfit", 3, 1, function() LoadingFrame:Close() notification.AddLegacy( "You have changed your outfit!", NOTIFY_HINT, 5 ) timer.Remove(LocalPlayer():SteamID().."ClientOutfit")  end )	
+		local LoadingFrame = vgui.Create( "DFrame" )
+			LoadingFrame:SetTitle("")
+			LoadingFrame:SetSize( 300, 75)
+			LoadingFrame:SetVisible( true )
+			LoadingFrame:SetDraggable( false )
+			LoadingFrame:ShowCloseButton( false )		
+			LoadingFrame:MakePopup()
+			LoadingFrame:Center()
+			LoadingFrame.Paint = function(self, w, h) 
+				draw.RoundedBox( 8, 0, 0, w, h, Color( 25, 68, 131, 200 ) )
+				draw.RoundedBox( 8, 5, 5, ((w-10) * (SysTime() - timeStart)/defaultOutfitTime), h - 10, Color( 255, 255, 255, 200 ) )
+			end			
+			
+			
+		local LoadingText = vgui.Create("DLabel", LoadingFrame )		
+			LoadingText:SetPos( 100, -75/2 )
+			LoadingText:SetSize( 150,150 )
+			LoadingText:SetColor(Color(0,0,0,255))
+			LoadingText:SetText("Changing Outfits...")	
+	
+		timer.Create( LocalPlayer():SteamID().."ClientOutfit", defaultOutfitTime, 1, function() LoadingFrame:Close() notification.AddLegacy( "You have changed your outfit!", NOTIFY_HINT, 5 ) timer.Remove(LocalPlayer():SteamID().."ClientOutfit")  end )	
 	
 	end
 	

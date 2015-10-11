@@ -30,7 +30,7 @@ elseif CLIENT then
 			local ply = LocalPlayer()	
 	
 			CreateFrame = vgui.Create( "DFrame" )
-			CreateFrame:SetSize( 450, 400 )
+			CreateFrame:SetSize( 450, 380 )
 			CreateFrame:SetTitle( "Character Creation Menu" )
 			CreateFrame:SetVisible( true )
 			CreateFrame:SetDraggable( false )
@@ -40,7 +40,14 @@ elseif CLIENT then
 			CreateFrame.Paint = function(self, w, h)
 				draw.RoundedBox( 8, 0, 0, w, h, Color( 25, 68, 131, 255 ) )
 				draw.RoundedBox( 8, 5, 5, w - 10, h - 10, Color( 255, 255, 255, 255 ) )
-			end							
+			end				
+			
+		local TitleText = vgui.Create("DLabel", CreateFrame )		
+			TitleText:SetPos( 10, 5 )
+			TitleText:SetTall( 20 )
+			TitleText:SetWide( 150 )
+			TitleText:SetText("Character Creation")
+			TitleText:SetColor(Color(0,0,0,255))
 			
 		local NameText = vgui.Create("DLabel", CreateFrame )		
 			NameText:SetPos( 32, 70 )
@@ -78,24 +85,31 @@ elseif CLIENT then
 				DChar:SetModel(swapModel( y ))
 			
 			end	
-
-		local DermaButton = vgui.Create( "DButton", CreateFrame )
-			DermaButton:SetText( "Create Character" )
-			DermaButton:SetPos( 32, 250 )
-			DermaButton:SetSize( 150, 50 )
 			
-			local c = Color( 255, 255, 255)
-			DermaButton.OnCursorExited = function ()
-				c = Color( 255, 255, 255)
+		local HintText = vgui.Create("DLabel", CreateFrame )		
+			HintText:SetPos( 300, 350 )
+			HintText:SetTall( 20 )
+			HintText:SetWide( 150 )
+			HintText:SetText("(Click to change model)")
+			HintText:SetColor(Color(0,0,0,255))
+
+		local CreateButton = vgui.Create( "DButton", CreateFrame )
+			CreateButton:SetText( "Create Character" )
+			CreateButton:SetPos( 32, CreateFrame:GetTall() - 85 )
+			CreateButton:SetSize( 150, 50 )
+			CreateButton:SetColor(COLOR_WHITE)
+			local c = COLOR_UNHOVER
+			CreateButton.OnCursorExited = function ()
+				c = COLOR_UNHOVER
 			end
-			DermaButton.OnCursorEntered = function ()
-				c = Color( 230, 230, 250)
+			CreateButton.OnCursorEntered = function ()
+				c = COLOR_HOVER
 			end
-			DermaButton.Paint = function ()
-				draw.RoundedBox( 0, 0, 0, DermaButton:GetWide(), DermaButton:GetTall(), c )
+			CreateButton.Paint = function (self, w ,h)
+				draw.RoundedBox( 4, 0, 0, w, h, c )
 			end
 
-			DermaButton.DoClick = function ()
+			CreateButton.DoClick = function ()
 			
 				if DermaName:GetValue() == "" then return end
 					

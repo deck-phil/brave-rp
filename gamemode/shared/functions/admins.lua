@@ -17,6 +17,18 @@ function meta:makeRPAdmin()
 
 end
 
+function getRPAdmins()
+	
+	local ads = {}
+
+	for k, v in pairs(player.GetAll()) do
+		if v:isRPAdmin() then table.insert(ads, v) end 
+	end
+
+	return ads
+
+end
+
 
 
 function meta:isRPAdmin()

@@ -6,6 +6,7 @@ DeriveGamemode( "sandbox" )
 
  ----SHARED----
  include("add.lua")
+ include("config.lua")
  include("shared/sendinfo.lua")
  include("shared/screeneffects.lua")
 include("shared/props.lua")
