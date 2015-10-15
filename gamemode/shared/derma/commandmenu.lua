@@ -14,7 +14,7 @@ if SERVER then
 	
 elseif CLIENT then
 	function openCommands()
-	
+		
 		local MainMenuFrame = vgui.Create( "DFrame" )
 			MainMenuFrame:SetSize( 440, 230)
 			MainMenuFrame:SetTitle( "Control Panel" )

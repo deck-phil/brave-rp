@@ -62,9 +62,21 @@ function SWEP:Initialize()
 	self:SetWeaponHoldType( "ar2" )
 end
 
+function SWEP:Think()
+	if self.Owner:GetActiveWeapon():Clip1() == 0 and ToEmpty then
+		self.Weapon:SendWeaponAnim( ACT_VM_IDLE_EMPTY )
+                ToEmpty = false
+	end
+	if self.Owner:GetActiveWeapon():Clip1() > 0 and not ToEmpty then
+		self.Weapon:SendWeaponAnim( ACT_VM_IDLE_EMPTY )
+                ToEmpty = true
+	end
+end
+
+
 function SWEP:PrimaryAttack()
 	
-	if ( !self:CanPrimaryAttack() ) then return end
+	if ( !self:CanPrimaryAttack() ) then self.Weapon:SendWeaponAnim( ACT_VM_IDLE_EMPTY ) return end
 	if ( IsValid(can)) and can:GetName() == self.Owner:SteamID() then return end
 	
 	self:SetNextPrimaryFire( CurTime() + 2 )	

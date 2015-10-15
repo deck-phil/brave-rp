@@ -212,6 +212,7 @@ elseif CLIENT then
 		net.Start("sendOutfit")
 		net.WriteString( model )
 		net.SendToServer()	
+		//playShuffleNoise()
 		LoadingOutfit(model)	
 		
 	elseif use == "drop" then

@@ -132,7 +132,22 @@ elseif CLIENT then
 			LoadingText:SizeToContentsX()
 			LoadingText:SetPos( 150-(LoadingText:GetWide()/2), -75/2 )
 	
-		timer.Create( LocalPlayer():SteamID().."ClientOutfit", defaultOutfitTime, 1, function() LoadingFrame:Close() notification.AddLegacy( "You have changed your outfit!", NOTIFY_HINT, 5 ) timer.Remove(LocalPlayer():SteamID().."ClientOutfit")  end )	
+		timer.Create( LocalPlayer():SteamID().."ClientOutfit", defaultOutfitTime, 1, function() playShuffleNoise() LoadingFrame:Close() notification.AddLegacy( "You have changed your outfit!", NOTIFY_HINT, 5 ) timer.Remove(LocalPlayer():SteamID().."ClientOutfit")  end )	
+	
+	end
+	
+	function playShuffleNoise()
+	
+		local tbl = {
+			"npc/combine_soldier/gear1.wav",
+			"npc/combine_soldier/gear2.wav",
+			"npc/combine_soldier/gear3.wav",
+			"npc/combine_soldier/gear4.wav",
+			"npc/combine_soldier/gear5.wav",
+			"npc/combine_soldier/gear6.wav"
+		}
+
+		surface.PlaySound(table.Random(tbl))
 	
 	end
 	
