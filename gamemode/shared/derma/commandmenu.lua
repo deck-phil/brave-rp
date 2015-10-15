@@ -220,11 +220,15 @@ elseif CLIENT then
 					RunConsoleCommand("BRP_DropWeapon")
 				end
 				
-			local HudCheckbox = vgui.Create( "DCheckBoxLabel", OptionsTab )
+			local HudCheckbox = vgui.Create( "DCheckBox", OptionsTab )
 				HudCheckbox:SetPos( 10, 10 )
-				HudCheckbox:SetText( "HUD" )
 				HudCheckbox:SetConVar( "BRP_RedHud" ) 
-				HudCheckbox:SizeToContents()
+				
+			local HudChkTxt = vgui.Create("DLabel", OptionsTab )
+				HudChkTxt:SetPos( 30,10)
+				HudChkTxt:SetTextColor( Color(0,0,0) )				
+				HudChkTxt:SetText( "HUD" )
+				HudChkTxt:SizeToContents()
 
 		MainMenuSheet:AddSheet( "Commands", CommandsTab, nil, false, false, "All your commands" )	
 		MainMenuSheet:AddSheet( "Outfits", ModelTab, nil, false, false, "Change your outfit" )
@@ -634,6 +638,8 @@ elseif CLIENT then
 				
 				PopList()
 				
+				RPName = ""
+				
 				RegList.OnRowSelected = function( panel, line )
 					RPName = RegList:GetLine(line):GetValue(1)		
 				end
@@ -657,6 +663,7 @@ elseif CLIENT then
 					MainMenuFrame:Close()
 					
 					//if RPName == false then return end
+					if RPName == "" then return end
 					
 					RunConsoleCommand("say", "!kick "..RPName)
 				end	
@@ -686,7 +693,9 @@ elseif CLIENT then
 					end						
 				PermaBtn.DoClick = function ()
 				
-					print(GetNamePlayer(RPName))
+					if RPName == "" then return end
+				
+					//print(GetNamePlayer(RPName))
 					SendDemote(GetNamePlayer(RPName))
 					notification.AddLegacy( "You have demoted "..RPName..".", NOTIFY_HINT, 5 )
 					//victim:demoteRP( )
@@ -763,7 +772,7 @@ elseif CLIENT then
 			TitleButton:SetText( "Change Title" )
 			TitleButton:SetPos( 100, 100 )
 			TitleButton:SetSize( 100, 25 )		
-			TitleButton:SetColor(COLOR_BLACK)
+			TitleButton:SetColor(color_black)
 			TitleButton.Paint = function(self, w,h )
 				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE )
 			end			
@@ -930,7 +939,7 @@ elseif CLIENT then
 			RoleButton:SetText( "Set Role" )
 			RoleButton:SetPos( 100, 150 )
 			RoleButton:SetSize( 100, 25 )
-			RoleButton:SetColor(COLOR_BLACK)
+			RoleButton:SetColor(color_black)
 			RoleButton.Paint = function(self, w,h )
 				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE )
 			end				

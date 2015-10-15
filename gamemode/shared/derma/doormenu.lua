@@ -12,22 +12,32 @@ if SERVER then
 		local trace = util.TraceLine(tr)
 		if !(trace.Entity:IsDoor()) then return end
 		local tar = trace.Entity
-		local b = tar:GetRPOwner() == ply
+		local b = tar:IsOwned()
+		local e = tar:GetRPOwner() == ply
 		if math.floor((ply:GetPos():Distance( tar:GetPos() ))/40) > 5 then return end
 	
 		net.Start("doormenu")
 		net.WriteBool(b)
+		net.WriteBit(e)
 		net.Send(ply)
 	end
 
 elseif CLIENT then
 
-	function openDoorMenu( owned )
-	
+	function openDoorMenu( owned, you )
+		
+		local byu = false
+		
+		if you == 1 then
+			byu = true
+		end
+		
+		print(byu)
+		
 		local ply = LocalPlayer()
 	
 		local DoorFrame = vgui.Create( "DFrame" )
-			DoorFrame:SetSize( 185, 385 )
+			DoorFrame:SetSize( 185, 379 )
 			DoorFrame:SetTitle( "Door Menu" )
 			DoorFrame:SetVisible( true )
 			DoorFrame:SetDraggable( false )
@@ -43,12 +53,10 @@ elseif CLIENT then
 			BuyBtn:SetPos( 10, 35 )
 			BuyBtn:SetSize( 165, 105 )
 			BuyBtn:SetEnabled(!owned)
-			BuyBtn:SetColor(COLOR_BLACK)
+			BuyBtn:SetColor(color_black)
 			BuyBtn.Paint = function (self, w ,h)
 				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE )
-				if owned then
-					draw.RoundedBox( 4, 0, 0, w, h, Color(155,155,155,255) )				
-				end
+				if owned then draw.RoundedBox( 4, 0, 0, w, h, Color(155,155,155,255) ) end
 			end
 			BuyBtn.DoClick = function ()
 				RunConsoleCommand("BRP_BuyDoor")
@@ -60,10 +68,12 @@ elseif CLIENT then
 			SellBtn:SetText( "Sell Door" )
 			SellBtn:SetPos( 10, 150 )
 			SellBtn:SetSize( 165, 105 )
-			SellBtn:SetColor(COLOR_BLACK)
+			SellBtn:SetEnabled(byu)
+			SellBtn:SetColor(color_black)
 
 			SellBtn.Paint = function (self, w ,h)
 				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE )
+				if !byu then draw.RoundedBox( 4, 0, 0, w, h, Color(155,155,155,255) ) end
 			end
 			SellBtn.DoClick = function ()	
 				RunConsoleCommand("BRP_SellDoor")	
@@ -75,9 +85,11 @@ elseif CLIENT then
 			ChangeNameBtn:SetText( "Change Door Name" )
 			ChangeNameBtn:SetPos( 10, 265 )
 			ChangeNameBtn:SetSize( 165, 105 )
-			ChangeNameBtn:SetColor(COLOR_BLACK)
+			ChangeNameBtn:SetColor(color_black)
+			ChangeNameBtn:SetEnabled(byu)
 			ChangeNameBtn.Paint = function (self, w ,h)
 				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE )
+				if !byu then draw.RoundedBox( 4, 0, 0, w, h, Color(155,155,155,255) ) end
 			end
 			ChangeNameBtn.DoClick = function ()	
 				openNameMenu()
@@ -116,7 +128,7 @@ elseif CLIENT then
 	end	
 	
 	net.Receive( "doormenu", function(len)
-		openDoorMenu( net.ReadBool() )
+		openDoorMenu( net.ReadBool(), net.ReadBit() )
 	end)
 	
 	

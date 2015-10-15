@@ -9,7 +9,7 @@ if SERVER then
 		net.Send(ply)
 		ply:Freeze( false )
 	end
-	hook.Add("ShowSpare2", "Player Menu", CharMenu)
+	//hook.Add("ShowSpare2", "Player Menu", CharMenu)
 
 	
 elseif CLIENT then
@@ -84,7 +84,7 @@ elseif CLIENT then
 			icon:SetWidth( ScrH() )
 			icon:SetModel( ply:GetModel() )
 			icon:Center()
-			function icon:LayoutEntity( Entity ) return end
+			//function icon:LayoutEntity( Entity ) return end
 			function icon.Entity:GetPlayerColor() return LocalPlayer():GetCasteColor()
 			end
 			
@@ -116,14 +116,14 @@ elseif CLIENT then
 			RegNum:SetColor( color_black )			
 			
 		local CasteLabel = Label( "CASTE: " .. team.GetName( ply:Team() ) .. "", f )
-			CasteLabel:SetSize( 500, 32)
-			CasteLabel:SetPos( 10,  10 + SteamLabel:GetTall() + 50 + NameLabel:GetTall() +10 + 42)
+			CasteLabel:SetSize( 500, 40)
+			CasteLabel:SetPos( 10,  6 + SteamLabel:GetTall() + 50 + NameLabel:GetTall() +10 + 42)
 			CasteLabel:SetFont("BebasR")
 			CasteLabel:SetColor( color_black )
 			
 			
 			
-		local MoneyLabel = Label( "MONEY: " .. ply:GetMoney() .. " $", f )
+		local MoneyLabel = Label( "CREDITS: " .. ply:GetMoney() .. " $", f )
 			MoneyLabel:SetSize( 500, 32)
 			MoneyLabel:SetPos( 10,  10 + SteamLabel:GetTall() + 50 + NameLabel:GetTall() +10)
 			MoneyLabel:SetFont("BebasR")
@@ -147,12 +147,10 @@ elseif CLIENT then
 				end	
 				
 				PlayButton.Paint = function()
-					draw.RoundedBox( 0, 0, 0, PlayButton:GetWide(), PlayButton:GetTall(), c )
+					draw.RoundedBox( 4, 0, 0, PlayButton:GetWide(), PlayButton:GetTall(), c )
 				end
 				
 				PlayButton.DoClick = function ()
-				
-					print(PlayButton:GetTall())
 					f:Close()
 				end
 	end	

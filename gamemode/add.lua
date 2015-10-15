@@ -101,6 +101,17 @@
 			default = false, 
 			droppable = true,
 			diffModel = false},
+			
+		["BioElite"] = { 
+			tblName = "BioElite", 
+			id = "bioelite", 
+			name = "Bio Elite Outfit",
+			model = "models/dpfilms/metropolice/playermodels/pm_biopolice.mdl", 
+			role = "bioelite", 
+			gasProof = true, 
+			default = false, 
+			droppable = true,
+			diffModel = false},			
 		
 		["RebelLeader"] = { 
 			tblName = "RebelLeader", 
@@ -144,6 +155,7 @@
 	{
 		"headpolice",
 		"watcher",
+		"bioelite",
 		"police"
 	}
 	
@@ -164,6 +176,8 @@
 	["watcher"] = { role = "watcher", name = "Watcher", admin = false, weps = {} },
 	
 	["headpolice"] = { role = "headpolice", name = "Head Police", admin = true, weps = {"weapon_stunstick", "brp_somagun" } },
+	
+	["bioelite"] = { role = "bioelite", name = "Bio Elite", admin = true, weps = { "brp_somagun" } },
 	
 	["distributer"] = { role = "distributer", name = "Distributer", admin = false, weps = {} },
 	

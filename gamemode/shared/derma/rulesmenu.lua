@@ -7,7 +7,7 @@ if SERVER then
 		net.Send(ply)	
 	end
 	
-	hook.Add("ShowHelp", "Rules Menu", RulesMenu)
+	hook.Add("ShowSpare2", "Rules Menu", RulesMenu)
 	
 elseif CLIENT then
 	

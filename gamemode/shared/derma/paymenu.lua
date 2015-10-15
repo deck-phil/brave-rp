@@ -48,7 +48,7 @@ elseif CLIENT then
 			GiveBtn:SetText( "Give Money" )
 			GiveBtn:SetPos( 75, 90 )
 			GiveBtn:SetSize( 100, 25 )
-			GiveBtn:SetColor(COLOR_BLACK)
+			GiveBtn:SetColor(color_black)
 			GiveBtn.Paint = function(self, w, h)
 				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE)
 			end	
@@ -93,7 +93,7 @@ elseif CLIENT then
 			DropButton:SetText( "Drop" )
 			DropButton:SetPos( 75, 125 )
 			DropButton:SetSize( 100, 25 )
-			DropButton:SetColor(COLOR_BLACK)
+			DropButton:SetColor(color_black)
 			DropButton.Paint = function(self, w, h)
 				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE)
 			end				

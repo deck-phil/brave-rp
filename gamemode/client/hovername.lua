@@ -146,10 +146,17 @@ function HoveringCrateNames( crate )
 		
 		
 		if (crate:IsDoor()) then
-		
-			if !(crate:GetClass() == "prop_door_rotating") then return end
 
-			local targetPos = crate:LocalToWorld(Vector(0,22,0))
+			local targetPos = crate:LocalToWorld(Vector(0,0,0))
+			if crate:GetClass() == "prop_door_rotating" then
+			//print(crate:GetAngles())
+				targetPos = crate:LocalToWorld(Vector(0,22,0))
+			elseif crate:GetClass() == "func_door_rotating" then
+				//print(crate:GetAngles())
+				//targetPos = crate:LocalToWorld(Vector(22,0,0)) + crate:LocalToWorldAngles():Forward()
+			end
+		
+
 			local targetDistance = math.floor((LocalPlayer():GetPos():Distance( targetPos ))/40)
 			local targetScreenpos = targetPos:ToScreen()
 		
@@ -170,7 +177,7 @@ hook.Add("HUDPaint", "HoveringCrateNames", HoveringCrateNames)
 
 hook.Add( "PostDrawOpaqueRenderables", "DrawDoorsNames", function() 
 
-	for _, ent in ipairs( ents.GetAll() ) do
+	for _, ent in ipairs( ents.FindByClass("prop_door_rotating") ) do
 
 		if !(ent:IsDoor()) then return end
 		//if math.floorLocalPlayer():GetPos():Distance( ent:GetPos() ) < 5 then return end .DoorName
