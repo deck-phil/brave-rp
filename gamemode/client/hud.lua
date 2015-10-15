@@ -20,18 +20,18 @@ local hudconvar = CreateClientConVar("BRP_RedHud", 1, false, false)
 //Draw red jelly
 function RedHUD()
 	
-	if hudconvar:GetInt() == 1 then
-		local ply = LocalPlayer()
-		local HP = ply:Health()
-		local Armor = ply:Armor()
-		
-		if HP <= 0 then
-			draw.RoundedBox(1, -5, -5, (ScrW()+10), (ScrH()+10), Color(0, 0, 0, 255 )  )
-		end
+	if !(hudconvar:GetInt() == 1) then return end
+	
+	local ply = LocalPlayer()
+	local HP = ply:Health()
+	local Armor = ply:Armor()
+	
+	if HP <= 0 then
+		draw.RoundedBox(1, -5, -5, (ScrW()+10), (ScrH()+10), Color(0, 0, 0, 255 )  )
+	end
 
-		if HP <= 30 then
-			draw.RoundedBox(1, -5, -5, (ScrW()+10), (ScrH()+10), Color(255, 0, 0, -HP + 70 )  )
-		end
+	if HP <= 30 then
+		draw.RoundedBox(1, -5, -5, (ScrW()+10), (ScrH()+10), Color(255, 0, 0, -HP + 70 )  )
 	end
 
 end
@@ -56,3 +56,13 @@ function GM:RenderScreenspaceEffects()
  DrawColorModify( bleachedhud )
 
 end
+
+function StatHUD()
+
+	local ply = LocalPlayer()
+
+	draw.RoundedBox( 4, 10, ScrH() - 175, (260), (140), Color(20,20,20,200))
+	draw.SimpleText( ply:GetRPName(), "Trebuchet18", 0, 0, color_white ,0, 0)
+
+end
+hook.Add("HUDPaint", "StatHUD", StatHUD)

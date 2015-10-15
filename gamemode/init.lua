@@ -98,9 +98,11 @@ function GM:PlayerSpawn( ply )
 	ply:AllowFlashlight( true )
 	
 	//If they have not authed, and permad
-	if ply:GetRPName() == "" and ply:Deaths() > 0 then
+	if ply:GetRPName() == "" then
 		ply:Freeze( true )
-		CharMenu( ply )
+	end
+	if ply:Deaths() > 0 then
+		CharMenu( ply )	
 	end
 	
 	//Classic hands code

@@ -146,10 +146,12 @@ function SomaCan( can )
 	
 	local vPoint = can:GetPos()
 	local effectdata = EffectData()
+	
+	effectdata:SetStart( vPoint )
 	effectdata:SetOrigin( vPoint )
 	effectdata:SetScale( 10 )
 	effectdata:SetColor( 0,200,0)
-	util.Effect( "AntlionGib", effectdata )
+	util.Effect( "HelicopterMegaBomb", effectdata, true, true )
 	
 	for k, v in pairs(player.GetAll()) do
 	
@@ -185,7 +187,7 @@ function SWEP:SecondaryAttack()
 	effectdata:SetOrigin( vPoint )
 	effectdata:SetScale( 10 )
 	effectdata:SetColor( 0,200,0)
-	util.Effect( "AntlionGib", effectdata )
+	util.Effect( "HelicopterMegaBomb", effectdata )
 	sound.Play( "weapons/physcannon/energy_sing_explosion2.wav", vPoint )
 
 	for k, v in pairs(player.GetAll()) do

@@ -278,7 +278,7 @@ elseif CLIENT then
 			
 			local SelectID = "0"
 			
-			local RegList = vgui.Create( "DListView", RightPanel )
+				local RegList = vgui.Create( "DListView", RightPanel )
 				RegList:SetMultiSelect( false )
 				RegList:Dock( FILL )
 				RegList:AddColumn( "Citizen" )
@@ -355,6 +355,8 @@ elseif CLIENT then
 					end					
 				WantBut.DoClick = function ()
 			
+					notification.AddLegacy( RegList:GetLine(lineID):GetValue(1).." is now wanted.", NOTIFY_HINT, 5 )
+			
 					if RegList:GetLine(lineID):GetValue(2) == "****" then
 						SendWantedPly(GetPlayerNameRPName( RegList:GetLine(lineID):GetValue(1) ), true)
 					else
@@ -383,6 +385,8 @@ elseif CLIENT then
 						draw.RoundedBox( 4, 0, 0, w, h, c )
 					end					
 				UnWantBut.DoClick = function ()
+				
+					notification.AddLegacy( RegList:GetLine(lineID):GetValue(1).." is no longer wanted.", NOTIFY_HINT, 5 )
 				
 					if RegList:GetLine(lineID):GetValue(2) == "****" then
 						SendWantedPly(GetPlayerNameRPName( RegList:GetLine(lineID):GetValue(1) ), false)
@@ -428,25 +432,30 @@ elseif CLIENT then
 						
 						if ReqList:GetLine(POPOPO):GetValue(2) == "****" then
 
+							notification.AddLegacy( ReqList:GetLine(POPOPO):GetValue(1).." is now wanted.", NOTIFY_HINT, 5 )
 							SendWantedPly(GetPlayerNameRPName( ReqList:GetLine(POPOPO):GetValue(1)), true) 
 							
 						else
+							notification.AddLegacy( ReqList:GetLine(POPOPO):GetValue(1).." is now wanted.", NOTIFY_HINT, 5 )			
 							SendWantedPly(GetPlayerNameID( ReqList:GetLine(POPOPO):GetValue(2)), true) 
 						end
 						
-							ReqList:RemoveLine(line) 
+							ReqList:RemoveLine(line) 					
 						end)
 						
 						Menu:AddOption("Decline", function()
 						
 							if ReqList:GetLine(POPOPO):GetValue(2) == "****" then
 
+								notification.AddLegacy( ReqList:GetLine(POPOPO):GetValue(1).." is a free man.", NOTIFY_HINT, 5 )
 								SendWantedPly(RemoveWantedRequest( ReqList:GetLine(POPOPO):GetValue(1))) 
 								
 							else
-								SendWantedPly(RemoveWantedRequest( ReqList:GetLine(POPOPO):GetValue(2))) 
-							end
 							
+								notification.AddLegacy( ReqList:GetLine(POPOPO):GetValue(1).." is a free man.", NOTIFY_HINT, 5 )
+								SendWantedPly(RemoveWantedRequest( ReqList:GetLine(POPOPO):GetValue(2))) 
+							end						
+
 							ReqList:RemoveLine(line)
 						end)
 						Menu:Open()
@@ -599,6 +608,7 @@ elseif CLIENT then
 					draw.RoundedBox( 4, 0, 0, w, h, c )
 				end					
 				WantBut.DoClick = function ()
+					MainMenuFrame:Close()
 					openReqWanted()
 				end					
 				
@@ -798,7 +808,10 @@ elseif CLIENT then
 			Point:ShowCloseButton( true )
 			Point:Center()
 			Point:MakePopup()		
-	
+			Point.Paint = function(self, w, h)
+				draw.RoundedBox( 8, 0, 0, w, h, Color(25, 68, 131, 150))
+			end
+			
 		local PointText = vgui.Create("DTextEntry", Point )		
 			PointText:SetPos( 75, 50 )
 			PointText:SetTall( 20 )
@@ -812,7 +825,11 @@ elseif CLIENT then
 				Point:Close()
 				SendWaypoint( PointText:GetValue() )
 				notification.AddLegacy( "You have made a waypoint here.", NOTIFY_HINT, 5 )
-			end				
+			end
+			PointBtn:SetColor(color_black)
+			PointBtn.Paint = function(self, w,h )
+				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE )
+			end			
 
 	
 	end
@@ -827,7 +844,10 @@ elseif CLIENT then
 			ReqManu:ShowCloseButton( true )
 			ReqManu:Center()
 			ReqManu:MakePopup()		
-	
+			ReqManu.Paint = function(self, w, h)
+				draw.RoundedBox( 8, 0, 0, w, h, Color(25, 68, 131, 150))
+			end
+			
 		local ReasonTxt = vgui.Create("DTextEntry", ReqManu )		
 			ReasonTxt:SetPos( 75, 75 )
 			ReasonTxt:SetTall( 20 )
@@ -846,7 +866,11 @@ elseif CLIENT then
 		local PointBtn = vgui.Create( "DButton", ReqManu )
 			PointBtn:SetText( "Request Wanted" )
 			PointBtn:SetPos( 100, 110 )
-			PointBtn:SetSize( 100, 25 )				
+			PointBtn:SetSize( 100, 25 )
+			PointBtn:SetColor(color_black)
+			PointBtn.Paint = function(self, w,h )
+				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE )
+			end				
 			PointBtn.DoClick = function ()
 				ReqManu:Close()
 				SendWantedRequest( GetPlayerFromName(PlayerCombo:GetValue()), ReasonTxt:GetValue()  )

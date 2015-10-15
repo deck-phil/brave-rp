@@ -3,6 +3,9 @@ local meta = FindMetaTable("Player")
 
 function meta:SetRPRole( role )
 
+	self:GetRoleWeapons( role )
+	if self:GetRPRole() == role then return end
+
 	if !(HasRole( role )) then
 		print(role..", that is not a valid role.")	
 	return end
@@ -11,7 +14,7 @@ function meta:SetRPRole( role )
 	
 	//self:SetModel( self:GetOGModel() )
 	//self:StripRoleWeapons()	
-	self:GetRoleWeapons( role )
+
 	
 	if role == "dhc" then
 		self:Register()
