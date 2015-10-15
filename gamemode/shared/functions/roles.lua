@@ -4,8 +4,6 @@ local meta = FindMetaTable("Player")
 function meta:SetRPRole( role )
 
 	if !(HasRole( role )) then
-
-	
 		print(role..", that is not a valid role.")	
 	return end
 	
@@ -15,9 +13,9 @@ function meta:SetRPRole( role )
 	//self:StripRoleWeapons()	
 	self:GetRoleWeapons( role )
 	
-		if role == "dhc" then
-			self:Register()
-		end
+	if role == "dhc" then
+		self:Register()
+	end
 	
 	self:GetRoleOutfits( role )
 	
@@ -31,7 +29,11 @@ function meta:SetRPRole( role )
 	
 	end
 	
-	self:SendLua("notification.AddLegacy(\"You have been promoted to "..roleName.."\", NOTIFY_GENERIC, 5)")	
+	if role == "null" then
+		self:SendLua("notification.AddLegacy(\"You have been demoted.\", NOTIFY_GENERIC, 5)")	
+	else
+		self:SendLua("notification.AddLegacy(\"You have been promoted to "..roleName..".\", NOTIFY_GENERIC, 5)")	
+	end
 	
 end
 

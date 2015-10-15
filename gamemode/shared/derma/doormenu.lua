@@ -12,16 +12,17 @@ if SERVER then
 		local trace = util.TraceLine(tr)
 		if !(trace.Entity:IsDoor()) then return end
 		local tar = trace.Entity
-		
+		local b = tar:GetRPOwner() == ply
 		if math.floor((ply:GetPos():Distance( tar:GetPos() ))/40) > 5 then return end
 	
 		net.Start("doormenu")
+		net.WriteBool(b)
 		net.Send(ply)
 	end
 
 elseif CLIENT then
 
-	function openDoorMenu()
+	function openDoorMenu( owned )
 	
 		local ply = LocalPlayer()
 	
@@ -41,9 +42,13 @@ elseif CLIENT then
 			BuyBtn:SetText( "Buy Door" )
 			BuyBtn:SetPos( 10, 35 )
 			BuyBtn:SetSize( 165, 105 )
+			BuyBtn:SetEnabled(!owned)
 			BuyBtn:SetColor(COLOR_BLACK)
 			BuyBtn.Paint = function (self, w ,h)
 				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE )
+				if owned then
+					draw.RoundedBox( 4, 0, 0, w, h, Color(155,155,155,255) )				
+				end
 			end
 			BuyBtn.DoClick = function ()
 				RunConsoleCommand("BRP_BuyDoor")
@@ -111,7 +116,7 @@ elseif CLIENT then
 	end	
 	
 	net.Receive( "doormenu", function(len)
-		openDoorMenu()
+		openDoorMenu( net.ReadBool() )
 	end)
 	
 	

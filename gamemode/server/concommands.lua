@@ -101,6 +101,8 @@ function ConBuyDoor( ply, command, args, commandstring)
 			
 	local door = trace.Entity
 			
+		print(door)
+			
 		if door:IsOwned() then return end
 			
 		if (door:IsDoor()) then

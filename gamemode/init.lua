@@ -110,6 +110,7 @@ function GM:PlayerSpawn( ply )
 	ply:SetPos(ply:LocalToWorld(Vector(math.Rand(50,400),0,0)))
 	
 	//If they werent permad, keep their role
+	if not ply:GetRPRole() then return end
 	ply:SetRPRole( ply:GetRPRole() )
 	
 end

@@ -30,7 +30,7 @@
 			tblName = "Citizen", 
 			id = "citizen",
 			name = "Citizen Outfit", 
-			model = "models/player/Group01/", 
+			model = "models/player/group01/", 
 			role = "default", 
 			gasProof = false, //Protects from soma gas
 			default = true, //default model, no role req
@@ -40,7 +40,7 @@
 		["Rebel"] = { 
 			tblName = "Rebel", 
 			id = "rebel", name = "Rebel Outfit", 
-			model = "models/player/Group03/", 
+			model = "models/player/group03/", 
 			role = "rebel", 
 			gasProof = false, 
 			default = false, 
@@ -51,7 +51,7 @@
 			tblName = "Medic", 
 			id = "medic", 
 			name = "Medic Outfit", 
-			model = "models/player/Group03m/",
+			model = "models/player/group03m/",
 			role = "medic", 
 			gasProof = false, 
 			default = false, 

@@ -2,17 +2,17 @@ local meta = FindMetaTable("Player")
 
 function meta:SetRPModel( path )
 
-	local popo = self:ConvertOddOutfits( path )
+	local conved = self:ConvertOddOutfits( path )
 	
 	self:RegisterCPID()
 	
-	self:SetNWString("rpmodel", popo)
+	self:SetNWString("rpmodel", conved)
 	
-	self:SetModel( popo )
+	self:SetModel( conved )
 	
 	MaskHUDInit( self )
 	
-	print(self:Name().. " has changed to " ..popo)
+	print(self:Name().. " has changed to " ..conved)
 
 end
 
