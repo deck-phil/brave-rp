@@ -61,8 +61,36 @@ function StatHUD()
 
 	local ply = LocalPlayer()
 
-	draw.RoundedBox( 4, 10, ScrH() - 175, (260), (140), Color(20,20,20,200))
-	draw.SimpleText( ply:GetRPName(), "Trebuchet18", 0, 0, color_white ,0, 0)
+	draw.RoundedBox( 8, 10, ScrH() - 190, (300), (180), Color(255, 255, 255, 255))
+	draw.RoundedBox( 0, 10, ScrH() - 170, (300), (30), Color(25, 68, 131, 250))
 
 end
 hook.Add("HUDPaint", "StatHUD", StatHUD)
+
+function drawFace()
+
+	local iconmodel = vgui.Create("DModelPanel")
+		iconmodel:SetModel(LocalPlayer():GetRPModel())
+		iconmodel:SetPos(20, ScrH() - 110)
+	    function iconmodel:LayoutEntity( Entity ) return end
+		iconmodel:SetAnimated(false)
+		iconmodel:SetSize(100,100)
+		iconmodel:SetCamPos( Vector( 14, 4, 65))
+		iconmodel:SetLookAt( Vector( 0, 0, 66.5 ) )	
+		
+	timer.Create("RefreshAvatar", 1, 0, function()
+			if LocalPlayer():GetModel() ~= iconmodel.Entity:GetModel() then
+				iconmodel:Remove()
+				
+				iconmodel = vgui.Create("DModelPanel")
+				iconmodel:SetModel( LocalPlayer():GetModel())
+				function iconmodel:LayoutEntity( Entity ) return end
+				iconmodel:SetPos(20, ScrH() - 110)
+				iconmodel:SetAnimated(false)
+				iconmodel:SetSize(100,100)
+				iconmodel:SetCamPos( Vector( 14, 4, 65))
+				iconmodel:SetLookAt( Vector( 0, 0, 66.5 ) )
+			end
+		end)
+end
+hook.Add("InitPostEntity", "drawFace", drawFace)

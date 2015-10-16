@@ -18,30 +18,45 @@ function HoveringNames()
 			
 			//If the distance is cloe enough
 			if targetDistance < 5 then
+			
+					local function StrucText( posx, posy, text, color) 
+					
+						local struc = {}	
+							struc["pos"] = {posx,posy}
+							struc["color"] = color
+							struc["text"] = text
+							struc["font"] = "Trebuchet18"
+							struc["xalign"] = TEXT_ALIGN_CENTER
+							struc["yalign"] = TEXT_ALIGN_CENTER
+							
+						return struc
+						
+					end	
+			
 					//Draw either the name or CopID
 					if !table.HasValue( ModelTech, OutfitsGetValue( "model",target:GetRPModel(), "id")) then
-						draw.SimpleText( target:GetRPName(), "Trebuchet18", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y), Color(200,200,200,210), TEXT_ALIGN_CENTER)
-						draw.SimpleText( target:GetRPTitle(), "Trebuchet18", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y + 12), Color(200,200,200,210), TEXT_ALIGN_CENTER)
+						draw.TextShadow( StrucText( tonumber(targetScreenpos.x),tonumber(targetScreenpos.y), target:GetRPName() ,Color(155,155,155,210)), 1,255)
+						draw.TextShadow( StrucText(tonumber(targetScreenpos.x), tonumber(targetScreenpos.y + 12), target:GetRPTitle(), Color(200,200,200,210)),1,255)
 					else	
-						draw.SimpleText( 'CP.'..target:GetCPRegister(), "Trebuchet18", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y), Color(190,40,40,210), TEXT_ALIGN_CENTER)
+						draw.TextShadow( StrucText(tonumber(targetScreenpos.x), tonumber(targetScreenpos.y + 12), 'CP.'..target:GetCPRegister(), Color(190,40,40,210)),1,255)
 					end
 					
 					//Draw their caste on screen
-					draw.SimpleText(team.GetName( target:Team() ), "Trebuchet18", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y + 24), team.GetColor( target:Team() ), TEXT_ALIGN_CENTER)
+					draw.TextShadow(StrucText(tonumber(targetScreenpos.x), tonumber(targetScreenpos.y + 24), team.GetName( target:Team() ), team.GetColor( target:Team() )),1,255)
 					
 					//Draw their cop GUI
 					if table.HasValue( ModelTech, OutfitsGetValue( "model",LocalPlayer():GetRPModel(), "id")) and !(table.HasValue( ModelTech, OutfitsGetValue( "model",target:GetRPModel(), "id"))) then
 					
 						//Draw citizens ID or unregistered
 						if target:isRegistered() == true then
-							draw.SimpleText( 'CITIZEN.'..target:GetRegister(), "Trebuchet18", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y - 14), Color(190,40,40,210), TEXT_ALIGN_CENTER)
+							draw.TextShadow( StrucText(tonumber(targetScreenpos.x), tonumber(targetScreenpos.y - 14), 'CITIZEN.'..target:GetRegister(), Color(190,40,40,210)),1,255)
 						else
-							draw.SimpleText( 'UNREGISTERED', "Trebuchet18", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y - 14), Color(190,40,40,210), TEXT_ALIGN_CENTER)
+							draw.TextShadow( StrucText(tonumber(targetScreenpos.x), tonumber(targetScreenpos.y - 14), 'UNREGISTERED', Color(190,40,40,210)),1,255)
 						end
 						
 						//Draw if their wanted
 						if target:isWanted() == true then
-							draw.SimpleText( 'WANTED', "Trebuchet18", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y - 28), Color(190,40,40,210), TEXT_ALIGN_CENTER)
+							draw.TextShadow( StrucText(tonumber(targetScreenpos.x), tonumber(targetScreenpos.y - 28), 'WANTED', Color(190,40,40,210)),1,255)
 						end
 					
 					end
