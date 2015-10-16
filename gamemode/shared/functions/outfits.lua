@@ -100,6 +100,26 @@ function OutfitsGetValue( Iput, value, Oput )
 
 end
 
+function GetOutfitName(path)
+
+	local name = OutfitsGetValue("model", path, "name")
+	
+	if name == nil then
+	
+		local difTbl = string.Explode( "/", path )
+		
+		local newPath = difTbl[1].."/"..difTbl[2].."/"..difTbl[3].."/"
+		
+		name = OutfitsGetValue("model", newPath, "name")
+	
+	end
+	
+	if name == nil then return end
+	
+	return name
+
+end
+
 function meta:hasOutfitTimes( num, id )
 
 //num = amount of times

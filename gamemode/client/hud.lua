@@ -61,8 +61,11 @@ function StatHUD()
 
 	local ply = LocalPlayer()
 
-	draw.RoundedBox( 8, 10, ScrH() - 190, (300), (180), Color(255, 255, 255, 255))
-	draw.RoundedBox( 0, 10, ScrH() - 170, (300), (30), Color(25, 68, 131, 250))
+	draw.RoundedBox( 8, 10, ScrH() - 190, (300), (180), Color(0, 0, 0, 155))
+	draw.SimpleText( ply:GetRegister(), "Trebuchet18", 10, ScrH()-150, Color(255,255,255,255) )
+	draw.SimpleText( "CREDITS: "..ply:GetMoney().."S", "Trebuchet18", 10, ScrH()-150, Color(255,255,255,255) )
+	draw.SimpleText( GetOutfitName(ply:GetRPModel()), "Trebuchet18", 10, ScrH()-130, Color(255,255,255,255) )
+	draw.SimpleText( ply:GetCaste(), "Trebuchet18", 10, ScrH()-120, team.GetColor(ply:Team()) )
 
 end
 hook.Add("HUDPaint", "StatHUD", StatHUD)
@@ -87,7 +90,7 @@ function drawFace()
 				function iconmodel:LayoutEntity( Entity ) return end
 				iconmodel:SetPos(20, ScrH() - 110)
 				iconmodel:SetAnimated(false)
-				iconmodel:SetSize(100,100)
+				iconmodel:SetSize(80,80)
 				iconmodel:SetCamPos( Vector( 14, 4, 65))
 				iconmodel:SetLookAt( Vector( 0, 0, 66.5 ) )
 			end
