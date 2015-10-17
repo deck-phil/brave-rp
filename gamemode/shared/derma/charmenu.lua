@@ -67,8 +67,12 @@ elseif CLIENT then
 			end		
 			
 			
+		local title = ply:GetName()	
+		if ply:GetRPName()=="" then
+			title = "BraveRP"
+		end
 
-		local SteamLabel = Label( ply:GetName(), f )
+		local SteamLabel = Label( title, f )
 			SteamLabel:SetSize( 10000, 100)
 			SteamLabel:SetPos( 10, 10 )
 			SteamLabel:SetFont("BebasB")	
@@ -157,6 +161,19 @@ elseif CLIENT then
 			
 			
 		if (ply:GetRPName() == "") then	
+		
+		local icon = vgui.Create( "DModelPanel", f )
+			icon:SetPos( ScrW()/4, 0)
+			icon:SetHeight( ScrH() )
+			icon:SetWidth( ScrH() )
+			icon:SetModel( table.Random(IntroModels) )
+			icon:Center()
+			//function icon:LayoutEntity( Entity ) return end
+			function icon.Entity:GetPlayerColor() return LocalPlayer():GetCasteColor()
+			end
+			
+			timer.Create("changeModel", 1,0,function() icon:SetModel(table.Random(IntroModels)) end)
+			
 			local CreateButton = vgui.Create( "DButton", f )
 				CreateButton:SetFont( "BebasB" )
 				CreateButton:SetText( "CREATE" )
@@ -168,6 +185,7 @@ elseif CLIENT then
 					draw.RoundedBox( 8, 10, 10, CreateButton:GetWide(), CreateButton:GetTall(), Color( 255, 255, 255, 0 ) )
 				end			
 				CreateButton.DoClick = function ()
+					timer.Remove("changeModel")
 					f:Close()
 					openCharCreation()
 				end

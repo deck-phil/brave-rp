@@ -210,6 +210,7 @@ elseif CLIENT then
 				notification.AddLegacy( "You've changed your name to " .. DermaName:GetValue() .. "!", NOTIFY_HINT, 5 )
 				surface.PlaySound( "buttons/button14.wav" )		
 				CreateFrame:Close()
+				
 			end
 			
 	end
