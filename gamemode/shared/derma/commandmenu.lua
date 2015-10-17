@@ -227,8 +227,18 @@ elseif CLIENT then
 			local HudChkTxt = vgui.Create("DLabel", OptionsTab )
 				HudChkTxt:SetPos( 30,10)
 				HudChkTxt:SetTextColor( Color(0,0,0) )				
-				HudChkTxt:SetText( "HUD" )
+				HudChkTxt:SetText( "Red Overlay" )
 				HudChkTxt:SizeToContents()
+				
+			local StatHudCheckbox = vgui.Create( "DCheckBox", OptionsTab )
+				StatHudCheckbox:SetPos( 10, 35 )
+				StatHudCheckbox:SetConVar( "BRP_StatHud" ) 
+				
+			local StatHudChkTxt = vgui.Create("DLabel", OptionsTab )
+				StatHudChkTxt:SetPos( 30,35)
+				StatHudChkTxt:SetTextColor( Color(0,0,0) )				
+				StatHudChkTxt:SetText( "Stats HUD" )
+				StatHudChkTxt:SizeToContents()				
 
 		MainMenuSheet:AddSheet( "Commands", CommandsTab, nil, false, false, "All your commands" )	
 		MainMenuSheet:AddSheet( "Outfits", ModelTab, nil, false, false, "Change your outfit" )

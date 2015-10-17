@@ -38,7 +38,6 @@
 	"models/player/group01/female_03.mdl",
 	"models/player/group01/female_04.mdl",
 	"models/player/group01/female_06.mdl",
-	"models/player/group01/female_07.mdl",
 	
 	"models/player/group03/male_01.mdl",
 	"models/player/group03/male_02.mdl",
@@ -54,7 +53,6 @@
 	"models/player/group03/female_03.mdl",
 	"models/player/group03/female_04.mdl",
 	"models/player/group03/female_06.mdl",
-	"models/player/group03/female_07.mdl",
 
 	"models/player/group03m/male_01.mdl",
 	"models/player/group03m/male_02.mdl",
@@ -70,13 +68,24 @@
 	"models/player/group03m/female_03.mdl",
 	"models/player/group03m/female_04.mdl",
 	"models/player/group03m/female_06.mdl",
-	"models/player/group03m/female_07.mdl",	
 	
 	"models/dpfilms/metropolice/playermodels/pm_hl2concept.mdl",
+	"models/dpfilms/metropolice/playermodels/pm_hl2concept.mdl",
+	"models/dpfilms/metropolice/playermodels/pm_hl2concept.mdl",
+	"models/player/breen.mdl", 
+	"models/player/breen.mdl", 
 	"models/player/breen.mdl", 
 	"models/dpfilms/metropolice/playermodels/pm_police_bt.mdl",
+	"models/dpfilms/metropolice/playermodels/pm_police_bt.mdl",
+	"models/dpfilms/metropolice/playermodels/pm_police_bt.mdl",
+	"models/dpfilms/metropolice/playermodels/pm_rtb_police.mdl", 
+	"models/dpfilms/metropolice/playermodels/pm_rtb_police.mdl", 
 	"models/dpfilms/metropolice/playermodels/pm_rtb_police.mdl", 
 	"models/dpfilms/metropolice/playermodels/pm_biopolice.mdl", 
+	"models/dpfilms/metropolice/playermodels/pm_biopolice.mdl", 
+	"models/dpfilms/metropolice/playermodels/pm_biopolice.mdl", 
+	"models/dpfilms/metropolice/playermodels/pm_resistance_police.mdl",
+	"models/dpfilms/metropolice/playermodels/pm_resistance_police.mdl",
 	"models/dpfilms/metropolice/playermodels/pm_resistance_police.mdl"
 	}
 	

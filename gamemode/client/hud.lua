@@ -15,12 +15,13 @@ end
 hook.Add("HUDShouldDraw", "HUDHider", HUDHider)
 
 //Disable the red jelly screenq
-local hudconvar = CreateClientConVar("BRP_RedHud", 1, false, false)
+local stathudconvar = CreateClientConVar("BRP_StatHud", 0, false, false)
+local redhudconvar = CreateClientConVar("BRP_RedHud", 1, false, false)
 
 //Draw red jelly
 function RedHUD()
 	
-	if !(hudconvar:GetInt() == 1) then return end
+	if !(redhudconvar:GetInt() == 1) then return end
 	
 	local ply = LocalPlayer()
 	local HP = ply:Health()
@@ -59,14 +60,43 @@ end
 
 function StatHUD()
 
+	if !(stathudconvar:GetInt() == 1) then return end
+
 	local ply = LocalPlayer()
 
-	draw.RoundedBox( 8, 10, ScrH() - 190, (300), (180), Color(0, 0, 0, 155))
-	draw.SimpleText( ply:GetRegister(), "Trebuchet18", 20, ScrH()-150, Color(255,255,255,255) )
-	draw.SimpleText( "CREDITS: "..ply:GetMoney().."S", "Trebuchet18", 20, ScrH()-110, Color(255,255,255,255) )
-	draw.SimpleText( ply:GetRPName(), "Trebuchet24", 20, ScrH()-185, Color(255,255,255,255) )
-	draw.SimpleText( GetOutfitName(ply:GetRPModel()), "Trebuchet18", 220, ScrH()-30, Color(255,255,255,255) )
+	local reg = ply:GetRegister()
+	local regBool = true
+	
+	if reg == "" then
+		reg = "UNREGISTERED"
+		regBool = false
+	end
+	
+	draw.RoundedBox( 8, 10, ScrH() - 190, (260), (180), Color(0, 0, 0, 155))
+	
+	if table.HasValue( ModelTech, OutfitsGetValue( "model",ply:GetRPModel(), "id")) then
+	
+		draw.SimpleText( ply:GetRPName()..", CP."..ply:GetCPRegister(), "Trebuchet24", 20, ScrH()-185, Color(255,255,255,255) )
+		
+	elseif regBool then
+	
+		draw.SimpleText( ply:GetRPName()..", #"..reg, "Trebuchet24", 20, ScrH()-185, Color(255,255,255,255) )
+		
+	else
+	
+		draw.SimpleText( ply:GetRPName(), "Trebuchet24", 20, ScrH()-185, Color(255,255,255,255) )
+		
+	end
+	
 	draw.SimpleText( ply:GetCaste(), "Trebuchet18", 20, ScrH()-160, team.GetColor(ply:Team()) )
+	
+	//draw.SimpleText( "TITLE: "..ply:GetRPTitle(), "Trebuchet18", 20, ScrH()-140, Color(255,255,255,255) )
+	draw.SimpleText( "CIT.ID: "..reg, "Trebuchet18", 20, ScrH()-120, Color(255,255,255,255) )
+	draw.SimpleText( "CREDITS: "..ply:GetMoney().."S", "Trebuchet18", 20, ScrH()-100, Color(255,255,255,255) )
+	draw.SimpleText( ply:GetHealthStatus(), "Trebuchet18", 214, ScrH()-120, ply:GetHealthColor(), TEXT_ALIGN_CENTER )
+
+	draw.SimpleText( GetOutfitName(ply:GetRPModel()), "Trebuchet18", 255, ScrH()-30, Color(255,255,255,255),TEXT_ALIGN_RIGHT )
+
 
 end
 hook.Add("HUDPaint", "StatHUD", StatHUD)
@@ -75,25 +105,32 @@ function drawFace()
 
 	local iconmodel = vgui.Create("DModelPanel")
 		iconmodel:SetModel(LocalPlayer():GetRPModel())
-		iconmodel:SetPos(220, ScrH() - 110)
+		iconmodel:SetPos(170, ScrH() - 120)
 	    function iconmodel:LayoutEntity( Entity ) return end
 		iconmodel:SetAnimated(false)
-		iconmodel:SetSize(80,80)
-		iconmodel:SetCamPos( Vector( 14, 4, 65))
+		iconmodel:SetSize(90,90)
+		iconmodel:SetCamPos( Vector( 18, 4, 65))
 		iconmodel:SetLookAt( Vector( 0, 0, 66.5 ) )	
 		
+		if !(stathudconvar:GetInt() == 1) then iconmodel:SetColor(Color(255,255,255,0)) end
+		
 	timer.Create("RefreshAvatar", 1, 0, function()
+	
+			if (stathudconvar:GetInt() == 1) then iconmodel:SetColor(Color(255,255,255,255)) else iconmodel:SetColor(Color(255,255,255,0)) end	
 			if LocalPlayer():GetModel() ~= iconmodel.Entity:GetModel() then
 				iconmodel:Remove()
 				
 				iconmodel = vgui.Create("DModelPanel")
 				iconmodel:SetModel( LocalPlayer():GetModel())
 				function iconmodel:LayoutEntity( Entity ) return end
-				iconmodel:SetPos(220, ScrH() - 110)
+				iconmodel:SetPos(170, ScrH() - 120)
 				iconmodel:SetAnimated(false)
-				iconmodel:SetSize(80,80)
-				iconmodel:SetCamPos( Vector( 14, 4, 65))
+				iconmodel:SetSize(90,90)
+				iconmodel:SetCamPos( Vector( 18, 4, 65))
 				iconmodel:SetLookAt( Vector( 0, 0, 66.5 ) )
+				
+				if !(stathudconvar:GetInt() == 1) then iconmodel:SetColor(Color(255,255,255,0)) end				
+				
 			end
 		end)
 end

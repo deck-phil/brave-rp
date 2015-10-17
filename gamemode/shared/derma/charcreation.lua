@@ -128,6 +128,7 @@ elseif CLIENT then
 				surface.PlaySound( "buttons/button14.wav" )		
 				ply:SetNWInt("openmenu", 0)
 				CreateFrame:Close()
+				RunConsoleCommand("BRP_StatHud", "1")
 			end
 			
 	end

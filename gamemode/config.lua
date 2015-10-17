@@ -5,6 +5,24 @@ COLOR_HOVER = Color( 25, 68, 131, 240)
 COLOR_WHITE = Color( 255, 255, 255, 255)
 COLOR_BLACK = Color( 0,0,0,255)
 
+healthDeadThres = 0
+healthHealthyThres =100
+healthDamagedThres =  75
+healthWeakThres = 45
+healthCriticalThres = 15
+
+healthDead = "Dead"
+healthHealthy = "Healthy"
+healthDamaged =  "Damaged"
+healthWeak = "Weak"
+healthCritical = "Critical"
+
+healthDeadColor = Color(0,0,0)
+healthHealthyColor = Color(55,200,25)
+healthDamagedColor =  Color(155,80,80)
+healthWeakColor = Color(155,75,55)
+healthCriticalColor = Color(200,20,20)
+
 defaultModel = "models/player/group01/male_07.mdl"
 
 defaultMoney = 100

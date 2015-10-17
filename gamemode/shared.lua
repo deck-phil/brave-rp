@@ -20,6 +20,7 @@ include("shared/functions/dhc.lua")
 include("shared/functions/outfits.lua")
 include("shared/functions/roles.lua")
 include("shared/functions/admins.lua")
+include("shared/functions/health.lua")
  
  
  //derma
