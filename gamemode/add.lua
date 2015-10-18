@@ -16,10 +16,10 @@
 	RPEnts = 
 	
 	{
-		["Soma"] = { name = "Soma", model = "models/healthvial.mdl", role = "distributer", ent = "Soma", price = 0, crate = true },
-		["HealthKits"] = { name = "Health Kits", model = "models/items/healthkit.mdl", role = "medic", ent = "brp_healthkit", price = 0, crate = true },		
-		["GeneticSwap"] = { name = "Genetic Swapper", model = "models/Items/battery.mdl", role = "medic", ent = "brp_geneticswap", price = 0, crate = false },	
-		["Alcohol"] = { name = "Alcohol", model = "models/drug_mod/alcohol_can.mdl", role = "bartender", ent = "durgz_alcohol", price = 0, crate = true }
+		["brp_soma"] = { name = "Soma", model = "models/healthvial.mdl", role = "distributer", ent = "brp_soma", price = 0, crate = true },
+		["brp_healthkit"] = { name = "Health Kits", model = "models/items/healthkit.mdl", role = "medic", ent = "brp_healthkit", price = 0, crate = true },		
+		["brp_geneticswap"] = { name = "Genetic Swapper", model = "models/Items/battery.mdl", role = "medic", ent = "brp_geneticswap", price = 0, crate = false },	
+		["durgz_alcohol"] = { name = "Alcohol", model = "models/drug_mod/alcohol_can.mdl", role = "bartender", ent = "durgz_alcohol", price = 0, crate = true }
 	}
 	
 	IntroModels = {

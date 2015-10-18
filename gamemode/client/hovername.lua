@@ -119,7 +119,7 @@ function HoveringCrateNames( crate )
 			local targetScreenpos = targetPos:ToScreen()
 			
 			if targetDistance < 5 then
-					draw.SimpleText( crateType["name"], "DermaLarge", tonumber(targetScreenpos.x), (tonumber(targetScreenpos.y)), Color(255,20,20,255), TEXT_ALIGN_CENTER)
+					draw.SimpleText( crateType.name, "DermaLarge", tonumber(targetScreenpos.x), (tonumber(targetScreenpos.y)), Color(255,20,20,255), TEXT_ALIGN_CENTER)
 					draw.SimpleText( "Remaining: " .. crate:GetNWString( "remaining"), "DermaLarge", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y + 26), Color(255,255,255,255), TEXT_ALIGN_CENTER)
 					//draw.SimpleText(team.GetName( crate:Team() ), "Trebuchet18", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y + 24), team.GetColor( crate:Team() ), TEXT_ALIGN_CENTER)
 			end 	
@@ -127,14 +127,14 @@ function HoveringCrateNames( crate )
 		
 		if (crate:GetClass() == "brp_entshipment_base") then
 		
-			//local crateType = RPEnts[crate:GetNWString("shipmententity")]
+			local crateType = RPEnts[crate:GetNWString("shipmententity")]
 		
 			local targetPos = crate:GetPos() + Vector(0,0,30)
 			local targetDistance = math.floor((LocalPlayer():GetPos():Distance( targetPos ))/40)
 			local targetScreenpos = targetPos:ToScreen()
 			
 			if targetDistance < 5 then
-					draw.SimpleText( crate:GetNWString("shipmententity"), "DermaLarge", tonumber(targetScreenpos.x), (tonumber(targetScreenpos.y)), Color(255,20,20,255), TEXT_ALIGN_CENTER)
+					draw.SimpleText( crateType.name, "DermaLarge", tonumber(targetScreenpos.x), (tonumber(targetScreenpos.y)), Color(255,20,20,255), TEXT_ALIGN_CENTER)
 					draw.SimpleText( "Remaining: " .. crate:GetNWString( "remaining"), "DermaLarge", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y + 26), Color(255,255,255,255), TEXT_ALIGN_CENTER)
 			end 	
 		end

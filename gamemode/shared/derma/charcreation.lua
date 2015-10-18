@@ -145,17 +145,24 @@ elseif CLIENT then
 			local ply = LocalPlayer()	
 	
 			CreateFrame = vgui.Create( "DFrame" )
-			CreateFrame:SetSize( 450, 400 )
+			CreateFrame:SetSize( 450, 380 )
 			CreateFrame:SetTitle( "Genetic Swap Menu" )
 			CreateFrame:SetVisible( true )
-			CreateFrame:SetDraggable( false )
+			CreateFrame:SetDraggable( true )
 			CreateFrame:ShowCloseButton( true )
 			CreateFrame:Center()
 			CreateFrame:MakePopup()		
-			CreateFrame.Paint = function()
-				draw.RoundedBox( 8, 0, 0, CreateFrame:GetWide(), CreateFrame:GetTall(), Color( 25, 68, 131, 255 ) )
-				draw.RoundedBox( 8, 5, 5, CreateFrame:GetWide() - 10, CreateFrame:GetTall() - 10, Color( 255, 255, 255, 255 ) )
-			end				
+			CreateFrame.Paint = function(self, w, h)
+				draw.RoundedBox( 8, 0, 0, w, h, Color( 25, 68, 131, 255 ) )
+				draw.RoundedBox( 8, 5, 5, w - 10, h - 10, Color( 255, 255, 255, 255 ) )
+			end							
+
+		local TitleText = vgui.Create("DLabel", CreateFrame )		
+			TitleText:SetPos( 10, 5 )
+			TitleText:SetTall( 20 )
+			TitleText:SetWide( 150 )
+			TitleText:SetText("Genetic Swap Menu")
+			TitleText:SetColor(Color(0,0,0,255))
 			
 		local NameText = vgui.Create("DLabel", CreateFrame )		
 			NameText:SetPos( 32, 90 )
@@ -172,10 +179,10 @@ elseif CLIENT then
 			InfoText:SetText("(Note: Your caste will be \nnot be changed by \nthis. )")			
 			
 
-			local DermaName = vgui.Create("DTextEntry", CreateFrame )		
-			DermaName:SetPos( 32, 110 )
+		local DermaName = vgui.Create("DTextEntry", CreateFrame )		
+			DermaName:SetPos( 32, 90 )
 			DermaName:SetTall( 20 )
-			DermaName:SetWide( 150 )		
+			DermaName:SetWide( 150 )	
 			
 			local y = 1
 			
@@ -195,16 +202,42 @@ elseif CLIENT then
 				DChar:SetModel(swapModel( y ))
 			
 			end	
+			
+		local HintText = vgui.Create("DLabel", CreateFrame )		
+			HintText:SetPos( 300, 350 )
+			HintText:SetTall( 20 )
+			HintText:SetWide( 150 )
+			HintText:SetText("(Click to change model)")
+			HintText:SetColor(Color(0,0,0,255))			
 
 		local DermaButton = vgui.Create( "DButton", CreateFrame )
 			DermaButton:SetText( "Change Genetics" )
-			DermaButton:SetPos( 32, 250 )
+			DermaButton:SetPos( 32, CreateFrame:GetTall() - 85 )
 			DermaButton:SetSize( 150, 50 )
+			DermaButton:SetColor(COLOR_WHITE)
+		local c = COLOR_UNHOVER
+			DermaButton.OnCursorExited = function ()
+				c = COLOR_UNHOVER
+			end
+			DermaButton.OnCursorEntered = function ()
+				c = COLOR_HOVER
+			end
+			DermaButton.Paint = function (self, w ,h)
+				draw.RoundedBox( 4, 0, 0, w, h, c )
+			end	
 			DermaButton.DoClick = function ()
 			
-				if DermaName:GetValue() == "" then return end
+				if DermaName:GetValue() == "" then notification.AddLegacy( "Enter a name!", NOTIFY_HINT, 5 ) return end
+				
+				local same = false
+				
+				for k, v in pairs(player.GetAll()) do
+					if v:GetRPName() == DermaName:GetValue() then same = true return end
+				end
 					
-				SendCharCreation( DermaName:GetValue(), "", DChar.Entity:GetModel() )
+				if same then notification.AddLegacy( "Someone already has that name!", NOTIFY_HINT, 5 ) return end	
+					
+				SendGeneticSwap( DermaName:GetValue(), DChar.Entity:GetModel() )
 				
 				notification.AddLegacy( "You've change you genetics!", NOTIFY_HINT, 5 )
 				

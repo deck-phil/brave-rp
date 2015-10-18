@@ -14,6 +14,8 @@ function meta:GetHealthStatus()
 		return healthDamaged		
 	elseif hlth <= healthHealthyThres then
 		return healthHealthy		
+	else
+		return healthBetter		
 	end
 	
 end
@@ -31,7 +33,9 @@ function meta:GetHealthColor()
 	elseif hlth <= healthDamagedThres then
 		return healthDamagedColor	
 	elseif hlth <= healthHealthyThres then
-		return healthHealthyColor	
+		return healthHealthyColor
+	else
+		return healthBetterColor
 	end
 	
 

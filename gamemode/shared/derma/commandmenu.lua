@@ -648,11 +648,12 @@ elseif CLIENT then
 				RegList:SetMultiSelect( false )
 				RegList:Dock( FILL )
 				RegList:AddColumn( "RP Name" )
-				RegList:AddColumn( "Steam ID" )
+				RegList:AddColumn( "Role" )
+				RegList:AddColumn( "Steam ID" ):SetFixedWidth( 145 )
 				
 				function PopList()
 					for k, v in pairs( player.GetAll()) do
-							RegList:AddLine( v:GetRPName(), v:SteamID())
+							RegList:AddLine( v:GetRPName(), v:GetRPRole(), v:SteamID())
 					end
 				end
 				

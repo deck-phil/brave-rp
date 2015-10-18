@@ -6,7 +6,7 @@ if SERVER then
 	util.AddNetworkString( "sendTitle" )
 	util.AddNetworkString( "sendModel" )
 	util.AddNetworkString( "sendOGModel" )
-	util.AddNetworkString( "sendRole" )
+	util.AddNetworkString( "changeOGModel" )
 	util.AddNetworkString( "dropWeapon" )
 	util.AddNetworkString( "dropOutfit" )
 	
@@ -109,10 +109,6 @@ if SERVER then
 	
 	
 	net.Receive( "sendTitle", function( len, ply )
-		ply:SetRPTitle( net.ReadString() )
-	end )	
-	
-	net.Receive( "sendRole", function( len, ply )
 		ply:SetRPTitle( net.ReadString() )
 	end )	
 	
@@ -228,14 +224,6 @@ elseif CLIENT then
 		net.WriteDouble( price )
 		net.SendToServer()			
 	end
-	
-	end
-	
-	function SendRole( role )
-	
-	    net.Start( "sendRole" )
-        net.WriteString( role )
-		net.SendToServer()
 	
 	end
 	

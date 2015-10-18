@@ -70,7 +70,7 @@ hook.Add("PhysgunPickup", "PhysgunPickupThing", EntPickup)
 
 //Restrict all nongamemode weapons
 local function RestrictWeapons(ply, class, weapon)
-    return ply:IsRPAdmin()
+    return ply:isRPAdmin()
 end
 hook.Add("PlayerSpawnSWEP", "RestrictWeapons", RestrictWeapons)
 hook.Add("PlayerGiveSWEP", "RestrictWeapons", RestrictWeapons)

@@ -6,7 +6,7 @@ function SpawnSoma()
 	
 		local ply = Entity(1) 
 		local tr = ply:GetEyeTrace() 
-		local ent = ents.Create("soma") 
+		local ent = ents.Create("brp_soma") 
 		ent:SetPos(tr.HitPos) 
 		if(ent:IsValid()) then
 			ent:Spawn(ply, tr)
@@ -16,6 +16,26 @@ function SpawnSoma()
 	
 end
 
+function ENT:PhysicsCollide(tbl, col)
+
+	local tar = tbl.HitEntity
+	
+	if !(tar:GetClass() == "brp_entshipment_base") then return end
+	if !(string.lower(tar:GetNWString( "shipmententity")) == self:GetClass()) then return end
+
+	if timer.Exists(self:GetCreationID().."restoreSoma") then return end
+	
+	timer.Create( self:GetCreationID().."restoreSoma", 1, 1, function()
+	
+	if table.HasValue(ents.FindInSphere(self:GetPos(), 3 ), tar) then
+	
+		tar:SetNWInt( "remaining", tar:GetNWString( "remaining") + 1)	
+		self:Remove()
+	end
+	
+	end)
+	
+end
 
 local function UnDrugPlayer(ply)
 	if not IsValid(ply) then return end

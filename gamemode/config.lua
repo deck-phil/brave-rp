@@ -12,12 +12,14 @@ healthWeakThres = 45
 healthCriticalThres = 15
 
 healthDead = "Dead"
+healthBetter = "Crazy Good"
 healthHealthy = "Healthy"
 healthDamaged =  "Damaged"
 healthWeak = "Weak"
 healthCritical = "Critical"
 
 healthDeadColor = Color(0,0,0)
+healthBetterColor = Color(55,155,85)
 healthHealthyColor = Color(55,200,25)
 healthDamagedColor =  Color(155,80,80)
 healthWeakColor = Color(155,75,55)
