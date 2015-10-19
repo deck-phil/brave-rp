@@ -38,7 +38,6 @@ function meta:GetHealthColor()
 		return healthBetterColor
 	end
 	
-
 end
 
 function meta:GetStatus()

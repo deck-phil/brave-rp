@@ -97,7 +97,7 @@ elseif CLIENT then
 			CreateButton:SetText( "Create Character" )
 			CreateButton:SetPos( 32, CreateFrame:GetTall() - 85 )
 			CreateButton:SetSize( 150, 50 )
-			CreateButton:SetColor(COLOR_WHITE)
+			CreateButton:SetColor(color_white)
 			local c = COLOR_UNHOVER
 			CreateButton.OnCursorExited = function ()
 				c = COLOR_UNHOVER
@@ -112,6 +112,12 @@ elseif CLIENT then
 			CreateButton.DoClick = function ()
 			
 				if DermaName:GetValue() == "" then notification.AddLegacy( "Enter a name!", NOTIFY_HINT, 5 ) return end
+				
+				if string.len( DermaName:GetValue() ) > nameLimit then 
+	
+					notification.AddLegacy( "This name is too long.", NOTIFY_HINT, 5 )
+
+				return end
 				
 				local same = false
 				
@@ -214,7 +220,7 @@ elseif CLIENT then
 			DermaButton:SetText( "Change Genetics" )
 			DermaButton:SetPos( 32, CreateFrame:GetTall() - 85 )
 			DermaButton:SetSize( 150, 50 )
-			DermaButton:SetColor(COLOR_WHITE)
+			DermaButton:SetColor(color_white)
 		local c = COLOR_UNHOVER
 			DermaButton.OnCursorExited = function ()
 				c = COLOR_UNHOVER
@@ -236,6 +242,14 @@ elseif CLIENT then
 				end
 					
 				if same then notification.AddLegacy( "Someone already has that name!", NOTIFY_HINT, 5 ) return end	
+					
+				if string.len( DermaName:GetValue() ) > nameLimit then 
+	
+					notification.AddLegacy( "This name is too long.", NOTIFY_HINT, 5 )
+
+				return end				
+					
+				if string.find(DermaName:GetValue(), "%d+")	then notification.AddLegacy( "You are not allowed numbers in your name.", NOTIFY_HINT, 5 ) return end
 					
 				SendGeneticSwap( DermaName:GetValue(), DChar.Entity:GetModel() )
 				

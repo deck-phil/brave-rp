@@ -55,7 +55,7 @@ elseif CLIENT then
 			BuyBtn:SetEnabled(!owned)
 			BuyBtn:SetColor(color_black)
 			BuyBtn.Paint = function (self, w ,h)
-				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE )
+				draw.RoundedBox( 4, 0, 0, w, h, color_white )
 				if owned then draw.RoundedBox( 4, 0, 0, w, h, Color(155,155,155,255) ) end
 			end
 			BuyBtn.DoClick = function ()
@@ -72,7 +72,7 @@ elseif CLIENT then
 			SellBtn:SetColor(color_black)
 
 			SellBtn.Paint = function (self, w ,h)
-				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE )
+				draw.RoundedBox( 4, 0, 0, w, h, color_white )
 				if !byu then draw.RoundedBox( 4, 0, 0, w, h, Color(155,155,155,255) ) end
 			end
 			SellBtn.DoClick = function ()	
@@ -88,7 +88,7 @@ elseif CLIENT then
 			ChangeNameBtn:SetColor(color_black)
 			ChangeNameBtn:SetEnabled(byu)
 			ChangeNameBtn.Paint = function (self, w ,h)
-				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE )
+				draw.RoundedBox( 4, 0, 0, w, h, color_white )
 				if !byu then draw.RoundedBox( 4, 0, 0, w, h, Color(155,155,155,255) ) end
 			end
 			ChangeNameBtn.DoClick = function ()	

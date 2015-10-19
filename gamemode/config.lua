@@ -2,8 +2,6 @@
 
 COLOR_UNHOVER = Color( 25, 68, 131, 255)
 COLOR_HOVER = Color( 25, 68, 131, 240)
-COLOR_WHITE = Color( 255, 255, 255, 255)
-COLOR_BLACK = Color( 0,0,0,255)
 
 healthDeadThres = 0
 healthHealthyThres =100
@@ -26,6 +24,9 @@ healthWeakColor = Color(155,75,55)
 healthCriticalColor = Color(200,20,20)
 
 defaultModel = "models/player/group01/male_07.mdl"
+
+nameLimit = 20
+titleLimit = 20
 
 defaultMoney = 100
 

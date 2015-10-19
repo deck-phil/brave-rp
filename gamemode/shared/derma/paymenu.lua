@@ -50,7 +50,7 @@ elseif CLIENT then
 			GiveBtn:SetSize( 100, 25 )
 			GiveBtn:SetColor(color_black)
 			GiveBtn.Paint = function(self, w, h)
-				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE)
+				draw.RoundedBox( 4, 0, 0, w, h, color_white)
 			end	
 			GiveBtn.DoClick = function ()
 				
@@ -95,7 +95,7 @@ elseif CLIENT then
 			DropButton:SetSize( 100, 25 )
 			DropButton:SetColor(color_black)
 			DropButton.Paint = function(self, w, h)
-				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE)
+				draw.RoundedBox( 4, 0, 0, w, h, color_white)
 			end				
 			DropButton.DoClick = function ()		
 	

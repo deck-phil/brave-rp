@@ -2,15 +2,9 @@ local meta = FindMetaTable("Player")
 
 function meta:SetRPName( name )
 
-	if string.len( name ) > 30 then 
+	name = trimText(name)
 	
-		self:SendLua("notification.AddLegacy(\"That name was too long.\", NOTIFY_GENERIC, 5)") 
-	
-	end
-	
-	local RPNAME = string.sub(name, 1, 30)
-	
-	self:SetNWString("rpname", RPNAME )
+	self:SetNWString("rpname", name )
 	
 	if name == "" then return end
 	
@@ -44,6 +38,8 @@ end
 //RP TITLE
 function meta:SetRPTitle( title )
 
+	title = trimText(title)
+
 	if string.len( title ) > 20 then 
 	
 		self:SendLua("notification.AddLegacy(\"That title is too long.\", NOTIFY_GENERIC, 5)") 
@@ -61,4 +57,19 @@ function meta:GetRPTitle()
 
 	return self:GetNWString("rptitle")
 
+end
+
+function trimText( str )
+
+	if !(string.find(str, "  ")) then return str end
+	
+	local strTbl = string.Explode(string.Trim(str), " ")
+	local newName = ""
+	
+	for k, v in pairs(strTbl)do
+		NewName = NewName.." "..string.Trim(strTabl[v])
+	end
+
+	return string.Trim(NewName)
+	
 end

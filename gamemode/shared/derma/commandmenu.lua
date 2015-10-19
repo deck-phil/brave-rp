@@ -312,7 +312,7 @@ elseif CLIENT then
 				RegButton:SetText( "Register Citizen" )
 				RegButton:SetSize(100, 40)
 				RegButton:SetPos( 10, 10 )
-				RegButton:SetColor( COLOR_WHITE )		
+				RegButton:SetColor( color_white )		
 				local c = COLOR_UNHOVER
 					RegButton.OnCursorExited = function ()
 						c = COLOR_UNHOVER
@@ -332,7 +332,7 @@ elseif CLIENT then
 				OfficeButton:SetText( "Set Office" )
 				OfficeButton:SetSize(100, 40)
 				OfficeButton:SetPos( 120, 10 )	
-				OfficeButton:SetColor( COLOR_WHITE )		
+				OfficeButton:SetColor( color_white )		
 				local c = COLOR_UNHOVER
 					OfficeButton.OnCursorExited = function ()
 						c = COLOR_UNHOVER
@@ -352,7 +352,7 @@ elseif CLIENT then
 				WantBut:SetText( "Make Wanted" )
 				WantBut:SetSize(100, 40)
 				WantBut:SetPos( 10, 60 )	
-				WantBut:SetColor( COLOR_WHITE )		
+				WantBut:SetColor( color_white )		
 				local c = COLOR_UNHOVER
 					WantBut.OnCursorExited = function ()
 						c = COLOR_UNHOVER
@@ -383,7 +383,7 @@ elseif CLIENT then
 				UnWantBut:SetText( "Make UnWanted" )
 				UnWantBut:SetSize(100, 40)
 				UnWantBut:SetPos( 10, 110 )		
-				UnWantBut:SetColor( COLOR_WHITE )		
+				UnWantBut:SetColor( color_white )		
 				local c = COLOR_UNHOVER
 					UnWantBut.OnCursorExited = function ()
 						c = COLOR_UNHOVER
@@ -534,7 +534,7 @@ elseif CLIENT then
 					UpAgenda:SetText( "Update Agenda" )
 					UpAgenda:SetSize(100, 40)
 					UpAgenda:SetPos( 10, 110 )
-					UpAgenda:SetColor( COLOR_WHITE )
+					UpAgenda:SetColor( color_white )
 				local c = COLOR_UNHOVER
 					UpAgenda.OnCursorExited = function ()
 						c = COLOR_UNHOVER
@@ -553,7 +553,7 @@ elseif CLIENT then
 					Waypoint:SetText( "Set Waypoint" )
 					Waypoint:SetSize(100, 40)
 					Waypoint:SetPos( 10, 60 )		
-					Waypoint:SetColor(COLOR_WHITE)
+					Waypoint:SetColor(color_white)
 				local c = COLOR_UNHOVER
 					Waypoint.OnCursorExited = function ()
 						c = COLOR_UNHOVER
@@ -573,7 +573,7 @@ elseif CLIENT then
 					PoliceBtn:SetText( "Set Jail" )
 					PoliceBtn:SetSize(100, 40)
 					PoliceBtn:SetPos( 120, 10 )	
-					PoliceBtn:SetColor( COLOR_WHITE )	
+					PoliceBtn:SetColor( color_white )	
 				local c = COLOR_UNHOVER
 					PoliceBtn.OnCursorExited = function ()
 						c = COLOR_UNHOVER
@@ -606,7 +606,7 @@ elseif CLIENT then
 				WantBut:SetText( "Request Wanted" )
 				WantBut:SetSize(100, 40)
 				WantBut:SetPos( 10, 10 )
-				WantBut:SetColor( COLOR_WHITE )
+				WantBut:SetColor( color_white )
 			local c = COLOR_UNHOVER
 				WantBut.OnCursorExited = function ()
 					c = COLOR_UNHOVER
@@ -669,7 +669,7 @@ elseif CLIENT then
 				RegButton:SetText( "Kick" )
 				RegButton:SetSize(100, 40)
 				RegButton:SetPos( 10, 10 )		
-				RegButton:SetColor( COLOR_WHITE )		
+				RegButton:SetColor( color_white )		
 				local c = COLOR_UNHOVER
 					RegButton.OnCursorExited = function ()
 						c = COLOR_UNHOVER
@@ -701,7 +701,7 @@ elseif CLIENT then
 				PermaBtn:SetText( "Perma Death" )
 				PermaBtn:SetSize(100, 40)
 				PermaBtn:SetPos( 10, 60 )	
-				PermaBtn:SetColor( COLOR_WHITE )		
+				PermaBtn:SetColor( color_white )		
 				local c = COLOR_UNHOVER
 					PermaBtn.OnCursorExited = function ()
 						c = COLOR_UNHOVER
@@ -726,7 +726,7 @@ elseif CLIENT then
 				AdminRole:SetText( "Set Role" )
 				AdminRole:SetSize(100, 40)
 				AdminRole:SetPos( 10, 110 )
-				AdminRole:SetColor( COLOR_WHITE )		
+				AdminRole:SetColor( color_white )		
 				local c = COLOR_UNHOVER
 					AdminRole.OnCursorExited = function ()
 						c = COLOR_UNHOVER
@@ -749,9 +749,9 @@ elseif CLIENT then
 			if (!v.Tab) then continue end
 				v.Tab:SetColor(Color(0,0,0))
 				
-				local c = COLOR_WHITE
+				local c = color_white
 				v.Tab.OnCursorExited = function ()
-					c = COLOR_WHITE
+					c = color_white
 				end
 				v.Tab.OnCursorEntered = function ()
 					c = Color( 25, 68, 210, 150)
@@ -795,10 +795,17 @@ elseif CLIENT then
 			TitleButton:SetSize( 100, 25 )		
 			TitleButton:SetColor(color_black)
 			TitleButton.Paint = function(self, w,h )
-				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE )
+				draw.RoundedBox( 4, 0, 0, w, h, color_white )
 			end			
 			
 			TitleButton.DoClick = function ()
+			
+			if string.len( DermaText:GetValue() ) > titleLimit then 
+	
+				notification.AddLegacy( "This title is too long.", NOTIFY_HINT, 5 )
+
+			return end		
+			
 				TitleFrame:Close()
 				SendTitle( DermaText:GetValue() )
 				notification.AddLegacy( "You have changed your title to: "..DermaText:GetValue()..".", NOTIFY_HINT, 5 )
@@ -839,7 +846,7 @@ elseif CLIENT then
 			end
 			PointBtn:SetColor(color_black)
 			PointBtn.Paint = function(self, w,h )
-				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE )
+				draw.RoundedBox( 4, 0, 0, w, h, color_white )
 			end			
 
 	
@@ -880,7 +887,7 @@ elseif CLIENT then
 			PointBtn:SetSize( 100, 25 )
 			PointBtn:SetColor(color_black)
 			PointBtn.Paint = function(self, w,h )
-				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE )
+				draw.RoundedBox( 4, 0, 0, w, h, color_white )
 			end				
 			PointBtn.DoClick = function ()
 				ReqManu:Close()
@@ -945,7 +952,7 @@ elseif CLIENT then
 			RoleFrame:MakePopup()	
 			RoleFrame.Paint = function(self, w, h)
 				draw.RoundedBox( 8, 0, 0, w, h, Color(25, 68, 131, 150))
-				//draw.RoundedBox( 4, 5, 22, w-10, h-15, COLOR_WHITE)
+				//draw.RoundedBox( 4, 5, 22, w-10, h-15, color_white)
 			end			
 	
 		local RoleText = vgui.Create("DComboBox", RoleFrame )		
@@ -976,15 +983,15 @@ elseif CLIENT then
 			RoleButton:SetSize( 100, 25 )
 			RoleButton:SetColor(color_black)
 			RoleButton.Paint = function(self, w,h )
-				draw.RoundedBox( 4, 0, 0, w, h, COLOR_WHITE )
+				draw.RoundedBox( 4, 0, 0, w, h, color_white )
 			end				
 			RoleButton.DoClick = function ()
 				
 				if RoleText:GetValue() == "" then notification.AddLegacy( "Please select a role.", NOTIFY_HINT, 5 ) return end
 				
-				RoleFrame:Close()
-				
 				if !(HasRole(getRoleName(RoleText:GetValue()))) then notification.AddLegacy( "That is not a valid role!", NOTIFY_HINT, 5 )	return end			
+
+				RoleFrame:Close()
 				
 				RunConsoleCommand("say", "!role "..getRoleName(RoleText:GetValue()).." "..PlayerText:GetValue())
 			end
