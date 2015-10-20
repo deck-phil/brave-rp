@@ -178,7 +178,8 @@ function HoveringCrateNames( crate )
 			if targetDistance < 5 then	
 				
 				if crate:IsOwned() then
-					//draw.SimpleText( crate:GetRPOwner():GetRPName(), "Trebuchet18", tonumber(targetScreenpos.x), (tonumber(targetScreenpos.y + 26)), Color(255,20,20,255), TEXT_ALIGN_CENTER)
+					if !(crate:GetClass() == "func_door" or crate:GetClass() == "func_door_rotating") then return end
+					draw.SimpleText( crate:GetDoorName(), "Trebuchet24", tonumber(targetScreenpos.x), (tonumber(targetScreenpos.y + 26)), Color(255,20,20,255), TEXT_ALIGN_CENTER)
 				else
 					draw.SimpleText( "Unowned", "Trebuchet18", tonumber(targetScreenpos.x), (tonumber(targetScreenpos.y)), Color(255,255,255,200), TEXT_ALIGN_CENTER)
 					draw.SimpleText( "Press F3 to buy this door.", "Trebuchet18", tonumber(targetScreenpos.x), (tonumber(targetScreenpos.y + 13)), Color(255,255,255,200), TEXT_ALIGN_CENTER)

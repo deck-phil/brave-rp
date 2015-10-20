@@ -76,6 +76,7 @@ function meta:GetRoleWeapons( role )
 	
 	self:Give("weapon_physgun")
 	self:Give("weapon_physcannon")
+	self:Give("gmod_tool")
 	
 	for k, v in pairs(RPRoles[role]["weps"]) do
 		self:Give(v)

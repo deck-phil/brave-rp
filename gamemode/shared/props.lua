@@ -42,6 +42,8 @@ function prop:SellDoor( ply )
 	self:SetNWEntity( "RPOwner", NULL )
 	
 	self:SetNWString("DoorName", "" ) 
+	
+	self:ServerUnlock()
 
 	ply:SendLua("notification.AddLegacy(\"You sell this door.\", NOTIFY_GENERIC, 5)")
 	
@@ -95,4 +97,15 @@ function prop:UnLockDoor( ply )
 	
 	print( tostring(self).." is UNlocked." )	
 
+end
+
+function prop:ServerUnlock()
+
+	if !(self:IsDoor()) then return end
+
+	self.IsLocked = false
+	
+	self:Fire("unlock", "", 0)
+	
+	print( tostring(self).." is UNlocked." )		
 end
