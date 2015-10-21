@@ -210,7 +210,15 @@
 	{
 		"headpolice",
 		"watcher",
+		"bioelite",
 		"police"
+	}
+	
+	//Roles that have the police tab
+	ReqWantedTab =
+	{
+		"dhc",
+		"headpolice"
 	}
 	
 	WaypointTable = {}
@@ -244,7 +252,7 @@
 	
 	["headpolice"] = { role = "headpolice", name = "Head Police", admin = true, weps = {"weapon_stunstick", "brp_somagun" } },
 	
-	["bioelite"] = { role = "bioelite", name = "Bio Elite", admin = true, weps = { "brp_somagun" } },
+	["bioelite"] = { role = "bioelite", name = "Bio Elite", admin = false, weps = { "brp_somagun" } },
 	
 	["distributer"] = { role = "distributer", name = "Distributer", admin = false, weps = {} },
 	
@@ -264,6 +272,20 @@
 		"func_door_rotating",
 		
 		"func_door"
+	
+	}
+
+	//Groups for door unlocks
+	RPDoorGroups = {
+	
+	["Civil Protection"] = {
+	
+		"police",
+		"watcher",
+		"headpolice",
+		"bioelite"
+		
+		}
 	
 	}
 

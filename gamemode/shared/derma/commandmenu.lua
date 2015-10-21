@@ -366,12 +366,8 @@ elseif CLIENT then
 				WantBut.DoClick = function ()
 			
 					notification.AddLegacy( RegList:GetLine(lineID):GetValue(1).." is now wanted.", NOTIFY_HINT, 5 )
-			
-					if RegList:GetLine(lineID):GetValue(2) == "****" then
-						SendWantedPly(GetPlayerNameRPName( RegList:GetLine(lineID):GetValue(1) ), true)
-					else
-						SendWantedPly(GetPlayerNameID( RegList:GetLine(lineID):GetValue(2)), true)
-					end
+					
+					SendWantedPly(GetPlayerNameRPName( RegList:GetLine(lineID):GetValue(1) ), true)
 				
 					
 					RegList:AddLine( RegList:GetLine(lineID):GetValue(1), RegList:GetLine(lineID):GetValue(2), "True" )
@@ -397,12 +393,8 @@ elseif CLIENT then
 				UnWantBut.DoClick = function ()
 				
 					notification.AddLegacy( RegList:GetLine(lineID):GetValue(1).." is no longer wanted.", NOTIFY_HINT, 5 )
-				
-					if RegList:GetLine(lineID):GetValue(2) == "****" then
-						SendWantedPly(GetPlayerNameRPName( RegList:GetLine(lineID):GetValue(1) ), false)
-					else
-						SendWantedPly(GetPlayerNameID( RegList:GetLine(lineID):GetValue(2)), false)
-					end
+					
+					SendWantedPly(GetPlayerNameRPName( RegList:GetLine(lineID):GetValue(1) ), false)
 					
 					RegList:AddLine( RegList:GetLine(lineID):GetValue(1), RegList:GetLine(lineID):GetValue(2), "False" )
 					RegList:RemoveLine( lineID )
@@ -410,78 +402,9 @@ elseif CLIENT then
 				end	
 			
 				
-		end
-		
-
-		//REQ WANTED TAB
-	if (LocalPlayer():GetRPRole() == "dhc") then 
-			MainMenuSheet:AddSheet( "Request Wanted", ReqTab, nil, false, false, "Manage Wanted Request" )	
-			
-			local SelectID = "0"
-			
-			local ReqList = vgui.Create( "DListView", ReqTab )
-				ReqList:SetMultiSelect( false )
-				ReqList:Dock( FILL )
-				ReqList:AddColumn( "Citizen" )
-				ReqList:AddColumn( "ID" )
-				ReqList:AddColumn( "Reason" )
-				
-					for k, v in pairs( player.GetAll()) do
-						local CitID = v:GetRegister()
-						
-						if CitID == "" then CitID = "****" end
-						if v:GetNWBool("WantReq") then 
-							ReqList:AddLine( v:GetRPName(), CitID, GetPlayerNameID( v:GetRegister() ):GetNWString("WantReason"))
-						end
-					end
-					
-				ReqList.DoDoubleClick = function( lineID, line )
-				
-					local Menu = vgui.Create( "DMenu" )
-						Menu:AddOption("Accept", function()
-						
-						if ReqList:GetLine(POPOPO):GetValue(2) == "****" then
-
-							notification.AddLegacy( ReqList:GetLine(POPOPO):GetValue(1).." is now wanted.", NOTIFY_HINT, 5 )
-							SendWantedPly(GetPlayerNameRPName( ReqList:GetLine(POPOPO):GetValue(1)), true) 
-							
-						else
-							notification.AddLegacy( ReqList:GetLine(POPOPO):GetValue(1).." is now wanted.", NOTIFY_HINT, 5 )			
-							SendWantedPly(GetPlayerNameID( ReqList:GetLine(POPOPO):GetValue(2)), true) 
-						end
-						
-							ReqList:RemoveLine(line) 					
-						end)
-						
-						Menu:AddOption("Decline", function()
-						
-							if ReqList:GetLine(POPOPO):GetValue(2) == "****" then
-
-								notification.AddLegacy( ReqList:GetLine(POPOPO):GetValue(1).." is a free man.", NOTIFY_HINT, 5 )
-								SendWantedPly(RemoveWantedRequest( ReqList:GetLine(POPOPO):GetValue(1))) 
-								
-							else
-							
-								notification.AddLegacy( ReqList:GetLine(POPOPO):GetValue(1).." is a free man.", NOTIFY_HINT, 5 )
-								SendWantedPly(RemoveWantedRequest( ReqList:GetLine(POPOPO):GetValue(2))) 
-							end						
-
-							ReqList:RemoveLine(line)
-						end)
-						Menu:Open()
-						
-				end
-				
-				ReqList.OnRowSelected = function( panel, line )
-					POPOPO = line
-				end
-				
 		end		
 		
-		
-		
 		//POLICE TAB
-		
 		if table.HasValue( RPCops, LocalPlayer():GetRPRole() ) then 
 		
 			MainMenuSheet:AddSheet( "Police", PoliceTab, nil, false, false, "Police Agenda" )
@@ -500,12 +423,21 @@ elseif CLIENT then
 			
 			//local SelectPlayer = "0"
 				
+				
+			//Headpolice ony buttons	
 			if LocalPlayer():GetRPRole() == "headpolice" then
 
+				local AgendaLabel = vgui.Create("DLabel", RightPanel )
+					AgendaLabel:SetPos( 3,0)
+					AgendaLabel:SetTextColor( color_black )	
+					AgendaLabel:SetFont("DebugFixedSmall")
+					AgendaLabel:SetText( "Police Agenda" )
+					AgendaLabel:SizeToContents()	
+					
 				local TextEntry = vgui.Create( "DTextEntry", RightPanel )	-- create the form as a child of frame
 					TextEntry:SetPos( 25, 50 )
 					TextEntry:Dock( FILL )
-					TextEntry:DockMargin( 2, 2, 2, 96 )
+					TextEntry:DockMargin( 2, 17, 2, 78 )
 					TextEntry:SetText( GetAgenda() )
 					TextEntry:SetMultiline(true)
 					
@@ -591,11 +523,18 @@ elseif CLIENT then
 					end							
 
 				else
+
+					local AgendaLabel = vgui.Create("DLabel", RightPanel )
+						AgendaLabel:SetPos( 3,0)
+						AgendaLabel:SetTextColor( color_black )	
+						AgendaLabel:SetFont("DebugFixedSmall")
+						AgendaLabel:SetText( "Police Agenda" )
+						AgendaLabel:SizeToContents()	
 				
 					local TextEntry = vgui.Create( "DTextEntry", RightPanel )	-- create the form as a child of frame
 						TextEntry:SetPos( 25, 50 )
 						TextEntry:Dock( FILL )
-						TextEntry:DockMargin( 2, 2, 2, 90 )
+						TextEntry:DockMargin( 2, 17, 2, 2 )
 						TextEntry:SetText( GetAgenda() )
 						TextEntry:SetEditable( false )
 						TextEntry:SetMultiline(true)			
@@ -624,7 +563,60 @@ elseif CLIENT then
 				
 		end		
 
-		
+		//REQ WANTED TAB
+	if (table.HasValue( ReqWantedTab, LocalPlayer():GetRPRole() )) then 
+			MainMenuSheet:AddSheet( "Request Wanted", ReqTab, nil, false, false, "Manage Wanted Request" )	
+			
+			local SelectID = "0"
+			
+			local ReqList = vgui.Create( "DListView", ReqTab )
+				ReqList:SetMultiSelect( false )
+				ReqList:Dock( FILL )
+				ReqList:AddColumn( "Citizen" )
+				ReqList:AddColumn( "ID" )
+				ReqList:AddColumn( "Reason" )
+				
+					for k, v in pairs( player.GetAll()) do
+						local CitID = v:GetRegister()
+						
+						if CitID == "" then CitID = "****" end
+						if v:GetNWBool("WantReq") then 
+							ReqList:AddLine( v:GetRPName(), CitID, GetPlayerNameID( v:GetRegister() ):GetNWString("WantReason"))
+						end
+					end
+					
+				ReqList.DoDoubleClick = function( lineID, line )
+				
+					local Menu = vgui.Create( "DMenu" )
+						Menu:AddOption("Accept", function()
+
+						notification.AddLegacy( ReqList:GetLine(selectedPlayer):GetValue(1).." is now wanted.", NOTIFY_HINT, 5 )
+						SendWantedPly(GetPlayerNameRPName( ReqList:GetLine(selectedPlayer):GetValue(1)), true) 
+						RemoveWantedRequest( GetPlayerNameRPName(ReqList:GetLine(selectedPlayer):GetValue(1)))				
+						
+						ReqList:RemoveLine(line) 		
+						
+						end)
+						
+						Menu:AddOption("Decline", function()
+
+							notification.AddLegacy( ReqList:GetLine(selectedPlayer):GetValue(1).." is a free man.", NOTIFY_HINT, 5 )
+							SendWantedPly(GetPlayerNameRPName( ReqList:GetLine(selectedPlayer):GetValue(1)), false) 
+							RemoveWantedRequest( GetPlayerNameRPName(ReqList:GetLine(selectedPlayer):GetValue(1)))				
+
+							ReqList:RemoveLine(line)
+							
+						end)
+						
+						Menu:Open()
+						
+				end
+				
+				ReqList.OnRowSelected = function( panel, line )
+					selectedPlayer = line
+				end
+				
+		end			
 		
 		//ADMIN TAB
 		if (LocalPlayer():isRPAdmin()) then 
@@ -860,11 +852,12 @@ elseif CLIENT then
 			ReqManu:SetVisible( true )
 			ReqManu:SetDraggable( false )
 			ReqManu:ShowCloseButton( true )
-			ReqManu:Center()
-			ReqManu:MakePopup()		
 			ReqManu.Paint = function(self, w, h)
 				draw.RoundedBox( 8, 0, 0, w, h, Color(25, 68, 131, 150))
-			end
+			end			
+			ReqManu:Center()
+			ReqManu:MakePopup()		
+
 			
 		local ReasonTxt = vgui.Create("DTextEntry", ReqManu )		
 			ReasonTxt:SetPos( 75, 75 )
@@ -919,11 +912,32 @@ elseif CLIENT then
 				//draw.RoundedBox( 4, 5, 22, w-10, h-15, color_white)
 			end			
 	
+		local function GetPlayerRoleProper( name )
+			
+			local pl = LocalPlayer()
+			
+			for k, v in pairs(player.GetAll()) do
+				if v:GetRPName() == name then pl = v end
+			end
+			
+			local role = pl:GetRPRole()
+			
+			for k, v in pairs(RPRoles) do
+				if v.role ==role then return v.name end
+			end
+			
+			return ""
+			
+		end	
+	
 		local RoleText = vgui.Create("DComboBox", RoleFrame )		
 			RoleText:SetPos( 75, 50 )
 			RoleText:SetTall( 20 )
 			RoleText:SetWide( 150 )
 			RoleText:SetTextColor( Color(0,0,0,255) )
+			if default then
+				RoleText:SetValue(GetPlayerRoleProper(default))
+			end			
 		for k,v in pairs(RPRoles) do
 			RoleText:AddChoice(v["name"]) 
 		end
@@ -940,7 +954,18 @@ elseif CLIENT then
 		for k,v in pairs(getPlayers()) do				
 			PlayerText:AddChoice( v:GetRPName() )
 		end
+
+		local function getRoleName( name )
+
+			for k, v in pairs( RPRoles ) do
 			
+				if v["name"] == name then
+					return v["role"]
+				end
+			end
+			return false
+		end
+		
 		local RoleButton = vgui.Create( "DButton", RoleFrame )
 			RoleButton:SetText( "Set Role" )
 			RoleButton:SetPos( 100, 150 )
@@ -959,17 +984,6 @@ elseif CLIENT then
 				
 				RunConsoleCommand("say", "!role "..getRoleName(RoleText:GetValue()).." "..PlayerText:GetValue())
 			end
-			
-		function getRoleName( name )
-
-			for k, v in pairs( RPRoles ) do
-			
-				if v["name"] == name then
-					return v["role"]
-				end
-			end
-			return false
-		end
 
 	
 	end	

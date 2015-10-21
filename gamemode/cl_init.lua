@@ -24,11 +24,6 @@ CHOPSWEE
 Haski]]
 
 print(credits)
-//Needs further investigation
-function DisallowSpawnMenu()
-	return true	
-end
-hook.Add( "SpawnMenuOpen", "DisallowSpawnMenu", DisallowSpawnMenu)
 
 //No context menu
 function GM:ContextMenuOpen()

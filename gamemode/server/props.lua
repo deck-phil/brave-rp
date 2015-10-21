@@ -5,6 +5,16 @@ allowedModels[1] = "models/props_c17/"
 allowedModels[2] = "models/props_junk/"
 allowedModels[3] = "crane_frame.mdl"
 
+//all tools that are allowed
+local RPTools = {
+	"remover",
+	"weld",
+	"colour",
+	"material",
+	"nocollide"
+}
+
+
 local function blockProps( ply, mdl )
 
 	if ply:GetRPRole() == "null" then 
@@ -37,15 +47,21 @@ end )
 //Remover tool restrictions
 hook.Add( "CanTool", "BlockRemoverandother", function( ply, tr, tool)
 
-	print( ply:Name().." tried removing "..tostring(tr.Entity))
-	
-	if tr.Entity:IsDoor() then return false end
+	if !(table.HasValue( RPTools, tool )) then return false end
 
 	if tool == "remover" and IsValid(tr.Entity) then
+
+		print( ply:Name().." tried removing "..tostring(tr.Entity))
+	
+		if tr.Entity:IsDoor() then return false end
 	
 		return (tr.Entity:GetRPOwner() == ply )
 	
 	end
+	
+	print("true")
+	
+	return true
 	
 end)
 

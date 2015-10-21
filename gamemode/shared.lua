@@ -21,8 +21,6 @@ include("shared/functions/outfits.lua")
 include("shared/functions/roles.lua")
 include("shared/functions/admins.lua")
 include("shared/functions/health.lua")
-include("shared/functions/tools.lua")
- 
  
  //derma
 include("shared/derma/doormenu.lua")

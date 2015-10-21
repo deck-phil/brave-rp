@@ -110,6 +110,9 @@ elseif CLIENT then
 			TitleFrame:SetVisible( true )
 			TitleFrame:SetDraggable( false )
 			TitleFrame:ShowCloseButton( true )
+			TitleFrame.Paint = function(self,w,h)
+				draw.RoundedBox( 8, 0, 0, w, h, Color( 25, 68, 131, 75 ) )
+			end			
 			TitleFrame:Center()
 			TitleFrame:MakePopup()		
 	
@@ -121,7 +124,12 @@ elseif CLIENT then
 		local TitleButton = vgui.Create( "DButton", TitleFrame )
 			TitleButton:SetText( "Door Name!" )
 			TitleButton:SetPos( 100, 100 )
-			TitleButton:SetSize( 100, 25 )				
+			TitleButton:SetSize( 100, 25 )	
+			TitleButton:SetColor(color_black)
+			TitleButton.Paint = function (self, w ,h)
+				draw.RoundedBox( 4, 0, 0, w, h, color_white )
+				if owned then draw.RoundedBox( 4, 0, 0, w, h, Color(155,155,155,255) ) end
+			end			
 			TitleButton.DoClick = function ()
 				TitleFrame:Close()
 				RunConsoleCommand("BRP_NameDoor",DermaText:GetValue())

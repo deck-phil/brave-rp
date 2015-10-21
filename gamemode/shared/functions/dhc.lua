@@ -162,6 +162,8 @@ end
 
 function UpdateAgenda( text )
 
+	if !(text ~= GetGlobalString("PAgenda")) then return end
+
 	SetGlobalString("PAgenda", text) 
 	
 	for k, v in pairs( player.GetAll() ) do

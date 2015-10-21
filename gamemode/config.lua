@@ -45,6 +45,8 @@ defaultGammaSalary = 7
 defaultEpsilonSalary = 5
 defaultOmegaSalary = 15
 
+waypointDistance = 25
+
 defaultPropPrice = 10
 
 defaultBuyDoorPrice = 0
