@@ -88,10 +88,22 @@ hook.Add("PhysgunPickup", "PhysgunPickupThing", EntPickup)
 local function RestrictWeapons(ply, class, weapon)
     return ply:isRPAdmin()
 end
+
+//Disable prop kill
+function PlayerHit( ent, dmginfo )
+    if ent:IsPlayer() and dmginfo:GetDamageType() == DMG_CRUSH then
+        dmginfo:ScaleDamage( 0.0 )
+        
+    end
+end
+hook.Add( "EntityTakeDamage", "PlayerHit", PlayerHit )
+
 hook.Add("PlayerSpawnSWEP", "RestrictWeapons", RestrictWeapons)
 hook.Add("PlayerGiveSWEP", "RestrictWeapons", RestrictWeapons)
 
 hook.Add( "PlayerSpawnProp", "blockProps", blockProps )
+
+
 
 //Set the values
 RunConsoleCommand("sbox_maxragdolls", MaxRagdolls)
