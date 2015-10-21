@@ -184,6 +184,40 @@ function ConNameDoor( ply, command, args, commandstring)
 end
 concommand.Add("BRP_NameDoor", ConNameDoor)
 
+function RegisterPlayer(ply, command, args, commandstring)
+
+		if ply:GetRPRole() == "dhc" then
+			local tr = util.GetPlayerTrace(ply)
+			local trace = util.TraceLine(tr)
+			
+			if (!trace.Hit) then return ply:SendLua("notification.AddLegacy(\"You must be looking at a player!\", NOTIFY_GENERIC, 5)") end
+				if (!trace.HitNonWorld) then return ply:SendLua("notification.AddLegacy(\"You must be looking at a player!\", NOTIFY_GENERIC, 5)")  end	
+						
+					if (trace.Hit) then
+						local target = trace.Entity
+								
+						if (target:IsPlayer()) then
+							if (target:IsValid()) then
+								
+								local targetPos = target:GetPos() + Vector(0,0,84)
+								local targetDistance = math.floor((ply:GetPos():Distance( targetPos ))/40)
+										
+								if targetDistance < 5 then
+									
+									target:Register()
+									ply:SendLua("notification.AddLegacy(\"You register"..target:GetRPName()..".\", NOTIFY_GENERIC, 5)") 
+									
+								
+								end
+								
+							end
+								
+						end
+					end
+		end
+		
+end
+concommand.Add("BRP_RegisterPlayer", RegisterPlayer)
 
 function ConSellAllDoors( ply, command, args, commandstring)
 

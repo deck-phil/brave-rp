@@ -13,13 +13,13 @@ hook.Add("CanTool", "BlockSomeTools", function(ply, tr, tool)
 
 		if tool == "remover" and IsValid( tr.Entity ) and tr.Entity:GetRPOwner() == ply then
 		
-			ply:SendLua("notification.AddLegacy(\"You can't use that tool on that.\", NOTIFY_GENERIC, 5)")
+			notification.AddLegacy( "You can't use that tool on that!", NOTIFY_HINT, 5 )
 			return false
 		end
 		
 	end
 	
-	ply:SendLua("notification.AddLegacy(\"You can't use that tool.\", NOTIFY_GENERIC, 5)")
+	notification.AddLegacy( "You can't use that tool!", NOTIFY_HINT, 5 )
 	
 	return false
 	

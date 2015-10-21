@@ -325,7 +325,7 @@ elseif CLIENT then
 					end					
 				RegButton.DoClick = function ()
 					MainMenuFrame:Close()
-					openRegister()
+					RunConsoleCommand("BRP_RegisterPlayer")
 				end		
 
 			local OfficeButton = vgui.Create( "DButton", LeftPanel )
@@ -903,42 +903,6 @@ elseif CLIENT then
 			
 	
 	end	
-
-	
-	
-	function openRegister()
-
-		local tr = util.GetPlayerTrace(LocalPlayer())
-		local trace = util.TraceLine(tr)
-		
-		if (!trace.Hit) then return notification.AddLegacy( "You must be looking at a player!", NOTIFY_HINT, 5 ) end
-		if (!trace.HitNonWorld) then return notification.AddLegacy( "You must be looking at a player!", NOTIFY_HINT, 5 ) end	
-			
-			if (trace.Hit) then
-				local target = trace.Entity
-					
-				if (target:IsPlayer()) then
-					if (target:IsValid()) then
-						
-						local targetPos = target:GetPos() + Vector(0,0,84)
-						local targetDistance = math.floor((LocalPlayer():GetPos():Distance( targetPos ))/40)
-							
-					if targetDistance < 5 then
-					
-						print(target)
-						
-						SendRegPlayer( target )
-						notification.AddLegacy( "You registered "..target:GetRPName().."", NOTIFY_HINT, 5 )
-						
-					
-					end
-					
-				end
-					
-			end
-		end
-	
-	end
 	
 	function openRoleMenu( default )
 	

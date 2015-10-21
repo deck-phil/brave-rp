@@ -10,12 +10,16 @@ if SERVER then
 	
 		local tr = util.GetPlayerTrace(ply)
 		local trace = util.TraceLine(tr)
-		if !(trace.Entity:IsDoor()) then return end
+				
+		if !(trace.Entity:IsDoor()) then
+			ply:ConCommand("BRP_RegisterPlayer")
+		return end
+		
 		local tar = trace.Entity
 		local b = tar:IsOwned()
 		local e = tar:GetRPOwner() == ply
-		if math.floor((ply:GetPos():Distance( tar:GetPos() ))/40) > 5 then return end
-	
+		if math.floor((ply:GetPos():Distance( tar:GetPos() ))/40) > 5 then return end		
+		
 		net.Start("doormenu")
 		net.WriteBool(b)
 		net.WriteBit(e)
