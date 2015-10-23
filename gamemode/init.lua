@@ -37,6 +37,7 @@ AddCSLuaFile("shared/functions/outfits.lua")
 AddCSLuaFile("shared/functions/admins.lua")
 AddCSLuaFile("shared/functions/roles.lua")
 AddCSLuaFile("shared/functions/health.lua")
+AddCSLuaFile("shared/functions/buddy.lua")
 
 include("shared/functions/money.lua")
 include("shared/functions/dhc.lua")
@@ -47,6 +48,7 @@ include("shared/functions/outfits.lua")
 include("shared/functions/admins.lua")
 include("shared/functions/roles.lua")
 include("shared/functions/health.lua")
+include("shared/functions/buddy.lua")
 
 
 //DERMA

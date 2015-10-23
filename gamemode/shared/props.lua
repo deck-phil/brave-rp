@@ -6,6 +6,24 @@ function prop:SetRPOwner( ply )
 
 end
 
+function prop:SetGroup( tbl )
+
+	local groupString = ""
+//gibby was here
+	for k,v in pairs(tbl) do
+		groupString += v
+	end
+
+	self:SetNWString("RPGroup",groupString)
+	
+end
+
+function prop:GetGroup()
+
+	return self:GetNWString("RPGroup", "")
+
+end
+
 function prop:GetRPOwner()
 
 	return self:GetNWEntity( "RPOwner" )
@@ -109,3 +127,4 @@ function prop:ServerUnlock()
 	
 	print( tostring(self).." is UNlocked." )		
 end
+
