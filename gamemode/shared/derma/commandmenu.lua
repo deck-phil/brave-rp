@@ -2,7 +2,7 @@ if SERVER then
 
 	util.AddNetworkString("commandmenu")
 	
-	concommand.Add( "BRP_Command_Menu", CommandMenu )
+	concommand.Add( "BRP_CommandMenu", CommandMenu )
 	
 	function CommandMenu( ply )
 		net.Start("commandmenu")
@@ -14,6 +14,8 @@ if SERVER then
 	
 elseif CLIENT then
 	function openCommands()
+		
+		local ply = LocalPlayer()
 		
 		local MainMenuFrame = vgui.Create( "DFrame" )
 			MainMenuFrame:SetSize( 440, 230)
@@ -46,6 +48,12 @@ elseif CLIENT then
 			OptionsTab:SetSize( MainMenuFrame:GetWide(), MainMenuFrame:GetTall() )
 			OptionsTab:SetSpacing( 5 )
 			OptionsTab:EnableVerticalScrollbar( true )				
+
+		local BuddiesTab = vgui.Create( "DPanelList" )
+			BuddiesTab:SetPos( 0, 0 )
+			BuddiesTab:SetSize( MainMenuFrame:GetWide(), MainMenuFrame:GetTall() )
+			BuddiesTab:SetSpacing( 5 )
+			BuddiesTab:EnableVerticalScrollbar( true )	
 			
 		local ModelTab = vgui.Create( "DIconLayout" )
 			ModelTab:SetSize( 340, 200 )
@@ -64,33 +72,58 @@ elseif CLIENT then
 			//AmmoIcon.weapon = "models/items/ammorounds.mdl"
 			AmmoIcon:SetToolTip( "Ammo" )
 			ShopTab:Add( AmmoIcon )
-			AmmoIcon.DoClick = function(  ) RunConsoleCommand("BRP_BuyAmmo") end  			
+			AmmoIcon.DoClick = function(  ) RunConsoleCommand("BRP_BuyAmmo") end  	
+			AmmoIcon.PaintOver = function()
+				draw.SimpleText(ammoPrice.."$", "DebugFixed",64,0,Color(255,100,100),TEXT_ALIGN_RIGHT)
+				if (ply:canAfford(ammoPrice)) then return end
+				surface.SetDrawColor(255,100,100,55)
+				surface.DrawRect(0,0,64,64)
+			end					
 
-		for k,v in pairs(getAvailWeapons(LocalPlayer())) do	
+		for k,v in pairs(getAvailWeapons(ply)) do	
 			local icon = vgui.Create( "SpawnIcon", ShopTab ) 
 			icon:SetModel( v.model )//
 			icon:SetToolTip( v.name )		
 			ShopTab:Add( icon )
 			icon.DoClick = function(  ) SendWeapon( v.weapon, v.price ) print(v.price) MainMenuFrame:Close() notification.AddLegacy( "You bought something!", NOTIFY_HINT, 5 ) end  
+			icon.PaintOver = function()
+				draw.SimpleText(v.price.."$", "DebugFixed",64,0,Color(255,100,100),TEXT_ALIGN_RIGHT)
+				if (ply:canAfford(v.price)) then return end
+				surface.SetDrawColor(255,100,100,55)
+				surface.DrawRect(0,0,64,64)
+			end		
 		end
 		
-		for k,v in pairs(getAvailEntities(LocalPlayer())) do	
+		for k,v in pairs(getAvailEntities(ply)) do	
 			local icon = vgui.Create( "SpawnIcon", ShopTab ) 
 			icon:SetModel( v.model )
 			icon:SetToolTip( v.name )
 			ShopTab:Add( icon )
-			icon.DoClick = function(  ) SendEnt( v.ent, v.price, v.crate ) MainMenuFrame:Close() notification.AddLegacy( "You bought something!", NOTIFY_HINT, 5 ) end  
+			icon.DoClick = function(  ) SendEnt( v.ent, v.price, v.crate ) MainMenuFrame:Close() notification.AddLegacy( "You bought something!", NOTIFY_HINT, 5 ) end 
+			icon.PaintOver = function()
+				draw.SimpleText(v.price.."$", "DebugFixed",64,0,Color(255,100,100),TEXT_ALIGN_RIGHT)
+				if (ply:canAfford(v.price)) then return end
+				surface.SetDrawColor(255,100,100,55)
+				surface.DrawRect(0,0,64,64)
+			end					
 		end	
 
-		for k,v in pairs(getAvailBuyModel(LocalPlayer())) do	
+		for k,v in pairs(getAvailBuyModel(ply)) do	
 			local icon = vgui.Create( "SpawnIcon", ShopTab ) 
 			icon:SetModel( v.showModel )
 			icon:SetToolTip( v.name )
 			ShopTab:Add( icon )
-			icon.DoClick = function(  ) SendOutfit( v.id, "buy", v.price ) MainMenuFrame:Close() notification.AddLegacy( "You bought an outfit!", NOTIFY_HINT, 5 ) end  
+			icon.DoClick = function(  ) SendOutfit( v.id, "buy", v.price ) MainMenuFrame:Close() notification.AddLegacy( "You bought an outfit!", NOTIFY_HINT, 5 ) end 
+
+			icon.PaintOver = function()
+				draw.SimpleText(v.price.."$", "DebugFixed",64,0,Color(255,100,100),TEXT_ALIGN_RIGHT)
+				if (ply:canAfford(v.price)) then return end
+				surface.SetDrawColor(255,100,100,55)
+				surface.DrawRect(0,0,64,64)
+			end			
 		end	
 		
-		for k,v in pairs(getAvailModels(LocalPlayer())) do	
+		for k,v in pairs(getAvailModels(ply)) do	
 			local icon = vgui.Create( "SpawnIcon", ModelTab ) 
 			icon:SetModel( v.showModel )
 			icon:SetToolTip( v.name )			
@@ -102,9 +135,9 @@ elseif CLIENT then
 						btnUse.DoClick = function( icon )
 							
 							MainMenuFrame:Close() 
-							if (LocalPlayer():GetRPModel() == v.model) then notification.AddLegacy( "You're already wearing that!", NOTIFY_HINT, 5 ) return end
+							if (ply:GetRPModel() == v.model) then notification.AddLegacy( "You're already wearing that!", NOTIFY_HINT, 5 ) return end
 							
-							if (string.StartWith(LocalPlayer():GetRPModel(), v.model)) && (OutfitsGetValue("model",v.model,"diffModel")) then 
+							if (string.StartWith(ply:GetRPModel(), v.model)) && (OutfitsGetValue("model",v.model,"diffModel")) then 
 								notification.AddLegacy( "You're already wearing that!", NOTIFY_HINT, 5 ) 
 							return end
 							
@@ -116,7 +149,7 @@ elseif CLIENT then
 						btnDrop.DoClick = function(icon) SendOutfit(v.id, "drop") MainMenuFrame:Close() end
 					OutfitMenu:Open()
 			
-			end  
+			end
 		end		
 			
 			local PayButton = vgui.Create( "DButton", CommandsTab )
@@ -271,7 +304,7 @@ elseif CLIENT then
 		
 		
 		//DHC TAB
-		if (LocalPlayer():GetRPRole() == "dhc") then 
+		if (ply:GetRPRole() == "dhc") then 
 			MainMenuSheet:AddSheet( "DHC", DHCTab, nil, false, false, "Manage DHC Options" )
 			
 			local LeftPanel = vgui.Create( "DPanel", DHCTab ) --can be anything other than DPanel
@@ -405,7 +438,7 @@ elseif CLIENT then
 		end		
 		
 		//POLICE TAB
-		if table.HasValue( RPCops, LocalPlayer():GetRPRole() ) then 
+		if table.HasValue( RPCops, ply:GetRPRole() ) then 
 		
 			MainMenuSheet:AddSheet( "Police", PoliceTab, nil, false, false, "Police Agenda" )
 			
@@ -425,7 +458,7 @@ elseif CLIENT then
 				
 				
 			//Headpolice ony buttons	
-			if LocalPlayer():GetRPRole() == "headpolice" then
+			if ply:GetRPRole() == "headpolice" then
 
 				local AgendaLabel = vgui.Create("DLabel", RightPanel )
 					AgendaLabel:SetPos( 3,0)
@@ -564,8 +597,8 @@ elseif CLIENT then
 		end		
 
 		//REQ WANTED TAB
-	if (table.HasValue( ReqWantedTab, LocalPlayer():GetRPRole() )) then 
-			MainMenuSheet:AddSheet( "Request Wanted", ReqTab, nil, false, false, "Manage Wanted Request" )	
+	if (table.HasValue( ReqWantedTab, ply:GetRPRole() )) then 
+			MainMenuSheet:AddSheet( "Req. Wanted", ReqTab, nil, false, false, "Manage Wanted Request" )	
 			
 			local SelectID = "0"
 			
@@ -619,7 +652,7 @@ elseif CLIENT then
 		end			
 		
 		//ADMIN TAB
-		if (LocalPlayer():isRPAdmin()) then 
+		if (ply:isRPAdmin()) then 
 			MainMenuSheet:AddSheet( "Admin", AdminTab, nil, false, false, "Manage Admin Options" )
 			
 			local LeftPanel = vgui.Create( "DPanel", AdminTab ) --can be anything other than DPanel
@@ -680,14 +713,6 @@ elseif CLIENT then
 					
 					RunConsoleCommand("say", "!kick "..RPName)
 				end	
-				
-			local function GetNamePlayer( name )
-			
-				for k, v in pairs(player.GetAll()) do
-					if v:GetRPName() == name then return v end
-				end
-			
-			end
 
 			local PermaBtn = vgui.Create( "DButton", LeftPanel )
 				PermaBtn:SetText( "Perma Death" )
@@ -736,6 +761,30 @@ elseif CLIENT then
 				
 		end	
 		MainMenuSheet:AddSheet( "Options", OptionsTab, nil, false, false, "Change your options" )	
+
+		//BUDDIES TAB
+		MainMenuSheet:AddSheet( "Buddies", BuddiesTab, nil, false, false, "Manage Your Friends" )	
+			
+		local SelectID = "0"
+			
+		local PlayerList = vgui.Create( "DListView", BuddiesTab )
+			PlayerList:SetMultiSelect( false )
+			PlayerList:Dock( FILL )
+			PlayerList:AddColumn( "Player" )
+			PlayerList:AddColumn( "Buddy" )
+				
+				for k, v in pairs( player.GetAll()) do
+				
+					//if v == LocalPlayer() then return end
+				
+					PlayerList:AddLine( v:GetRPName(), IsBuddy(v))
+					
+				end
+					
+			PlayerList.DoDoubleClick = function( lineID, line )
+				AddBuddy(GetNamePlayer(PlayerList:GetLine(line):GetValue(1)))		
+			end
+		
 		
 		for k, v in pairs(MainMenuSheet.Items) do
 			if (!v.Tab) then continue end
@@ -951,7 +1000,7 @@ elseif CLIENT then
 			end
 			PlayerText:SetTextColor( Color(0,0,0,255) )
 
-		for k,v in pairs(getPlayers()) do				
+		for k,v in pairs(player.GetAll()) do				
 			PlayerText:AddChoice( v:GetRPName() )
 		end
 

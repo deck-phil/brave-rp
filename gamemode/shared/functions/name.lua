@@ -73,3 +73,11 @@ function trimText( str )
 	return string.Trim(NewName)
 	
 end
+
+function GetNamePlayer( name )
+		
+	for k, v in pairs(player.GetAll()) do
+		if v:GetRPName() == name then return v end
+	end
+			
+end

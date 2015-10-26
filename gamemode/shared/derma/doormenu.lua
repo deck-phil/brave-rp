@@ -41,7 +41,7 @@ elseif CLIENT then
 		local ply = LocalPlayer()
 	
 		local DoorFrame = vgui.Create( "DFrame" )
-			DoorFrame:SetSize( 185, 379 )
+			DoorFrame:SetSize( 185, 495 )
 			DoorFrame:SetTitle( "Door Menu" )
 			DoorFrame:SetVisible( true )
 			DoorFrame:SetDraggable( false )
@@ -99,6 +99,23 @@ elseif CLIENT then
 				openNameMenu()
 				DoorFrame:Close()
 			end			
+
+		local GroupNameBtn = vgui.Create( "DButton", DoorFrame )
+			GroupNameBtn:SetText( "Set Permissions" )
+			GroupNameBtn:SetPos( 10, 380 )
+			GroupNameBtn:SetSize( 165, 105 )
+			GroupNameBtn:SetColor(color_black)
+			GroupNameBtn:SetEnabled(byu)
+			GroupNameBtn.Paint = function (self, w ,h)
+				draw.RoundedBox( 4, 0, 0, w, h, color_white )
+				if !byu then draw.RoundedBox( 4, 0, 0, w, h, Color(155,155,155,255) ) end
+			end
+			GroupNameBtn.DoClick = function ()	
+				openDoorPerm()
+				DoorFrame:Close()
+			end			
+		
+
 		
 	end	
 	
@@ -128,7 +145,6 @@ elseif CLIENT then
 			TitleButton:SetColor(color_black)
 			TitleButton.Paint = function (self, w ,h)
 				draw.RoundedBox( 4, 0, 0, w, h, color_white )
-				if owned then draw.RoundedBox( 4, 0, 0, w, h, Color(155,155,155,255) ) end
 			end			
 			TitleButton.DoClick = function ()
 				TitleFrame:Close()
@@ -138,6 +154,53 @@ elseif CLIENT then
 
 	
 	end	
+	
+	function openDoorPerm()
+	
+		local Frame = vgui.Create( "DFrame" )
+			Frame:SetSize( 300, 300 )
+			Frame:SetTitle( "Change Door Permissions" )
+			Frame:SetVisible( true )
+			Frame:SetDraggable( false )
+			Frame:ShowCloseButton( true )
+			Frame.Paint = function(self,w,h)
+				draw.RoundedBox( 8, 0, 0, w, h, Color( 25, 68, 131, 75 ) )
+			end			
+			Frame:Center()
+			Frame:MakePopup()		
+		
+		local BuddyList = vgui.Create( "DListView", Frame )
+			BuddyList:Dock( FILL )
+			BuddyList:DockMargin(2,2,2,40)
+			BuddyList:AddColumn("Player")
+			BuddyList:AddColumn("Allowed?")
+
+			local tr = util.GetPlayerTrace(LocalPlayer())
+			local trace = util.TraceLine(tr)
+			
+			for k,v in pairs(player.GetAll()) do
+				BuddyList:AddLine( v:GetRPName(), IsPerm(trace.Entity, v:GetRPName(), true) )
+			end
+			
+			BuddyList.DoDoubleClick = function()
+				AddPerm(trace.Entity, LocalPlayer())
+			end
+			
+		local CloseBtn = vgui.Create( "DButton", Frame )
+			CloseBtn:SetText( "Close" )
+			CloseBtn:SetPos( 100, 265 )
+			CloseBtn:SetSize( 100, 25 )	
+			CloseBtn:SetColor(color_black)
+			CloseBtn.Paint = function (self, w ,h)
+				draw.RoundedBox( 4, 0, 0, w, h, color_white )
+			end			
+			CloseBtn.DoClick = function ()
+				Frame:Close()
+			end				
+
+	
+	end		
+	
 	
 	net.Receive( "doormenu", function(len)
 		openDoorMenu( net.ReadBool(), net.ReadBit() )

@@ -115,6 +115,7 @@ if SERVER then
 	net.Receive( "sendOGModel", function( len, ply )
 		ply:SetOGModel( net.ReadString() )
 		ply:GenerateCaste()
+		ply:SendMsg("Visit ", Color(155,155,255), "BraveRP.com", Color(255,255,255)," to help us develop this gamemode!")
 		ply:Freeze( false )
 	end )
 	

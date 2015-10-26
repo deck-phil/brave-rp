@@ -20,13 +20,13 @@ function meta:GetRoleOutfits( role )
 
 	local prevString =  self:GetNWString("OutfitList", "")
 
-	//print(prevString)	
+	print(prevString)	
 	
 	for k, v in pairs(RPModels) do
 	
 		if v.role == role then
 	
-			prevString = prevString.."#"..v.id
+			prevString = prevString..";"..v.id
 	
 		end
 	end
@@ -39,11 +39,11 @@ end
 
 function meta:ReconstructOutfitList( idList )
 
-	local GString = "#"
+	local GString = ";"
 	
 	for k, v in pairs(idList) do
 		if !(v == "") then
-			GString = GString.."#"..v
+			GString = GString..";"..v
 		end
 	end
 
@@ -59,7 +59,7 @@ function meta:RemoveOutfit(id)
 
 	local ids = self:GetNWString("OutfitList")
 	
-	local idTable = string.Explode( "#", ids )
+	local idTable = string.Explode( ";", ids )
 	
 	for k, v in pairs(idTable) do
 		if v == id then
@@ -78,7 +78,9 @@ function meta:AddOutfit(id)
 
 	local IDS = self:GetNWString("OutfitList")
 	
-	self:SetNWString("OutfitList", IDS.."#"..id)
+	self:SetNWString("OutfitList", IDS..";"..id)
+	
+	print(self:GetNWString("OutfitList"))
 
 end
 
@@ -120,12 +122,22 @@ function GetOutfitName(path)
 
 end
 
+function meta:AmountOfOutfits()
+
+	local str = self:GetNWString("OutfitList","")
+
+	local tbl = string.Explode(str, ";")
+	
+	return #tbl
+
+end
+
 function meta:hasOutfitTimes( num, id )
 
 //num = amount of times
 
 	local n = 0
-	local outfitlist = string.Explode("#", self:GetOutfitList())
+	local outfitlist = string.Explode("COLOR_WHITE", self:GetOutfitList())
 	
 	for k, v in pairs(outfitlist) do
 		if v == id then 

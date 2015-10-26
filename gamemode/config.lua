@@ -56,6 +56,10 @@ defaultSellDoorPrice = 0
 
 defaultOutfitTime = 3
 
+maxOutfits = 15
+
+ammoPrice = 0
+
 defaultShipmentPrice = 80
 
 MaxRagdolls = 50

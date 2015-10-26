@@ -22,6 +22,7 @@ include("shared/functions/roles.lua")
 include("shared/functions/admins.lua")
 include("shared/functions/health.lua")
 include("shared/functions/buddy.lua")
+include("shared/functions/doors.lua")
  
  //derma
 include("shared/derma/doormenu.lua")
@@ -35,6 +36,10 @@ include("shared/derma/commandmenu.lua")
 include("shared/add/addmodel.lua")
 include("shared/add/addammo.lua")
 include("shared/add/addweapon.lua")
+
+
+--Libs
+include("libraries/chat.lua")
 
 
 function GM:Initialize()

@@ -2,7 +2,7 @@ if SERVER then
 
 	util.AddNetworkString("charmenu")
 	
-	concommand.Add( "BRP_player_menu", CharMenu )
+	concommand.Add( "BRP_PlayerMenu", CharMenu )
 	
 	function CharMenu( ply )
 		net.Start("charmenu")

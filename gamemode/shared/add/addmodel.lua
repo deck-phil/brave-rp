@@ -33,34 +33,6 @@ elseif CLIENT then
 		return RRPModels[index]
 
 	end
-/*	
-	function getAvailModels( ply )
-
-		local plyrole = ply:GetRPRole()		
-		
-		local w = 0
-		
-		local availmodels = {}
-		
-		for k, v in pairs(RPModels) do
-
-			if v["role"] == "" then
-				w = w + 1
-				availmodels[w] = { model = v["model"] .."".. ply:GetOGModelType(), name = v["name"]}
-			end
-			
-			if plyrole == "medic" and v["role"] == "medic" then
-				w = w + 1
-				availmodels[w] = { model = v["model"] .."".. ply:GetOGModelType(), name = v["name"]}			
-			elseif v["role"] == plyrole then
-				w = w + 1
-				availmodels[w] = { model = v["model"], name = v["name"]}
-			end
-		end		
-		
-		return availmodels
-	
-	end	*/
 	
 	function getAvailModels( ply )
 
@@ -69,7 +41,7 @@ elseif CLIENT then
 		local w = 0
 		
 		local rolestr = ply:GetOutfitList()
-		local roletbl = string.Split( rolestr, "#" )
+		local roletbl = string.Split( rolestr, ";" )
 		//print(table.ToString(roletbl))
 		
 		local availmodels = {}
@@ -106,6 +78,34 @@ elseif CLIENT then
 		end
 		return availmodels
 	end		
+	
+	function getAvailBuyModel(ply)
+
+			local availout = {}
+			local plyrole = ply:GetRPRole()
+			local w = 0
+			
+			for k,v in pairs(RPBuyOutfits) do	
+			
+			
+				if v.role == plyrole and v.id == "rebel" then
+					w = w + 1
+					availout[w] = v
+					availout[w].name = RPModels[k].name
+					availout[w].showModel = RPModels[k].model..""..ply:GetOGModelType()
+					
+				elseif v.role == plyrole then
+					w = w + 1
+					availout[w] = v
+					availout[w].name = RPModels[k].name
+					availout[w].showModel = RPModels[k].model
+				end
+				
+			end
+			
+			return availout
+
+		end			
 	
 	function LoadingOutfit( model )
 	

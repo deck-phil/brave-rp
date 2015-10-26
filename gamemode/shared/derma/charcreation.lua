@@ -125,6 +125,8 @@ elseif CLIENT then
 					if v:GetRPName() == DermaName:GetValue() then same = true return end
 				end
 					
+				if HasRole(name) then return end
+					
 				if same then notification.AddLegacy( "Someone already has that name!", NOTIFY_HINT, 5 ) return end	
 					
 				SendCharCreation( DermaName:GetValue(), "", DChar.Entity:GetModel() )

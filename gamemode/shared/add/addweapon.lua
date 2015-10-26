@@ -102,28 +102,4 @@ elseif CLIENT then
 
 	end
 	
-function getAvailBuyModel(ply)
-
-		local availout = {}
-		local plyrole = ply:GetRPRole()
-		local w = 0
-		
-		for k,v in pairs(RPBuyOutfits) do	
-		
-			if v.role == plyrole and v.id == "rebel" then
-				w = w + 1
-				availout[w] = v
-				availout[w].showModel = v.model..""..ply:GetOGModelType()
-				
-			elseif v.role == plyrole then
-				w = w + 1
-				availout[w] = v
-				availout[w].showModel = v.model
-			end
-		end
-		
-		return availout
-
-	end		
-	
 end

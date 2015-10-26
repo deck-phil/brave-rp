@@ -212,5 +212,4 @@ hook.Add( "PostDrawOpaqueRenderables", "DrawDoorsNames", function()
 		end
 		
 	end
-
 end)

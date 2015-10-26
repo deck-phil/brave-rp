@@ -2,6 +2,8 @@ if SERVER then
 
 	util.AddNetworkString("rules_menu")		
 	
+	concommand.Add( "BRP_RulesMenu", RulesMenu )	
+	
 	function RulesMenu( ply )
 		net.Start("rules_menu")
 		net.Send(ply)	

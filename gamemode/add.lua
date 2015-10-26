@@ -178,8 +178,42 @@
 			gasProof = true, 
 			default = false, 
 			droppable = true,
-			diffModel = false},			
-		
+			diffModel = false},	
+
+		["BioRebel"] = { 
+			tblName = "BioRebel", 
+			id = "biorebel", 
+			name = "Bio Rebel Outfit",
+			model = "models/player/combine_super_soldier.mdl", 
+			role = "none", 
+			gasProof = true, 
+			default = false, 
+			droppable = true,
+			diffModel = false},				
+
+
+		["Soldier"] = { 
+			tblName = "Soldier", 
+			id = "soldier", 
+			name = "Soldier Outfit",
+			model = "models/player/combine_soldier.mdl", 
+			role = "none", 
+			gasProof = true, 
+			default = false, 
+			droppable = true,
+			diffModel = false},	
+
+		["Guard"] = { 
+			tblName = "Guard", 
+			id = "guard", 
+			name = "Prison Guard Outfit",
+			model = "models/player/combine_soldier_prisonguard.mdl", 
+			role = "none", 
+			gasProof = true, 
+			default = false, 
+			droppable = true,
+			diffModel = false},	
+			
 		["RebelLeader"] = { 
 			tblName = "RebelLeader", 
 			id = "rebelleader", 
@@ -200,8 +234,11 @@
 	RPBuyOutfits =
 	
 	{
-		["Police"] = { id = "police", name = "Police Outfit", model = "models/dpfilms/metropolice/playermodels/pm_hl2concept.mdl", role = "headpolice", price = 0 },
-		["Rebel"] = { id = "rebel", name = "Rebel Outfit", model = "models/player/Group03/", role = "rebelleader", price = 0 },		
+		["Police"] = { id = "police", role = "headpolice", price = 0 },
+		["BioRebel"] = { id = "biorebel", role = "rebelleader", price = 0 },		
+		["Rebel"] = { id = "rebel", role = "rebelleader", price = 0 },		
+		["Soldier"] = { id = "soldier", role = "headpolice", price = 0 },		
+		["Guard"] = { id = "guard", role = "headpolice", price = 0 },		
 	}
 	
 	//Roles that have radio and the police tab
@@ -275,19 +312,6 @@
 	
 	}
 
-	//Groups for door unlocks
-	RPDoorGroups = {
-	
-	["Civil Protection"] = {
-	
-		"police",
-		"watcher",
-		"headpolice",
-		"bioelite"
-		
-		}
-	
-	}
 
 	/*
 	model = "models/weapons/w_beretta_m92.mdl",

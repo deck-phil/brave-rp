@@ -6,24 +6,6 @@ function prop:SetRPOwner( ply )
 
 end
 
-function prop:SetGroup( tbl )
-
-	local groupString = ""
-//gibby was here
-	for k,v in pairs(tbl) do
-		groupString += v
-	end
-
-	self:SetNWString("RPGroup",groupString)
-	
-end
-
-function prop:GetGroup()
-
-	return self:GetNWString("RPGroup", "")
-
-end
-
 function prop:GetRPOwner()
 
 	return self:GetNWEntity( "RPOwner" )
@@ -89,7 +71,7 @@ function prop:LockDoor( ply )
 
 	if !(self:IsDoor()) then return end
 	
-	if !(self:GetRPOwner() == ply) then return end
+	if !((self:GetRPOwner() == ply) or (table.HasValue(self.Groups, ply)) )then return end
 	
 	self.IsLocked = true
 	
@@ -105,7 +87,7 @@ function prop:UnLockDoor( ply )
 
 	if !(self:IsDoor()) then return end
 	
-	if !(self:GetRPOwner() == ply) then return end
+	if !((self:GetRPOwner() == ply) or (table.HasValue(self.Groups, ply)) )then return end
 	
 	self.IsLocked = false
 	

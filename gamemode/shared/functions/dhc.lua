@@ -16,7 +16,7 @@ function meta:Register()
 	
 	self:SetNWString( "CITID", num )
 	
-	self:SendLua("notification.AddLegacy(\"You have been registered to #"..self:GetRegister()..".\", NOTIFY_GENERIC, 5)")
+	self:SendLua("notification.AddLegacy(\"You have been registered to COLOR_WHITE"..self:GetRegister()..".\", NOTIFY_GENERIC, 5)")
 	
 	print( self:GetRPName() .." has been registered to "..self:GetNWString( "CITID", "" ).."." )
 

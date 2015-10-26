@@ -69,13 +69,13 @@ function meta:canAfford( amount )
 
 	if self:GetMoney() - amount > -1 then 
 
-	return true
+		return true
 
 	else
 
-	self:SendLua("notification.AddLegacy(\"You need more money.\", NOTIFY_GENERIC, 5)")	
+		self:SendLua("notification.AddLegacy(\"You need more money.\", NOTIFY_GENERIC, 5)")	
 
-	return false
+		return false
 
 	end
 

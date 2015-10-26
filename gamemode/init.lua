@@ -38,6 +38,7 @@ AddCSLuaFile("shared/functions/admins.lua")
 AddCSLuaFile("shared/functions/roles.lua")
 AddCSLuaFile("shared/functions/health.lua")
 AddCSLuaFile("shared/functions/buddy.lua")
+AddCSLuaFile("shared/functions/doors.lua")
 
 include("shared/functions/money.lua")
 include("shared/functions/dhc.lua")
@@ -49,6 +50,7 @@ include("shared/functions/admins.lua")
 include("shared/functions/roles.lua")
 include("shared/functions/health.lua")
 include("shared/functions/buddy.lua")
+include("shared/functions/doors.lua")
 
 
 //DERMA
@@ -79,7 +81,13 @@ include("shared/add/addammo.lua")
 AddCSLuaFile("client/hovername.lua")
 AddCSLuaFile("client/hud.lua")
 AddCSLuaFile("client/scoreboard.lua")
+AddCSLuaFile("client/chat.lua")
 
+
+----Library files -----
+
+AddCSLuaFile("libraries/chat.lua")
+include("libraries/chat.lua")
 
 
 function GM:PlayerConnect( name, ip )
@@ -166,9 +174,11 @@ end
 function GM:PlayerDeath( victim, inflictor, attacker )
 
 	//Death indicators
+	/*
     if ( victim == attacker ) then
         PrintMessage( HUD_PRINTTALK, victim:GetRPName() .. " committed suicide." )
-    elseif (attacker:IsPlayer()) then
+    else*/
+	if (attacker:IsPlayer()) then
         print( victim:GetRPName() .. " was killed by " .. attacker:GetRPName() .. "." )
     end
 	

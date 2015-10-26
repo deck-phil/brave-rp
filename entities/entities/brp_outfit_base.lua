@@ -16,6 +16,8 @@ function ENT:Use(activator)
 
 	//if activator:HasWeapon( self:GetNWString("outfitmodel") ) then return end
 
+	if activator:AmountOfOutfits() +1 > maxOutfits then return end
+	
 	activator:UseOutfit( self:GetNWString( "outfitmodel") )
 	self:Remove()
 end
