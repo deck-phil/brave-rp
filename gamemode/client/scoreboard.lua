@@ -137,7 +137,7 @@ local PLAYER_LINE = {
 			return
 		end
 	
-		draw.RoundedBox( 4, 5, 0, w-10, h, Color(255,255,255) )
+		draw.RoundedBox( 0, 5, 0, w-10, h, Color(255,255,255) )
 
 	end
 }
@@ -182,7 +182,7 @@ local SCORE_BOARD = {
 
 		local space = 0
 	
-		for k, v in pairs(getRPAdmins()) do
+		for k, v in pairs(player.GetAll()) do
 			space = space + 200
 		end
 	
@@ -193,7 +193,7 @@ local SCORE_BOARD = {
 
 	Paint = function( self, w, h )
 
-		draw.RoundedBox( 4, 0, 0, w, h, Color( 25, 68, 131, 75 ) )
+		draw.RoundedBox( 4, 0, 95, w, h-95, Color( 25, 68, 131, 255 ) )
 
 	end,
 
