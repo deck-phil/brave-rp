@@ -98,7 +98,8 @@
 			id = "citizen",
 			name = "Citizen Outfit", 
 			model = "models/player/group01/", 
-			role = "default", 
+			role = "default",
+			weight = 0,	//Slows you down		
 			gasProof = false, //Protects from soma gas
 			default = true, //default model, no role req
 			droppable = false, //can drop?
@@ -106,9 +107,11 @@
 		
 		["Rebel"] = { 
 			tblName = "Rebel", 
-			id = "rebel", name = "Rebel Outfit", 
+			id = "rebel", 
+			name = "Rebel Outfit", 
 			model = "models/player/group03/", 
 			role = "rebel", 
+			weight = 0,
 			gasProof = false, 
 			default = false, 
 			droppable = true,
@@ -120,6 +123,7 @@
 			name = "Medic Outfit", 
 			model = "models/player/group03m/",
 			role = "medic", 
+			weight = 0,
 			gasProof = false, 
 			default = false, 
 			droppable = true,
@@ -131,6 +135,7 @@
 			name = "Police Outfit", 
 			model = "models/dpfilms/metropolice/playermodels/pm_hl2concept.mdl", 
 			role = "police", 
+			weight = 20,
 			gasProof = true, 
 			default = false, 
 			droppable = true,
@@ -142,6 +147,7 @@
 			name = "DHC Outfit",
 			model = "models/player/breen.mdl", 
 			role = "dhc", 
+			weight = 0,
 			gasProof = false, 
 			default = false,
 			droppable = true,
@@ -153,6 +159,7 @@
 			name = "Watcher Outfit", 
 			model = "models/dpfilms/metropolice/playermodels/pm_police_bt.mdl",
 			role = "watcher",
+			weight = 50,
 			gasProof = true, 
 			default = false, 
 			droppable = true,
@@ -164,6 +171,7 @@
 			name = "Head Police Outfit",
 			model = "models/dpfilms/metropolice/playermodels/pm_rtb_police.mdl", 
 			role = "headpolice", 
+			weight = 50,
 			gasProof = true, 
 			default = false, 
 			droppable = true,
@@ -175,6 +183,7 @@
 			name = "Bio Elite Outfit",
 			model = "models/dpfilms/metropolice/playermodels/pm_biopolice.mdl", 
 			role = "bioelite", 
+			weight = 50,
 			gasProof = true, 
 			default = false, 
 			droppable = true,
@@ -185,7 +194,8 @@
 			id = "biorebel", 
 			name = "Bio Rebel Outfit",
 			model = "models/player/combine_super_soldier.mdl", 
-			role = "none", 
+			role = "none",
+			weight = 50,
 			gasProof = true, 
 			default = false, 
 			droppable = true,
@@ -198,6 +208,7 @@
 			name = "Soldier Outfit",
 			model = "models/player/combine_soldier.mdl", 
 			role = "none", 
+			weight = 50,
 			gasProof = true, 
 			default = false, 
 			droppable = true,
@@ -208,7 +219,8 @@
 			id = "guard", 
 			name = "Prison Guard Outfit",
 			model = "models/player/combine_soldier_prisonguard.mdl", 
-			role = "none", 
+			role = "none",
+			weight = 50,			
 			gasProof = true, 
 			default = false, 
 			droppable = true,
@@ -220,6 +232,7 @@
 			name = "Rebel Leader Outfit", 
 			model = "models/dpfilms/metropolice/playermodels/pm_resistance_police.mdl", 
 			role = "rebelleader", 
+			weight = 50,
 			gasProof = true, 
 			default = false, 
 			droppable = false,
@@ -251,6 +264,28 @@
 		"police"
 	}
 	
+	
+	CopNoise = {
+	
+		"npc/metropolice/vo/citizen.wav",
+		"npc/metropolice/vo/citizensummoned.wav",
+		"npc/metropolice/vo/classifyasdbthisblockready.wav",
+		"npc/metropolice/vo/clearandcode100.wav",
+		"npc/metropolice/vo/clearno647no10-107.wav",
+		"npc/metropolice/vo/code100.wav",
+		"npc/metropolice/vo/code7.wav",
+		"npc/metropolice/vo/condemnedzone.wav",
+		"npc/metropolice/vo/confirmadw.wav",
+		"npc/metropolice/vo/confirmpriority1sighted.wav",
+		"npc/metropolice/vo/contactwith243suspect.wav",
+		"npc/metropolice/vo/contactwithpriority2.wav",
+		"npc/metropolice/vo/control100percent.wav",
+		"npc/metropolice/vo/controlsection.wav",
+		"npc/metropolice/vo/converging.wav",
+		"npc/metropolice/vo/copy.wav"
+	
+	}	
+	
 	//Roles that have the police tab
 	ReqWantedTab =
 	{
@@ -275,29 +310,29 @@
 	RPRoles =
 	
 	{
-	["null"] = { role = "null", name = "Demote", admin = false, weps = {} },
-	
-	["police"] = { role = "police", name = "Police", admin = false, weps = {} },
-	
-	["citizen"] = { role = "citizen", name = "Citizen", admin = false, weps = {} },
-	
-	["dhc"] = { role = "dhc", name = "DHC", admin = true, weps = {} },
-	
-	["rebelleader"] = { role = "rebelleader", name = "Rebel Leader", admin = true, weps = {} },
-	
-	["watcher"] = { role = "watcher", name = "Watcher", admin = false, weps = {} },
-	
-	["headpolice"] = { role = "headpolice", name = "Head Police", admin = true, weps = {"weapon_stunstick", "brp_somagun" } },
-	
-	["bioelite"] = { role = "bioelite", name = "Bio Elite", admin = false, weps = { "brp_somagun" } },
-	
-	["distributer"] = { role = "distributer", name = "Distributer", admin = false, weps = {} },
-	
-	["medic"] = { role = "medic", name = "Medic", admin = false, weps = {"weapon_medkit"} },
-	
-	["rebel"] = { role = "rebel", name = "Rebel", admin = false, weps = {} },
-	
-	["bartender"] = { role = "bartender", name = "Bartender", admin = false, weps = {} }
+		["null"] = { role = "null", name = "Demote", admin = false, weps = {} },
+		
+		["police"] = { role = "police", name = "Police", admin = false, weps = {} },
+		
+		["citizen"] = { role = "citizen", name = "Citizen", admin = false, weps = {} },
+		
+		["dhc"] = { role = "dhc", name = "DHC", admin = true, weps = {} },
+		
+		["rebelleader"] = { role = "rebelleader", name = "Rebel Leader", admin = true, weps = {} },
+		
+		["watcher"] = { role = "watcher", name = "Watcher", admin = false, weps = {} },
+		
+		["headpolice"] = { role = "headpolice", name = "Head Police", admin = true, weps = {"weapon_stunstick", "brp_somagun" } },
+		
+		["bioelite"] = { role = "bioelite", name = "Bio Elite", admin = false, weps = { "brp_somagun" } },
+		
+		["distributer"] = { role = "distributer", name = "Distributer", admin = false, weps = {} },
+		
+		["medic"] = { role = "medic", name = "Medic", admin = false, weps = {"weapon_medkit"} },
+		
+		["rebel"] = { role = "rebel", name = "Rebel", admin = false, weps = {} },
+		
+		["bartender"] = { role = "bartender", name = "Bartender", admin = false, weps = {} }
 	
 	} 
 	

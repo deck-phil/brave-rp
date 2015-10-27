@@ -47,7 +47,7 @@ end )
 //Remover tool restrictions
 hook.Add( "CanTool", "BlockRemoverandother", function( ply, tr, tool)
 
-	if !(table.HasValue( RPTools, tool )) then return false end
+	//if !(table.HasValue( RPTools, tool )) then return false end
 
 	if tool == "remover" and IsValid(tr.Entity) then
 
@@ -77,8 +77,8 @@ function EntPickup(ply, ent)
 		return true
 	end*/
 	
-	if !(ent:GetRPOwner() == ply) then
-		return false
+	if ((ent:GetRPOwner() == ply) or (ent:GetRPOwner():IsBuddy(ply))) then
+		return true
 	end
 	
 end
@@ -86,7 +86,7 @@ hook.Add("PhysgunPickup", "PhysgunPickupThing", EntPickup)
 
 //Restrict all nongamemode weapons
 local function RestrictWeapons(ply, class, weapon)
-    return ply:isRPAdmin()
+    return true
 end
 
 //Disable prop kill

@@ -6,12 +6,12 @@ function GM:OnPlayerChat( ply, strText, bTeamOnly, bPlayerIsDead )
  
 	//Cant talk if dead
 	if ( bPlayerIsDead ) then
-		strText = ""
+		return false
 	end
  
 	//No team only
 	if ( bTeamOnly ) then
-		strText = ""
+		return false
 	end
 	
 	local name = ply:GetRPName()
@@ -19,6 +19,7 @@ function GM:OnPlayerChat( ply, strText, bTeamOnly, bPlayerIsDead )
 	//Name replacer to Cop id
 	if table.HasValue( ModelTech, OutfitsGetValue( "model", ply:GetRPModel(), "id")) then
 		name = "CP."..ply:GetCPRegister()
+		sound.Play( table.Random(CopNoise), ply:GetPos(), 75, 100)
 	end
 	
  

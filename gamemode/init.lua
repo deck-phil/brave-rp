@@ -102,10 +102,6 @@ function GM:PlayerSpawn( ply )
 	//To avoid spawn clusters
 	ply:SetCollisionGroup( COLLISION_GROUP_WEAPON )
 	
-	//just in case they were somad
-	ply:SetRunSpeed( defaultRunSpeed )
-	ply:SetWalkSpeed( defaultWalkSpeed )	
-	
 	//Jimmy watned flash
 	ply:AllowFlashlight( true )
 	

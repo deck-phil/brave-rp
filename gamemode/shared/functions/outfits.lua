@@ -78,6 +78,9 @@ function meta:AddOutfit(id)
 
 	local IDS = self:GetNWString("OutfitList")
 	
+	local tbl = string.Explode(IDS, ";")
+	if #tbl+1 > maxOutfits then return end
+	
 	self:SetNWString("OutfitList", IDS..";"..id)
 	
 	print(self:GetNWString("OutfitList"))

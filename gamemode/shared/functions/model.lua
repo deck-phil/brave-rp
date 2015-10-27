@@ -12,6 +12,14 @@ function meta:SetRPModel( path )
 	
 	MaskHUDInit( self )
 	
+	if not OutfitsGetValue( "model", path, "weight" ) then
+		self:SetRunSpeed( defaultRunSpeed)
+		self:SetWalkSpeed( defaultWalkSpeed )
+	else
+		self:SetRunSpeed( defaultRunSpeed - OutfitsGetValue( "model", path,"weight" ))
+		self:SetWalkSpeed( defaultWalkSpeed - OutfitsGetValue( "model", path,"weight" ))
+	end
+	
 	print(self:Name().. " has changed to " ..conved)
 
 end
