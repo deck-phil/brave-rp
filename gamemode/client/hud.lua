@@ -80,7 +80,7 @@ function StatHUD()
 		
 	elseif regBool then
 	
-		draw.SimpleText( ply:GetRPName()..", COLOR_WHITE"..reg, "Trebuchet24", 20, ScrH()-185, Color(255,255,255,255) )
+		draw.SimpleText( ply:GetRPName()..", #"..reg, "Trebuchet24", 20, ScrH()-185, Color(255,255,255,255) )
 		
 	else
 	

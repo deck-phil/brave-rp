@@ -1,5 +1,10 @@
 //Needswork.
 
+surface.CreateFont( "ScoreboardSmall", {
+	font	= "Helvetica",
+	size	= 18,
+	weight	= 800
+} )
 
 surface.CreateFont( "ScoreboardDefault", {
 	font	= "Helvetica",
@@ -20,41 +25,57 @@ surface.CreateFont( "ScoreboardDefaultTitle", {
 --
 local PLAYER_LINE = {
 	Init = function( self )
-
+		
+		self.Avatar = self:Add("SpawnIcon")
+		self.Avatar:Dock( LEFT )
+		self.Avatar:DockMargin( 5,0,0,0)		
+		self.Avatar:SetSize( 44, 44 )
+		self.Avatar:SetModel( defaultModel )
+		self.Avatar:SetMouseInputEnabled( false )		
+	
 		self.Name = self:Add( "DLabel" )
 		self.Name:Dock( FILL )
 		self.Name:SetFont( "ScoreboardDefault" )
-		self.Name:SetTextColor( Color( 93, 93, 93 ) )
+		self.Name:SetTextColor( Color( 255, 255, 255 ) )
 		self.Name:DockMargin( 8, 0, 0, 0 )
 
 		self.Mute = self:Add( "DImageButton" )
-		self.Mute:SetSize( 32, 32 )
+		self.Mute:SetSize( 44, 44 )
 		self.Mute:Dock( RIGHT )
 
 		self.Ping = self:Add( "DLabel" )
 		self.Ping:Dock( RIGHT )
 		self.Ping:SetWidth( 50 )
 		self.Ping:SetFont( "ScoreboardDefault" )
-		self.Ping:SetTextColor( Color( 93, 93, 93 ) )
+		self.Ping:SetTextColor( Color( 255, 255, 255 ) )
 		self.Ping:SetContentAlignment( 5 )
 
 		self.Deaths = self:Add( "DLabel" )
 		self.Deaths:Dock( RIGHT )
 		self.Deaths:SetWidth( 50 )
 		self.Deaths:SetFont( "ScoreboardDefault" )
-		self.Deaths:SetTextColor( Color( 93, 93, 93 ) )
+		self.Deaths:SetTextColor( Color( 255, 255, 255 ) )
 		self.Deaths:SetContentAlignment( 5 )
 
 		self.Kills = self:Add( "DLabel" )
 		self.Kills:Dock( RIGHT )
 		self.Kills:SetWidth( 50 )
 		self.Kills:SetFont( "ScoreboardDefault" )
-		self.Kills:SetTextColor( Color( 93, 93, 93 ) )
+		self.Kills:SetTextColor( Color( 255, 255, 255 ) )
 		self.Kills:SetContentAlignment( 5 )
 
+		self.ID = self:Add( "DLabel" )
+		self.ID:Dock( RIGHT )
+		self.ID:DockMargin(0,0,140,0)
+		self.ID:SetWidth( 50 )
+		self.ID:SetFont( "ScoreboardDefault" )
+		self.ID:SetTextColor( Color( 255, 255, 255 ) )
+		self.ID:SetContentAlignment( 5 )
+		
+		
 		self:Dock( TOP )
 		self:DockPadding( 3, 3, 3, 3 )
-		self:SetHeight( 32 + 3 * 2 )
+		self:SetHeight( 44 + 3 * 2 )
 		self:DockMargin( 2, 0, 2, 2 )
 
 	end,
@@ -63,6 +84,8 @@ local PLAYER_LINE = {
 
 		self.Player = pl
 
+		self.Avatar:SetPlayer( pl )		
+		
 		self:Think( self )
 
 		--local friend = self.Player:GetFriendStatus()
@@ -78,16 +101,36 @@ local PLAYER_LINE = {
 			return
 		end
 
-		if ( self.PName == nil || self.PName != self.Player:GetName() ) then
-			self.PName = self.Player:GetName()
-			self.Name:SetText( self.PName )
+		if !(self.Player:isRegistered()) then
+		
+			self.Avatar:SetModel( defaultModel )
+			self.Name:SetText( "???" )
+			self.ID:SetText( "????" )
+			
+		else
+		
+			if ( self.OGModel == nil || self.OGModel != self.Player:GetOGModel() ) then
+				self.OGModel = self.Player:GetOGModel()
+				self.Avatar:SetModel( self.OGModel )
+			end				
+					
+			if ( self.PName == nil || self.PName != self.Player:GetRPName() ) then
+				self.PName = self.Player:GetRPName()
+				self.Name:SetText( self.PName )
+			end
+
+			if ( self.citID == nil || self.citID != self.Player:GetRegister() ) then
+				self.citID = self.Player:GetRegister()
+				self.ID:SetText( self.citID )
+			end		
+			
 		end
 		
 		if ( self.NumKills == nil || self.NumKills != self.Player:Frags() ) then
 			self.NumKills = self.Player:Frags()
 			self.Kills:SetText( self.NumKills )
-		end
-
+		end		
+		
 		if ( self.NumDeaths == nil || self.NumDeaths != self.Player:Deaths() ) then
 			self.NumDeaths = self.Player:Deaths()
 			self.Deaths:SetText( self.NumDeaths )
@@ -137,7 +180,7 @@ local PLAYER_LINE = {
 			return
 		end
 	
-		draw.RoundedBox( 0, 5, 0, w-10, h, Color(255,255,255) )
+		draw.RoundedBox( 0, 3, 0, w-6	, h, Color(42,42,42) )
 
 	end
 }
@@ -175,6 +218,7 @@ local SCORE_BOARD = {
 
 		self.Scores = self:Add( "DScrollPanel" )
 		self.Scores:Dock( FILL )
+		self.Scores:DockMargin(0,0+5+10,0,0)
 
 	end,
 
@@ -193,8 +237,17 @@ local SCORE_BOARD = {
 
 	Paint = function( self, w, h )
 
-		draw.RoundedBox( 4, 0, 95, w, h-95, Color( 25, 68, 131, 255 ) )
+		draw.RoundedBox( 0, 0, 0, w, h, Color( 11,20,19, 255 ) ) // Black Background
+		
+		draw.RoundedBox( 0, 5, 0+5, w-10, 80, Color(31,92,121, 255 ) ) // Header BG
 
+		draw.RoundedBox( 0, 5, 0+5+80+5, w-10, 20, Color(107,107,107, 255 ) ) //small bar
+		draw.RoundedBox( 0, 5, 0+5+80+5+10, w-10, 10, Color(65,65,65, 255 ) )
+		
+		draw.SimpleText( "Name", "ScoreboardSmall",15,  0+5+80+5+1, Color(255,255,255,255) )
+		
+		draw.SimpleText( "Cit.ID", "ScoreboardSmall", 315,  0+5+80+5+1, Color(255,255,255,255) )
+	
 	end,
 
 	Think = function( self, w, h )

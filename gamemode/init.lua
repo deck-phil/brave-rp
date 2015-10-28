@@ -170,15 +170,36 @@ end
 function GM:PlayerDeath( victim, inflictor, attacker )
 
 	//Death indicators
-	/*
-    if ( victim == attacker ) then
-        PrintMessage( HUD_PRINTTALK, victim:GetRPName() .. " committed suicide." )
-    else*/
-	if (attacker:IsPlayer()) then
-        print( victim:GetRPName() .. " was killed by " .. attacker:GetRPName() .. "." )
-    end
 	
+    if ( victim == attacker ) then
+        //PrintMessage( HUD_PRINTTALK, victim:GetRPName() .. " committed suicide." )
+    else
+		if (attacker:IsPlayer()) then
+			print( victim:GetRPName() .. " was killed by " .. attacker:GetRPName() .. "." )
+		end
+	end
 end
+
+function GM:DoPlayerDeath( ply, attacker, dmginfo )
+
+	ply:CreateRagdoll()
+	
+	if ( attacker == ply ) then return end
+	
+	ply:AddDeaths( 1 )
+	
+	if ( attacker:IsValid() && attacker:IsPlayer() ) then
+	
+		if ( attacker == ply ) then
+			attacker:AddFrags( -1 )
+		else
+			attacker:AddFrags( 1 )
+		end
+	
+	end
+
+end
+
 
 //Distant voices
 hook.Add("PlayerCanHearPlayersVoice", "Wat" , function( p1, p2 )  
