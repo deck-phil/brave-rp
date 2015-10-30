@@ -18,6 +18,8 @@ if SERVER then
 	
 	function meta:IsBuddy(tar)
 	
+		if tar == self then return true end
+	
 		if not BuddyList then BuddyList = {} end
 	
 		if !(self.BuddyList[tar:SteamID()]) then return false end

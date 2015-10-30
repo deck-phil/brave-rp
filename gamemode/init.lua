@@ -183,10 +183,10 @@ end
 function GM:DoPlayerDeath( ply, attacker, dmginfo )
 
 	ply:CreateRagdoll()
+
+	ply:AddDeaths( 1 )
 	
 	if ( attacker == ply ) then return end
-	
-	ply:AddDeaths( 1 )
 	
 	if ( attacker:IsValid() && attacker:IsPlayer() ) then
 	

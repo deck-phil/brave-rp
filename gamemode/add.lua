@@ -303,6 +303,9 @@
 		"headpolice",
 		"watcher",
 		"bioelite",
+		"biorebel",
+		"guard",
+		"soldier",
 		"police"
 	}
 	

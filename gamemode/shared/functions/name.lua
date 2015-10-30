@@ -3,6 +3,25 @@ local meta = FindMetaTable("Player")
 function meta:SetRPName( name )
 
 	name = trimText(name)
+
+	/*
+	//Cap the first letter
+	local strTbl = string.Explode(" ",string.Trim(name))
+	name = ""
+	
+	for k, v in pairs(strTbl)do
+	
+		v = string.lower(v)
+		local f = string.upper(string.sub(v,0,1))
+		v = string.Replace(v,string.sub(v,0,1),f)
+		
+		name = name.." "..v
+	end
+	
+	name = string.TrimLeft(name)
+	
+	if !(string.find(name," ")) then string.Replace(name,string.sub(name,0,1),string.upper(string.sub(name,0,1))) end*/
+	
 	
 	self:SetNWString("rpname", name )
 	
@@ -59,18 +78,21 @@ function meta:GetRPTitle()
 
 end
 
+//Also caps it
 function trimText( str )
 
 	if !(string.find(str, "  ")) then return str end
 	
-	local strTbl = string.Explode(string.Trim(str), " ")
+	local strTbl = string.Explode(" ",string.Trim(str))
 	local newName = ""
 	
 	for k, v in pairs(strTbl)do
-		NewName = NewName.." "..string.Trim(strTabl[v])
+		if v == "" then continue end
+		
+		newName = newName.." "..string.Trim(v)
 	end
 
-	return string.Trim(NewName)
+	return string.Trim(newName)
 	
 end
 

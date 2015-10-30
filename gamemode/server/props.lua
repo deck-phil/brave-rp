@@ -77,8 +77,11 @@ function EntPickup(ply, ent)
 		return true
 	end*/
 	
-	if ((ent:GetRPOwner() == ply) or (ent:GetRPOwner():IsBuddy(ply))) then
-		return false
+	if !IsValid( ent:GetRPOwner() ) then return end
+	if not ent:GetRPOwner() then return end
+	
+	if (ent:GetRPOwner() == ply) or (ent:GetRPOwner():IsBuddy(ply)) then
+		return true
 	end
 	
 end
@@ -86,7 +89,7 @@ hook.Add("PhysgunPickup", "PhysgunPickupThing", EntPickup)
 
 //Restrict all nongamemode weapons
 local function RestrictWeapons(ply, class, weapon)
-    return true
+    return false
 end
 
 //Disable prop kill

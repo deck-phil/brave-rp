@@ -36,7 +36,7 @@ local PLAYER_LINE = {
 		self.Name = self:Add( "DLabel" )
 		self.Name:Dock( FILL )
 		self.Name:SetFont( "ScoreboardDefault" )
-		self.Name:SetTextColor( Color( 255, 255, 255 ) )
+		self.Name:SetTextColor( color_black )
 		self.Name:DockMargin( 8, 0, 0, 0 )
 
 		self.Mute = self:Add( "DImageButton" )
@@ -47,21 +47,21 @@ local PLAYER_LINE = {
 		self.Ping:Dock( RIGHT )
 		self.Ping:SetWidth( 50 )
 		self.Ping:SetFont( "ScoreboardDefault" )
-		self.Ping:SetTextColor( Color( 255, 255, 255 ) )
+		self.Ping:SetTextColor( color_black )
 		self.Ping:SetContentAlignment( 5 )
 
 		self.Deaths = self:Add( "DLabel" )
 		self.Deaths:Dock( RIGHT )
 		self.Deaths:SetWidth( 50 )
 		self.Deaths:SetFont( "ScoreboardDefault" )
-		self.Deaths:SetTextColor( Color( 255, 255, 255 ) )
+		self.Deaths:SetTextColor( color_black )
 		self.Deaths:SetContentAlignment( 5 )
 
 		self.Kills = self:Add( "DLabel" )
 		self.Kills:Dock( RIGHT )
 		self.Kills:SetWidth( 50 )
 		self.Kills:SetFont( "ScoreboardDefault" )
-		self.Kills:SetTextColor( Color( 255, 255, 255 ) )
+		self.Kills:SetTextColor(color_black)
 		self.Kills:SetContentAlignment( 5 )
 
 		self.ID = self:Add( "DLabel" )
@@ -69,7 +69,7 @@ local PLAYER_LINE = {
 		self.ID:DockMargin(0,0,140,0)
 		self.ID:SetWidth( 50 )
 		self.ID:SetFont( "ScoreboardDefault" )
-		self.ID:SetTextColor( Color( 255, 255, 255 ) )
+		self.ID:SetTextColor( color_black )
 		self.ID:SetContentAlignment( 5 )
 		
 		
@@ -177,10 +177,10 @@ local PLAYER_LINE = {
 	Paint = function( self, w, h )
 
 		if ( !IsValid( self.Player ) ) then
-			return
+			return	
 		end
 	
-		draw.RoundedBox( 0, 3, 0, w-6	, h, Color(42,42,42) )
+		draw.RoundedBox( 4, 3, 0, w-6	, h, color_white )
 
 	end
 }
@@ -203,11 +203,11 @@ local SCORE_BOARD = {
 
 		self.Name = self.Header:Add( "DLabel" )
 		self.Name:SetFont( "ScoreboardDefaultTitle" )
-		self.Name:SetTextColor( Color( 255, 255, 255, 255 ) )
+		self.Name:SetTextColor( Color(85,85,85) )
 		self.Name:Dock( TOP )
-		self.Name:SetHeight( 40 )
+		self.Name:SetHeight( 70 )
 		self.Name:SetContentAlignment( 5 )
-		self.Name:SetExpensiveShadow( 2, Color( 0, 0, 0, 200 ) )
+		//self.Name:SetExpensiveShadow( 2, Color( 0, 0, 0, 200 ) )
 
 		--self.NumPlayers = self.Header:Add( "DLabel" )
 		--self.NumPlayers:SetFont( "ScoreboardDefault" )
@@ -237,16 +237,22 @@ local SCORE_BOARD = {
 
 	Paint = function( self, w, h )
 
-		draw.RoundedBox( 0, 0, 0, w, h, Color( 11,20,19, 255 ) ) // Black Background
+		draw.RoundedBox( 4, 0, 0, w, h, Color( 25, 68, 131, 75 ) ) // Black Background
 		
-		draw.RoundedBox( 0, 5, 0+5, w-10, 80, Color(31,92,121, 255 ) ) // Header BG
+		draw.RoundedBox( 4, 5, 0+5, w-10, 80, color_white) // Header BG
 
-		draw.RoundedBox( 0, 5, 0+5+80+5, w-10, 20, Color(107,107,107, 255 ) ) //small bar
-		draw.RoundedBox( 0, 5, 0+5+80+5+10, w-10, 10, Color(65,65,65, 255 ) )
+		draw.RoundedBox( 4, 5, 0+5+80+5, w-10, 20, Color(107,107,107, 255 ) ) //small bar
+		draw.RoundedBox( 4, 5, 0+5+80+5+10, w-10, 10, Color(65,65,65, 255 ) )
 		
 		draw.SimpleText( "Name", "ScoreboardSmall",15,  0+5+80+5+1, Color(255,255,255,255) )
 		
 		draw.SimpleText( "Cit.ID", "ScoreboardSmall", 315,  0+5+80+5+1, Color(255,255,255,255) )
+		
+		draw.SimpleText( "Kills", "ScoreboardSmall", 510,  0+5+80+5+1, Color(255,255,255,255) )
+		
+		draw.SimpleText( "Deaths", "ScoreboardSmall", 552,  0+5+80+5+1, Color(255,255,255,255) )
+		
+		draw.SimpleText( "Ping", "ScoreboardSmall", 612,  0+5+80+5+1, Color(255,255,255,255) )
 	
 	end,
 
