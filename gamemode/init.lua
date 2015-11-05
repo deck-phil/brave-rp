@@ -165,6 +165,25 @@ function GM:PlayerDisconnected( ply )
 	ply:SaveRPModel()
 	ply:SaveCaste()
 	*/
+	
+	timer.Start(ply:SteamID()..":Timeout",timeoutTime,1, function()
+	
+	if ply:IsValid() then timer.Destroy(ply:SteamID()) return end
+	
+	for k,v in pairs(ents.GetAll())do
+	
+		if v:GetRPOwner() == ply then
+		
+			if v:IsDoor() then v:SellDoor( ply ) continue end
+		
+			v:Remove()
+		
+		end
+	
+	end
+	
+	end)
+	
 end
 
 function GM:PlayerDeath( victim, inflictor, attacker )

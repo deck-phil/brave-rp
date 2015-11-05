@@ -782,7 +782,14 @@ elseif CLIENT then
 				end
 					
 			PlayerList.DoDoubleClick = function( lineID, line )
-				AddBuddy(GetNamePlayer(PlayerList:GetLine(line):GetValue(1)))		
+				local tar = PlayerList:GetLine(line):GetValue(1)
+				AddBuddy(GetNamePlayer(tar))		
+				PlayerList:RemoveLine(line)
+				if ( IsBuddy(GetNamePlayer(tar))) then
+					PlayerList:AddLine(tar, "true")
+				else
+					PlayerList:AddLine(tar, "false")
+				end
 			end
 		
 		

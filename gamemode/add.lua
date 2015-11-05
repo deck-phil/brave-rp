@@ -2,16 +2,25 @@
 	RPWeapons =
 	
 	{
-		["weapon_stunstick"] = { name = "Stunstick", model = "models/weapons/w_stunbaton.mdl", role = "headpolice", weapon = "weapon_stunstick", price = 0, clipsize = 0, priammo = nil },
+		["weapon_stunstick"] = { name = "Stunstick", model = "models/weapons/w_stunbaton.mdl", role = "headpolice", weapon = "weapon_stunstick", price = 30, clipsize = 0, priammo = nil },
 		["brp_somagun"] = { name = "Soma Air Gun", model = "models/weapons/w_rocket_launcher.mdl", role = "headpolice", weapon = "brp_somagun", price = 0, clipsize = 2, priammo = "RPG_Round" },
 		["weapon_ar2"] = { name = "AR2", model = "models/weapons/w_IRifle.mdl", role = "headpolice", weapon = "weapon_ar2", price = 0, clipsize = 30, priammo = "AR2" },
 		["brp_railgun"] = { name = "Railgun", model = "models/weapons/w_annabelle.mdl", role = "rebelleader", weapon = "brp_railgun", price = 0, clipsize = 24, priammo = "XBowBolt" },	
 		["weapon_smg1"] = { name = "SMG", model = "models/weapons/w_smg1.mdl", role = "rebelleader", weapon = "weapon_smg1", price = 0, clipsize = 45, priammo = "SMG1" },
-		["brp_spraygun"] = { name = "Spraygun", model = "models/weapons/w_smg1.mdl", role = "watcher", weapon = "brp_spraygun", price = 0, clipsize = 3, priammo = "357" },
-		["brp_launcher"] = { name = "Improvised Launcher", model = "models/weapons/w_rocket_launcher.mdl", role = "watcher", weapon = "brp_launcher", price = 0, clipsize = 5, priammo = "SMG1_Grenade" }//,	
-		//["m9k_usp"] = { name = "HK USP", model = "models/weapons/w_pist_fokkususp.mdl", role = "headpolice", weapon = "m9k_usp", price = 0, clipsize = 14, priammo = "SMG1_Grenade" } 	
+		["brp_spraygun"] = { name = "Spraygun", model = "models/weapons/w_smg1.mdl", role = "watcher", weapon = "brp_spraygun", price = 70, clipsize = 3, priammo = "357" },
+		["brp_launcher"] = { name = "Improvised Launcher", model = "models/weapons/w_rocket_launcher.mdl", role = "watcher", weapon = "brp_launcher", price = 50, clipsize = 5, priammo = "SMG1_Grenade" }//,
+			
+		//m9k Weapons
+		["m9k_usp"] = { name = "HK USP", model = "models/weapons/w_pist_fokkususp.mdl", role = "headpolice", weapon = "m9k_usp", price = 0, clipsize = 14, priammo = "SMG1_Grenade" } 	
+		["m9k_hk45"] = { name = "HK 45C", model = "models/weapons/w_hk45c.mdl", role = "headpolice", weapon = "m9k_hk45", price = 0, clipsize = 14, priammo = "SMG1_Grenade" } 	
+		["m9k_ak74"] = { name = "AK74", model = "models/weapons/w_ak47_m9k.mdl", role = "headpolice", weapon = "m9k_ak74", price = 0, clipsize = 14, priammo = "SMG1_Grenade" } 	
+		["m9k_mp5"] = { name = "MP5", model = "models/weapons/w_hk_mp5.mdl", role = "headpolice", weapon = "m9k_mp5", price = 0, clipsize = 14, priammo = "SMG1_Grenade" } 	
+		["m9k_m4a1"] = { name = "M4A1", model = "models/weapons/w_m4a1_iron.mdl", role = "headpolice", weapon = "m9k_m4a1", price = 0, clipsize = 14, priammo = "SMG1_Grenade" } 	
+		["m9k_m3"] = { name = "BenelliM3", model = "models/weapons/w_benelli_m3.mdl", role = "headpolice", weapon = "m9k_m3", price = 0, clipsize = 14, priammo = "SMG1_Grenade" } 	
+		["m9k_m24"] = { name = "M24Sniper", model = "models/weapons/w_snip_m24_6.mdl", role = "headpolice", weapon = "m9k_m24", price = 0, clipsize = 14, priammo = "SMG1_Grenade" } 	
+		["m9k_g3a3"] = { name = "HKG3A3", model = "models/weapons/w_hk_g3.mdl", role = "headpolice", weapon = "m9k_g3a3", price = 0, clipsize = 14, priammo = "SMG1_Grenade" } 	
 	}
-	
+
 	//Add Entities
 	RPEnts = 
 	
@@ -247,11 +256,11 @@
 	RPBuyOutfits =
 	
 	{
-		["Police"] = { id = "police", role = "headpolice", price = 0 },
-		["BioRebel"] = { id = "biorebel", role = "rebelleader", price = 0 },		
-		["Rebel"] = { id = "rebel", role = "rebelleader", price = 0 },		
-		["Soldier"] = { id = "soldier", role = "headpolice", price = 0 },		
-		["Guard"] = { id = "guard", role = "headpolice", price = 0 },		
+		["Police"] = { id = "police", role = "headpolice", price = 100 },
+		["BioRebel"] = { id = "biorebel", role = "rebelleader", price = 200 },		
+		["Rebel"] = { id = "rebel", role = "rebelleader", price = 50 },		
+		["Soldier"] = { id = "soldier", role = "headpolice", price = 100 },		
+		["Guard"] = { id = "guard", role = "headpolice", price = 100 },		
 	}
 	
 	//Roles that have radio and the police tab

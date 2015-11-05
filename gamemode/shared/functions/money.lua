@@ -73,7 +73,7 @@ function meta:canAfford( amount )
 
 	else
 
-		self:SendLua("notification.AddLegacy(\"You need more money.\", NOTIFY_GENERIC, 5)")	
+		//notification.AddLegacy("You need more money.", NOTIFY_GENERIC, 5)	
 
 		return false
 

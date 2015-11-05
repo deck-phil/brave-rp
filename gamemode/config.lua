@@ -58,7 +58,9 @@ defaultOutfitTime = 3
 
 maxOutfits = 15
 
-ammoPrice = 0
+ammoPrice = 30
+
+timeoutTime = 300
 
 defaultShipmentPrice = 80
 

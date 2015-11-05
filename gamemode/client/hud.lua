@@ -63,6 +63,7 @@ function StatHUD()
 	if !(stathudconvar:GetInt() == 1) then return end
 
 	local ply = LocalPlayer()
+	local wep = ply:GetActiveWeapon():GetClass()
 
 	local reg = ply:GetRegister()
 	local regBool = true
@@ -73,6 +74,12 @@ function StatHUD()
 	end
 	
 	draw.RoundedBox( 8, 10, ScrH() - 190, (260), (180), Color(0, 0, 0, 155))
+	
+	if RPWeapons[wep] then
+		draw.RoundedBox( 8, 280, ScrH() - 100, (80), (90), Color(0, 0, 0, 155))
+		draw.SimpleText( RPWeapons[wep].name, "Trebuchet18", 320, ScrH()-100, Color(255,255,255,255),TEXT_ALIGN_CENTER )
+		draw.SimpleText( RPWeapons[wep].clipsize, "Trebuchet18", 320, ScrH()-80, Color(255,255,255,255),TEXT_ALIGN_CENTER )
+	end
 	
 	if table.HasValue( ModelTech, OutfitsGetValue( "model",ply:GetRPModel(), "id")) then
 	
