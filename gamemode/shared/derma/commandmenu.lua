@@ -15,6 +15,8 @@ if SERVER then
 elseif CLIENT then
 	function openCommands()
 		
+		print(LocalPlayer():GetActiveWeapon():GetPrimaryAmmoType())
+		
 		local ply = LocalPlayer()
 		
 		local MainMenuFrame = vgui.Create( "DFrame" )
@@ -72,7 +74,9 @@ elseif CLIENT then
 			//AmmoIcon.weapon = "models/items/ammorounds.mdl"
 			AmmoIcon:SetToolTip( "Ammo" )
 			ShopTab:Add( AmmoIcon )
-			AmmoIcon.DoClick = function(  ) RunConsoleCommand("BRP_BuyAmmo") end  	
+			if (ply:canAfford(ammoPrice)) then
+				AmmoIcon.DoClick = function(  ) RunConsoleCommand("BRP_BuyAmmo") end
+			end
 			AmmoIcon.PaintOver = function()
 				draw.SimpleText(ammoPrice.."$", "DebugFixed",64,0,Color(255,100,100),TEXT_ALIGN_RIGHT)
 				if (ply:canAfford(ammoPrice)) then return end
@@ -85,7 +89,9 @@ elseif CLIENT then
 			icon:SetModel( v.model )//
 			icon:SetToolTip( v.name )		
 			ShopTab:Add( icon )
-			icon.DoClick = function(  ) SendWeapon( v.weapon, v.price ) print(v.price) MainMenuFrame:Close() notification.AddLegacy( "You bought something!", NOTIFY_HINT, 5 ) end  
+			if (ply:canAfford(v.price)) then
+				icon.DoClick = function(  ) SendWeapon( v.weapon, v.price ) print(v.price) MainMenuFrame:Close() notification.AddLegacy( "You bought something!", NOTIFY_HINT, 5 ) end  
+			end
 			icon.PaintOver = function()
 				draw.SimpleText(v.price.."$", "DebugFixed",64,0,Color(255,100,100),TEXT_ALIGN_RIGHT)
 				if (ply:canAfford(v.price)) then return end
@@ -99,7 +105,9 @@ elseif CLIENT then
 			icon:SetModel( v.model )
 			icon:SetToolTip( v.name )
 			ShopTab:Add( icon )
-			icon.DoClick = function(  ) SendEnt( v.ent, v.price, v.crate ) MainMenuFrame:Close() notification.AddLegacy( "You bought something!", NOTIFY_HINT, 5 ) end 
+			if (ply:canAfford(v.price)) then
+				icon.DoClick = function(  ) SendEnt( v.ent, v.price, v.crate ) MainMenuFrame:Close() notification.AddLegacy( "You bought something!", NOTIFY_HINT, 5 ) end 
+			end
 			icon.PaintOver = function()
 				draw.SimpleText(v.price.."$", "DebugFixed",64,0,Color(255,100,100),TEXT_ALIGN_RIGHT)
 				if (ply:canAfford(v.price)) then return end
@@ -113,8 +121,9 @@ elseif CLIENT then
 			icon:SetModel( v.showModel )
 			icon:SetToolTip( v.name )
 			ShopTab:Add( icon )
-			icon.DoClick = function(  ) SendOutfit( v.id, "buy", v.price ) MainMenuFrame:Close() notification.AddLegacy( "You bought an outfit!", NOTIFY_HINT, 5 ) end 
-
+			if (ply:canAfford(v.price)) then
+				icon.DoClick = function(  ) SendOutfit( v.id, "buy", v.price ) MainMenuFrame:Close() notification.AddLegacy( "You bought an outfit!", NOTIFY_HINT, 5 ) end 
+			end
 			icon.PaintOver = function()
 				draw.SimpleText(v.price.."$", "DebugFixed",64,0,Color(255,100,100),TEXT_ALIGN_RIGHT)
 				if (ply:canAfford(v.price)) then return end

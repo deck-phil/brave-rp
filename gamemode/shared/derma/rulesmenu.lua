@@ -36,7 +36,7 @@ elseif CLIENT then
 	local HTML = vgui.Create("HTML", RulesFrame)
 		HTML:SetPos(50,50)
 		HTML:SetSize(ScrW() - 100, ScrH() - 100)
-		HTML:OpenURL("http://www.braverp.com/rules.html")
+		HTML:OpenURL("http://forums.braverp.com/showthread.php?tid=7&pid=7#pid7")
 	
 	end
 	

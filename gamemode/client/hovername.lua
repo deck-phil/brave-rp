@@ -114,13 +114,16 @@ function HoveringCrateNames( crate )
 		if (crate:GetClass() == "brp_shipment_base") then
 		
 			local crateType = RPWeapons[crate:GetNWString("shipmentweapon")]
+			local crateName = ""
+			if !(crateType == nil) then crateName = crateType.name end
+		
 		
 			local targetPos = crate:GetPos() + Vector(0,0,30)
 			local targetDistance = math.floor((LocalPlayer():GetPos():Distance( targetPos ))/40)
 			local targetScreenpos = targetPos:ToScreen()
 			
 			if targetDistance < 5 then
-					draw.SimpleText( crateType.name, "DermaLarge", tonumber(targetScreenpos.x), (tonumber(targetScreenpos.y)), Color(255,20,20,255), TEXT_ALIGN_CENTER)
+					draw.SimpleText( crateName, "DermaLarge", tonumber(targetScreenpos.x), (tonumber(targetScreenpos.y)), Color(255,20,20,255), TEXT_ALIGN_CENTER)
 					draw.SimpleText( "Remaining: " .. crate:GetNWString( "remaining"), "DermaLarge", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y + 26), Color(255,255,255,255), TEXT_ALIGN_CENTER)
 					//draw.SimpleText(team.GetName( crate:Team() ), "Trebuchet18", tonumber(targetScreenpos.x), tonumber(targetScreenpos.y + 24), team.GetColor( crate:Team() ), TEXT_ALIGN_CENTER)
 			end 	

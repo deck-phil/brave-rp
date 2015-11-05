@@ -22,9 +22,11 @@ if SERVER then
 			ent = ents.Create('brp_entshipment_base')
 			ent:SetPos( ply:LocalToWorld(Vector(35, 0,0)))
 			ent:NewShipment( entity )
+			ent:SetRPOwner( ply )
 		else
 			ent = ents.Create(entity)
 			ent:SetPos( ply:LocalToWorld(Vector(35, 0,0)))
+			ent:SetRPOwner( ply )
 		end
 			ent:Spawn()
 
