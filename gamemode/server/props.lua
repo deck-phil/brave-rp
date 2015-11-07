@@ -11,6 +11,7 @@ local RPTools = {
 	"weld",
 	"colour",
 	"material",
+	"light",
 	"nocollide"
 }
 
@@ -32,7 +33,7 @@ local function blockProps( ply, mdl )
 		end
 	end
 	ply:SendLua("notification.AddLegacy(\"You are not allowed to spawn that.\", NOTIFY_GENERIC, 5)") 
-	return false
+	return true
 end
 
 //Sets player as RP Owner of that item.
@@ -46,7 +47,6 @@ end )
 
 //Remover tool restrictions
 hook.Add( "CanTool", "BlockRemoverandother", function( ply, tr, tool)
-
 	if !(table.HasValue( RPTools, tool )) then return false end
 
 	if tool == "remover" and IsValid(tr.Entity) then

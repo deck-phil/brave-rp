@@ -2,7 +2,7 @@
 	RPWeapons =
 	
 	{
-		["weapon_stunstick"] = { name = "Stunstick", model = "models/weapons/w_stunbaton.mdl", role = {"headpolice"}, price = 30, clipsize = 0, priammo = nil },
+		["weapon_stunstick"] = { name = "Stunstick", model = "models/weapons/w_stunbaton.mdl", role = {"headpolice"}, price = 30, clipsize = -1, priammo = nil },
 		["brp_somagun"] = { name = "Soma Air Gun", model = "models/weapons/w_rocket_launcher.mdl", role = {"headpolice"}, price = 0, clipsize = 3, priammo = "RPG_Round" },
 		["weapon_ar2"] = { name = "AR2", model = "models/weapons/w_IRifle.mdl", role = {"headpolice"}, price = 0, clipsize = 30, priammo = "AR2" },
 		["brp_railgun"] = { name = "Railgun", model = "models/weapons/w_annabelle.mdl", role = {"rebelleader"}, price = 0, clipsize = 24, priammo = "XBowBolt" },	
@@ -12,7 +12,7 @@
 			
 		//m9k Weapons
 		["m9k_usp"] = { name = "HK USP", model = "models/weapons/w_pist_fokkususp.mdl", role = {"headpolice"}, price = 0, clipsize = 15, priammo = "Pistol" }, 	
-		["m9k_hk45"] = { name = "HK 45C", model = "models/weapons/w_hk45c.mdl", role = {"rebelleader"}, price = 0, clipsize = 14, priammo = "Pistol" }, 	
+		["m9k_hk45"] = { name = "HK 45C", model = "models/weapons/w_hk45c.mdl", role = {"rebelleader"}, price = 0, clipsize = 8, priammo = "Pistol" }, 	
 		["m9k_ak74"] = { name = "AK74", model = "models/weapons/w_ak47_m9k.mdl", role = {"rebelleader"}, price = 0, clipsize = 30, priammo = "AR2" }, 	
 		["m9k_mp5"] = { name = "MP5", model = "models/weapons/w_hk_mp5.mdl", role = {"rebelleader"}, price = 0, clipsize = 30, priammo = "SMG1" }, 	
 		["m9k_m4a1"] = { name = "M4A1", model = "models/weapons/w_m4a1_iron.mdl", role = {"headpolice"}, price = 0, clipsize = 30, priammo = "AR2" }, 	
@@ -29,73 +29,6 @@
 		["brp_healthkit"] = { name = "Health Kits", model = "models/items/healthkit.mdl", role = {"medic"}, price = 0, crate = true },		
 		["brp_geneticswap"] = { name = "Genetic Swapper", model = "models/Items/battery.mdl", role = {"medic"}, price = 0, crate = false },	
 		["durgz_alcohol"] = { name = "Alcohol", model = "models/drug_mod/alcohol_can.mdl", role = {"bartender"}, price = 0, crate = true }
-	}
-	
-	IntroModels = {
-	
-	"models/player/group01/male_01.mdl",
-	"models/player/group01/male_02.mdl",
-	"models/player/group01/male_03.mdl",
-	"models/player/group01/male_04.mdl",
-	"models/player/group01/male_05.mdl",
-	"models/player/group01/male_06.mdl",
-	"models/player/group01/male_07.mdl",
-	"models/player/group01/male_08.mdl",
-	"models/player/group01/male_09.mdl",
-	"models/player/group01/female_01.mdl",
-	"models/player/group01/female_02.mdl",
-	"models/player/group01/female_03.mdl",
-	"models/player/group01/female_04.mdl",
-	"models/player/group01/female_06.mdl",
-	
-	"models/player/group03/male_01.mdl",
-	"models/player/group03/male_02.mdl",
-	"models/player/group03/male_03.mdl",
-	"models/player/group03/male_04.mdl",
-	"models/player/group03/male_05.mdl",
-	"models/player/group03/male_06.mdl",
-	"models/player/group03/male_07.mdl",
-	"models/player/group03/male_08.mdl",
-	"models/player/group03/male_09.mdl",
-	"models/player/group03/female_01.mdl",
-	"models/player/group03/female_02.mdl",
-	"models/player/group03/female_03.mdl",
-	"models/player/group03/female_04.mdl",
-	"models/player/group03/female_06.mdl",
-
-	"models/player/group03m/male_01.mdl",
-	"models/player/group03m/male_02.mdl",
-	"models/player/group03m/male_03.mdl",
-	"models/player/group03m/male_04.mdl",
-	"models/player/group03m/male_05.mdl",
-	"models/player/group03m/male_06.mdl",
-	"models/player/group03m/male_07.mdl",
-	"models/player/group03m/male_08.mdl",
-	"models/player/group03m/male_09.mdl",
-	"models/player/group03m/female_01.mdl",
-	"models/player/group03m/female_02.mdl",
-	"models/player/group03m/female_03.mdl",
-	"models/player/group03m/female_04.mdl",
-	"models/player/group03m/female_06.mdl",
-	
-	"models/dpfilms/metropolice/playermodels/pm_hl2concept.mdl",
-	"models/dpfilms/metropolice/playermodels/pm_hl2concept.mdl",
-	"models/dpfilms/metropolice/playermodels/pm_hl2concept.mdl",
-	"models/player/breen.mdl", 
-	"models/player/breen.mdl", 
-	"models/player/breen.mdl", 
-	"models/dpfilms/metropolice/playermodels/pm_police_bt.mdl",
-	"models/dpfilms/metropolice/playermodels/pm_police_bt.mdl",
-	"models/dpfilms/metropolice/playermodels/pm_police_bt.mdl",
-	"models/dpfilms/metropolice/playermodels/pm_rtb_police.mdl", 
-	"models/dpfilms/metropolice/playermodels/pm_rtb_police.mdl", 
-	"models/dpfilms/metropolice/playermodels/pm_rtb_police.mdl", 
-	"models/dpfilms/metropolice/playermodels/pm_biopolice.mdl", 
-	"models/dpfilms/metropolice/playermodels/pm_biopolice.mdl", 
-	"models/dpfilms/metropolice/playermodels/pm_biopolice.mdl", 
-	"models/dpfilms/metropolice/playermodels/pm_resistance_police.mdl",
-	"models/dpfilms/metropolice/playermodels/pm_resistance_police.mdl",
-	"models/dpfilms/metropolice/playermodels/pm_resistance_police.mdl"
 	}
 	
 	//Add model with carac
@@ -355,39 +288,71 @@
 		"func_door"
 	
 	}
+	
+	
+	IntroModels = {
+	
+	"models/player/group01/male_01.mdl",
+	"models/player/group01/male_02.mdl",
+	"models/player/group01/male_03.mdl",
+	"models/player/group01/male_04.mdl",
+	"models/player/group01/male_05.mdl",
+	"models/player/group01/male_06.mdl",
+	"models/player/group01/male_07.mdl",
+	"models/player/group01/male_08.mdl",
+	"models/player/group01/male_09.mdl",
+	"models/player/group01/female_01.mdl",
+	"models/player/group01/female_02.mdl",
+	"models/player/group01/female_03.mdl",
+	"models/player/group01/female_04.mdl",
+	"models/player/group01/female_06.mdl",
+	
+	"models/player/group03/male_01.mdl",
+	"models/player/group03/male_02.mdl",
+	"models/player/group03/male_03.mdl",
+	"models/player/group03/male_04.mdl",
+	"models/player/group03/male_05.mdl",
+	"models/player/group03/male_06.mdl",
+	"models/player/group03/male_07.mdl",
+	"models/player/group03/male_08.mdl",
+	"models/player/group03/male_09.mdl",
+	"models/player/group03/female_01.mdl",
+	"models/player/group03/female_02.mdl",
+	"models/player/group03/female_03.mdl",
+	"models/player/group03/female_04.mdl",
+	"models/player/group03/female_06.mdl",
 
-
-	/*
-	model = "models/weapons/w_beretta_m92.mdl",
-	entity = "m9k_m92beretta",
-
-	model = "models/weapons/s_dmgf_co1911.mdl",
-	entity = "m9k_colt1911",
-
-	model = "models/weapons/w_hk45c.mdl",
-	entity = "m9k_hk45",
-
-	model = "models/weapons/w_pist_fokkususp.mdl",
-	entity = "m9k_usp",
-
-	model = "models/weapons/w_ak47_m9k.mdl",
-	entity = "m9k_ak74",
-
-	model = "models/weapons/w_hk_mp5.mdl",
-	entity = "m9k_mp5",
-
-	model = "models/weapons/w_m4a1_iron.mdl",
-	entity = "m9k_m4a1",
-
-	model = "models/weapons/w_benelli_m3.mdl",
-	entity = "m9k_m3",
-
-	model = "models/weapons/w_ithaca_m37.mdl",
-	entity = "m9k_ithacam37",
-
-	model = "models/weapons/w_snip_m24_6.mdl",
-	entity = "m9k_m24",
-
-	model = "models/weapons/w_hk_g3.mdl",
-	entity = "m9k_g3a3",
-*/
+	"models/player/group03m/male_01.mdl",
+	"models/player/group03m/male_02.mdl",
+	"models/player/group03m/male_03.mdl",
+	"models/player/group03m/male_04.mdl",
+	"models/player/group03m/male_05.mdl",
+	"models/player/group03m/male_06.mdl",
+	"models/player/group03m/male_07.mdl",
+	"models/player/group03m/male_08.mdl",
+	"models/player/group03m/male_09.mdl",
+	"models/player/group03m/female_01.mdl",
+	"models/player/group03m/female_02.mdl",
+	"models/player/group03m/female_03.mdl",
+	"models/player/group03m/female_04.mdl",
+	"models/player/group03m/female_06.mdl",
+	
+	"models/dpfilms/metropolice/playermodels/pm_hl2concept.mdl",
+	"models/dpfilms/metropolice/playermodels/pm_hl2concept.mdl",
+	"models/dpfilms/metropolice/playermodels/pm_hl2concept.mdl",
+	"models/player/breen.mdl", 
+	"models/player/breen.mdl", 
+	"models/player/breen.mdl", 
+	"models/dpfilms/metropolice/playermodels/pm_police_bt.mdl",
+	"models/dpfilms/metropolice/playermodels/pm_police_bt.mdl",
+	"models/dpfilms/metropolice/playermodels/pm_police_bt.mdl",
+	"models/dpfilms/metropolice/playermodels/pm_rtb_police.mdl", 
+	"models/dpfilms/metropolice/playermodels/pm_rtb_police.mdl", 
+	"models/dpfilms/metropolice/playermodels/pm_rtb_police.mdl", 
+	"models/dpfilms/metropolice/playermodels/pm_biopolice.mdl", 
+	"models/dpfilms/metropolice/playermodels/pm_biopolice.mdl", 
+	"models/dpfilms/metropolice/playermodels/pm_biopolice.mdl", 
+	"models/dpfilms/metropolice/playermodels/pm_resistance_police.mdl",
+	"models/dpfilms/metropolice/playermodels/pm_resistance_police.mdl",
+	"models/dpfilms/metropolice/playermodels/pm_resistance_police.mdl"
+	}	

@@ -40,7 +40,7 @@ if SERVER then
 		
 		print(ply:GetActiveWeapon():Clip1())
 		
-		if (GetMaxAmmo(ply:GetActiveWeapon():GetClass()) > (ply:GetActiveWeapon():Clip1())) then return ply:SendLua("notification.AddLegacy(\"You can't drop a weapon without a full clip.\", NOTIFY_GENERIC, 5)")	end
+		if (RPWeapons[ply:GetActiveWeapon():GetClass()].clipsize > (ply:GetActiveWeapon():Clip1())) then return ply:SendLua("notification.AddLegacy(\"You can't drop a weapon without a full clip.\", NOTIFY_GENERIC, 5)")	end
 		
 		local trace = ply:GetEyeTraceNoCursor()
 		local spawnpos = trace.HitPos

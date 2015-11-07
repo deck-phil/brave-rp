@@ -116,13 +116,15 @@ function GM:PlayerSpawn( ply )
 	//Classic hands code
 	ply:SetupHands()
 	
+
+	
 	//To avoid spawn clusters	
 	ply:SetPos(ply:LocalToWorld(Vector(math.Rand(50,400),0,0)))
 	
 	//If they werent permad, keep their role
 	if not ply:GetRPRole() then return end
 	ply:SetRPRole( ply:GetRPRole() )
-	
+	ply:Give("gmod_camera")	
 end
 
 //Classic hands

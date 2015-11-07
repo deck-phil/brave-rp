@@ -86,7 +86,8 @@ elseif CLIENT then
 
 		for k,v in pairs(getAvailWeapons(ply)) do	
 			local icon = vgui.Create( "SpawnIcon", ShopTab ) 
-			icon:SetModel( v.model )//
+			//icon:SetModel( v.model )//
+			icon:SetImage("VGUI/BRP_icons/m9k_ak74")
 			icon:SetToolTip( v.name )		
 			ShopTab:Add( icon )
 			if (ply:canAfford(v.price)) then
