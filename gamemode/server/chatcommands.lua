@@ -115,7 +115,7 @@ end
 			
 				local roleName = ""
 					for k, v in pairs(RPRoles) do
-						if v["role"] == command[2] then roleName = v.name end
+						if k == command[2] then roleName = v.name end
 					end	
 			
 				ply:SendLua("notification.AddLegacy(\"You have promoted "..target:GetRPName().." to "..roleName.."\", NOTIFY_GENERIC, 5)")

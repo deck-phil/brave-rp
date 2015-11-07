@@ -48,7 +48,7 @@ elseif CLIENT then
 		
 		for k, v in pairs(RPModels) do
 
-			if v["role"] == "default" then
+			if table.HasValue(v.role, "default") then
 				w = w + 1
 				availmodels[w] = v
 				availmodels[w].showModel = v["model"] .."".. ply:GetOGModelType()
@@ -88,13 +88,13 @@ elseif CLIENT then
 			for k,v in pairs(RPBuyOutfits) do	
 			
 			
-				if v.role == plyrole and v.id == "rebel" then
+				if table.HasValue(v.role, plyrole) and v.id == "rebel" then
 					w = w + 1
 					availout[w] = v
 					availout[w].name = RPModels[k].name
 					availout[w].showModel = RPModels[k].model..""..ply:GetOGModelType()
 					
-				elseif v.role == plyrole then
+				elseif table.HasValue(v.role, plyrole) then
 					w = w + 1
 					availout[w] = v
 					availout[w].name = RPModels[k].name

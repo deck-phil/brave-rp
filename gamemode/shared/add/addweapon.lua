@@ -59,27 +59,14 @@ concommand.Add("BRP_DropWeapon", DropWeapon)
 
 elseif CLIENT then
 
-	/* List of Roles
-	RProles[0] = "null"	
-	RProles[1] = "police"
-	RProles[2] = "citizen"
-	RProles[3] = "dhc"
-	RProles[4] = "watcher"
-	RProles[5] = "headpolice"
-	RProles[6] = "distributer"
-	RProles[7] = "medic"
-	*/
-
 	function getAvailWeapons(ply)
 
 		local availweapons = {}
 		local plyrole = ply:GetRPRole()
-		local w = 0
 		
 		for k,v in pairs(RPWeapons) do	
-			if v.role == plyrole then
-				w = w + 1				
-				availweapons[w] = v
+			if table.HasValue(v.role, plyrole) then			
+				availweapons[k] = v
 			end
 		end
 		
@@ -91,12 +78,10 @@ elseif CLIENT then
 
 		local availents = {}
 		local plyrole = ply:GetRPRole()
-		local w = 0
 		
 		for k,v in pairs(RPEnts) do	
-			if v.role == plyrole then
-				w = w + 1
-				availents[w] = v
+			if table.HasValue(v.role, plyrole) then
+				availents[k] = v
 			end
 		end
 		

@@ -24,7 +24,7 @@ function meta:GetRoleOutfits( role )
 	
 	for k, v in pairs(RPModels) do
 	
-		if v.role == role then
+		if table.HasValue(v.role, role) then
 	
 			prevString = prevString..";"..v.id
 	

@@ -224,10 +224,10 @@ local SCORE_BOARD = {
 
 	PerformLayout = function( self )
 
-		local space = 0
+		local space = 120	
 	
 		for k, v in pairs(player.GetAll()) do
-			space = space + 200
+			space = space + 50
 		end
 	
 		self:SetSize( 700,space )

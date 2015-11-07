@@ -90,7 +90,7 @@ elseif CLIENT then
 			icon:SetToolTip( v.name )		
 			ShopTab:Add( icon )
 			if (ply:canAfford(v.price)) then
-				icon.DoClick = function(  ) SendWeapon( v.weapon, v.price ) print(v.price) MainMenuFrame:Close() notification.AddLegacy( "You bought something!", NOTIFY_HINT, 5 ) end  
+				icon.DoClick = function(  ) SendWeapon( k, v.price ) print(v.price) MainMenuFrame:Close() notification.AddLegacy( "You bought something!", NOTIFY_HINT, 5 ) end  
 			end
 			icon.PaintOver = function()
 				draw.SimpleText(v.price.."$", "DebugFixed",64,0,Color(255,100,100),TEXT_ALIGN_RIGHT)
@@ -106,7 +106,7 @@ elseif CLIENT then
 			icon:SetToolTip( v.name )
 			ShopTab:Add( icon )
 			if (ply:canAfford(v.price)) then
-				icon.DoClick = function(  ) SendEnt( v.ent, v.price, v.crate ) MainMenuFrame:Close() notification.AddLegacy( "You bought something!", NOTIFY_HINT, 5 ) end 
+				icon.DoClick = function(  ) SendEnt( k, v.price, v.crate ) MainMenuFrame:Close() notification.AddLegacy( "You bought something!", NOTIFY_HINT, 5 ) end 
 			end
 			icon.PaintOver = function()
 				draw.SimpleText(v.price.."$", "DebugFixed",64,0,Color(255,100,100),TEXT_ALIGN_RIGHT)
@@ -988,7 +988,7 @@ elseif CLIENT then
 			local role = pl:GetRPRole()
 			
 			for k, v in pairs(RPRoles) do
-				if v.role ==role then return v.name end
+				if k == role then return v.name end
 			end
 			
 			return ""
@@ -1025,7 +1025,7 @@ elseif CLIENT then
 			for k, v in pairs( RPRoles ) do
 			
 				if v["name"] == name then
-					return v["role"]
+					return k
 				end
 			end
 			return false

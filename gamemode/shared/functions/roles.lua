@@ -61,7 +61,7 @@ end
 function HasRole( role )
 	
 	for k, v in pairs( RPRoles ) do
-		if ( v["role"] == role ) then
+		if ( k == role ) then
 			return true
 		end
 	end	
