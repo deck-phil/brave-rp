@@ -2,10 +2,10 @@
 	RPWeapons =
 	
 	{
-		["weapon_stunstick"] = { name = "Stunstick", model = "models/weapons/w_stunbaton.mdl", role = {"headpolice"}, price = 30, clipsize = -1, priammo = nil },
+		["weapon_stunstick"] = { name = "Stunstick", model = "models/weapons/w_stunbaton.mdl", role = {"headpolice"}, price = 30, clipsize = -1, priammo = "" },
 		["brp_somagun"] = { name = "Soma Air Gun", model = "models/weapons/w_rocket_launcher.mdl", role = {"headpolice"}, price = 0, clipsize = 3, priammo = "RPG_Round" },
 		["weapon_ar2"] = { name = "AR2", model = "models/weapons/w_IRifle.mdl", role = {"headpolice"}, price = 0, clipsize = 30, priammo = "AR2" },
-		["brp_railgun"] = { name = "Railgun", model = "models/weapons/w_annabelle.mdl", role = {"rebelleader"}, price = 0, clipsize = 24, priammo = "XBowBolt" },	
+		//["brp_railgun"] = { name = "Railgun", model = "models/weapons/w_annabelle.mdl", role = {"rebelleader"}, price = 0, clipsize = 24, priammo = "XBowBolt" },	
 		["weapon_smg1"] = { name = "SMG", model = "models/weapons/w_smg1.mdl", role = {"rebelleader"}, price = 0, clipsize = 45, priammo = "SMG1" },
 		["brp_spraygun"] = { name = "Spraygun", model = "models/weapons/w_smg1.mdl", role = {"watcher"}, price = 70, clipsize = 3, priammo = "357" },
 		["brp_launcher"] = { name = "Improvised Launcher", model = "models/weapons/w_rocket_launcher.mdl", role = {"watcher"}, price = 50, clipsize = 5, priammo = "SMG1_Grenade" },

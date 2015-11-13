@@ -24,6 +24,7 @@ elseif CLIENT then
 			MainMenuFrame:SetTitle( "Control Panel" )
 			MainMenuFrame:SetVisible( true )
 			MainMenuFrame:SetDraggable( true )
+			//MainMenuFrame:SetSizable( true )
 			MainMenuFrame:MakePopup()
 			MainMenuFrame:Center()
 			MainMenuFrame.Paint = function(self, w, h)
@@ -74,9 +75,11 @@ elseif CLIENT then
 			//AmmoIcon.weapon = "models/items/ammorounds.mdl"
 			AmmoIcon:SetToolTip( "Ammo" )
 			ShopTab:Add( AmmoIcon )
-			if (ply:canAfford(ammoPrice)) then
-				AmmoIcon.DoClick = function(  ) RunConsoleCommand("BRP_BuyAmmo") end
-			end
+			AmmoIcon.DoClick = function( icon )
+			
+				if !(ply:canAfford(v.price)) then return end
+				RunConsoleCommand("BRP_BuyAmmo")
+			end 
 			AmmoIcon.PaintOver = function()
 				draw.SimpleText(ammoPrice.."$", "DebugFixed",64,0,Color(255,100,100),TEXT_ALIGN_RIGHT)
 				if (ply:canAfford(ammoPrice)) then return end
@@ -84,21 +87,50 @@ elseif CLIENT then
 				surface.DrawRect(0,0,64,64)
 			end					
 
-		for k,v in pairs(getAvailWeapons(ply)) do	
+		for k,v in pairs(getAvailBuyModel(ply)) do	
 			local icon = vgui.Create( "SpawnIcon", ShopTab ) 
-			//icon:SetModel( v.model )//
-			icon:SetImage("VGUI/BRP_icons/m9k_ak74")
-			icon:SetToolTip( v.name )		
+			icon:SetModel( v.showModel )
+			icon:SetToolTip( v.name )
 			ShopTab:Add( icon )
-			if (ply:canAfford(v.price)) then
-				icon.DoClick = function(  ) SendWeapon( k, v.price ) print(v.price) MainMenuFrame:Close() notification.AddLegacy( "You bought something!", NOTIFY_HINT, 5 ) end  
-			end
+			icon.DoClick = function( icon )
+			
+				if !(ply:canAfford(v.price)) then return end
+				SendOutfit( v.id, "buy", v.price ) 
+				MainMenuFrame:Close() 
+				notification.AddLegacy( "You bought an outfit!", NOTIFY_HINT, 5 ) 
+			end 
 			icon.PaintOver = function()
 				draw.SimpleText(v.price.."$", "DebugFixed",64,0,Color(255,100,100),TEXT_ALIGN_RIGHT)
 				if (ply:canAfford(v.price)) then return end
 				surface.SetDrawColor(255,100,100,55)
 				surface.DrawRect(0,0,64,64)
-			end		
+			end			
+		end				
+			
+		for k,v in pairs(getAvailWeapons(ply)) do	
+			local icon = vgui.Create( "DButton", ShopTab ) 
+			icon:SetSize(64,64)
+			icon:SetColor(Color(0,0,0,0))
+			icon:SetImage( "vgui/BRP_icons/"..k..".png", "vgui/avatar_default" )
+			icon:SetToolTip( v.name )		
+			icon.DoClick = function( con ) 
+			
+				icon:SetSize(64,64)
+			
+				if !(ply:canAfford(v.price)) then return end
+				SendWeapon( k, v.price )
+				MainMenuFrame:Close() 
+				notification.AddLegacy( "You bought something!", NOTIFY_HINT, 5 ) 
+				
+			end  
+		
+			icon.PaintOver = function()
+				draw.SimpleText(v.price.."$", "DebugFixed",64,0,Color(255,100,100),TEXT_ALIGN_RIGHT)
+				if (ply:canAfford(v.price)) then return end
+				surface.SetDrawColor(255,100,100,55)
+				surface.DrawRect(0,0,64,64)
+			end			
+			ShopTab:Add( icon )
 		end
 		
 		for k,v in pairs(getAvailEntities(ply)) do	
@@ -107,7 +139,7 @@ elseif CLIENT then
 			icon:SetToolTip( v.name )
 			ShopTab:Add( icon )
 			if (ply:canAfford(v.price)) then
-				icon.DoClick = function(  ) SendEnt( k, v.price, v.crate ) MainMenuFrame:Close() notification.AddLegacy( "You bought something!", NOTIFY_HINT, 5 ) end 
+				icon.DoClick = function( icon ) SendEnt( k, v.price, v.crate ) MainMenuFrame:Close() notification.AddLegacy( "You bought something!", NOTIFY_HINT, 5 ) end 
 			end
 			icon.PaintOver = function()
 				draw.SimpleText(v.price.."$", "DebugFixed",64,0,Color(255,100,100),TEXT_ALIGN_RIGHT)
@@ -115,22 +147,6 @@ elseif CLIENT then
 				surface.SetDrawColor(255,100,100,55)
 				surface.DrawRect(0,0,64,64)
 			end					
-		end	
-
-		for k,v in pairs(getAvailBuyModel(ply)) do	
-			local icon = vgui.Create( "SpawnIcon", ShopTab ) 
-			icon:SetModel( v.showModel )
-			icon:SetToolTip( v.name )
-			ShopTab:Add( icon )
-			if (ply:canAfford(v.price)) then
-				icon.DoClick = function(  ) SendOutfit( v.id, "buy", v.price ) MainMenuFrame:Close() notification.AddLegacy( "You bought an outfit!", NOTIFY_HINT, 5 ) end 
-			end
-			icon.PaintOver = function()
-				draw.SimpleText(v.price.."$", "DebugFixed",64,0,Color(255,100,100),TEXT_ALIGN_RIGHT)
-				if (ply:canAfford(v.price)) then return end
-				surface.SetDrawColor(255,100,100,55)
-				surface.DrawRect(0,0,64,64)
-			end			
 		end	
 		
 		for k,v in pairs(getAvailModels(ply)) do	

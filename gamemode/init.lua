@@ -82,6 +82,7 @@ AddCSLuaFile("client/hovername.lua")
 AddCSLuaFile("client/hud.lua")
 AddCSLuaFile("client/scoreboard.lua")
 AddCSLuaFile("client/chat.lua")
+AddCSLuaFile("client/icons.lua")
 
 
 ----Library files -----
@@ -124,7 +125,7 @@ function GM:PlayerSpawn( ply )
 	//If they werent permad, keep their role
 	if not ply:GetRPRole() then return end
 	ply:SetRPRole( ply:GetRPRole() )
-	ply:Give("gmod_camera")	
+	
 end
 
 //Classic hands

@@ -1,4 +1,5 @@
 AddCSLuaFile()
+AddCSLuaFile()
 
 
 function ENT:Initialize()

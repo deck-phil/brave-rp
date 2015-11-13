@@ -11,7 +11,6 @@ local RPTools = {
 	"weld",
 	"colour",
 	"material",
-	"light",
 	"nocollide"
 }
 
@@ -33,7 +32,7 @@ local function blockProps( ply, mdl )
 		end
 	end
 	ply:SendLua("notification.AddLegacy(\"You are not allowed to spawn that.\", NOTIFY_GENERIC, 5)") 
-	return true
+	return false
 end
 
 //Sets player as RP Owner of that item.

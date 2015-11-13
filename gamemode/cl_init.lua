@@ -5,6 +5,7 @@ include("client/hovername.lua")
 include("client/hud.lua")
 include("client/scoreboard.lua")
 include("client/chat.lua")
+include("client/icons.lua")
 
 local credits = [[
 //*BraveRP*\\
