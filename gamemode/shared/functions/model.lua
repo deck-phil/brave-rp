@@ -38,9 +38,12 @@ end
 
 function meta:LoadRPModel()
 
-	self:SetNWInt("rpmodel", self:GetPData("SQLmodel") )
+	self:SetNWString("rpmodel", self:GetPData("SQLmodel") )
+	self:SetModel(self:GetPData("SQLmodel"))
 	
 end
+
+
 
 function meta:SetOGModel( path )
 

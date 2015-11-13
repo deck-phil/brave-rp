@@ -47,6 +47,8 @@ end
 
 function meta:LoadRPName()
 
+	if not self:GetPData("SQLname") then return end
+
 	self:SetNWString( "rpname", self:GetPData("SQLname") )
 	
 	self:SetNWString( "rptitle", self:GetPData("SQLtitle") )	

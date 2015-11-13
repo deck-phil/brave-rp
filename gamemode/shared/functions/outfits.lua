@@ -14,6 +14,21 @@ function meta:GetOutfitList()
 
 end
 
+
+function meta:SaveOutfits()
+
+	self:SetPData("SQLOutfits", self:GetNWString("OutfitList") )
+	
+end
+
+function meta:LoadOutfits()
+
+	if not self:GetPData("SQLOutfits") then return end
+
+	self:SetNWString("OutfitList", self:GetPData("SQLOutfits"))
+
+end
+
 function meta:GetRoleOutfits( role )
 
 	//print(role)

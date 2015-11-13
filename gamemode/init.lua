@@ -149,12 +149,13 @@ function GM:PlayerAuthed( ply, steamID, uniqueID )
 	ply:SetModel(defaultModel)
 	
 	//Load values
-	/*
+
 	ply:LoadMoney()
 	ply:LoadRPName()
 	ply:LoadRPModel()
 	ply:LoadCaste()
-	*/
+	ply:LoadOutfits()
+
 	
 	CharMenu( ply )
 end
@@ -162,12 +163,13 @@ end
 function GM:PlayerDisconnected( ply )
 
 	//Save values
-	/*
+
 	ply:SaveMoney()
 	ply:SaveRPName()
 	ply:SaveRPModel()
 	ply:SaveCaste()
-	*/
+	ply:SaveOutfits()
+
 	
 	timer.Start(ply:SteamID()..":Timeout",timeoutTime,1, function()
 	
