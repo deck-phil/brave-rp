@@ -1,0 +1,7 @@
+"UnlitGeneric"
+{
+ "$basetexture" "VGUI/BRP_icons/weapon_stunstick"
+ "$vertexcolor" 1
+ "$vertexalpha" 1
+ "$translucent" 1
+}

@@ -111,7 +111,8 @@ elseif CLIENT then
 			local icon = vgui.Create( "DButton", ShopTab ) 
 			icon:SetSize(64,64)
 			icon:SetColor(Color(0,0,0,0))
-			icon:SetImage( "vgui/BRP_icons/"..k..".png", "vgui/avatar_default" )
+			icon.Paint = function() end
+			icon:SetImage( "vgui/BRP_icons/"..k..".vtf", "vgui/avatar_default" )
 			icon:SetToolTip( v.name )		
 			icon.DoClick = function( con ) 
 			

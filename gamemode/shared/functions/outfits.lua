@@ -72,6 +72,8 @@ end
 
 function meta:RemoveOutfit(id)
 
+	if !(OutfitsGetValue("id", id "default")) then return end
+
 	local ids = self:GetNWString("OutfitList","")
 	
 	local idTable = string.Explode( ";", ids )
@@ -173,10 +175,6 @@ end
 function meta:CreateOutfit( id )
 
 	local path = OutfitsGetValue( "id", id, "model" )
-	
-	//print("nyess"..path)
-	
-	
 	
 	local ent = ents.Create('brp_outfit_base')
 		ent:NewOutfit( path )

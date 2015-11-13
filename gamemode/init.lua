@@ -202,11 +202,21 @@ function GM:PlayerDeath( victim, inflictor, attacker )
 			print( victim:GetRPName() .. " was killed by " .. attacker:GetRPName() .. "." )
 		end
 	end
+	
 end
 
 function GM:DoPlayerDeath( ply, attacker, dmginfo )
 
 	ply:CreateRagdoll()
+	
+	ply:SetRPModel(victim:GetOGModel())	
+	ply:RemoveOutfit(OutfitsGetValue("model", ply:GetRPModel(), "id"))
+	
+	local ent = ents.Create('brp_outfit_base')
+		ent:NewOutfit( ply:GetRPModel() )
+		ent:SetPos( ply:LocalToWorld(Vector(0, 0,20)))
+		ent:Spawn()	
+
 
 	ply:AddDeaths( 1 )
 	
