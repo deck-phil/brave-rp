@@ -83,6 +83,8 @@ function EntPickup(ply, ent)
 		return true
 	end
 	
+	return false
+	
 end
 hook.Add("PhysgunPickup", "PhysgunPickupThing", EntPickup)
 

@@ -240,6 +240,7 @@
 	
 	{
 		"headpolice",
+		"rebelleader",
 		"watcher",
 		"bioelite",
 		"biorebel",

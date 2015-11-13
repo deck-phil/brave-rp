@@ -265,7 +265,7 @@ local SCORE_BOARD = {
 		--
 
 		local plyrs = getRPAdmins()
-		for id, pl in pairs( plyrs ) do
+		for id, pl in pairs( player.GetAll() ) do
 
 			if ( IsValid( pl.ScoreEntry ) ) then continue end
 			pl.ScoreEntry = vgui.CreateFromTable( PLAYER_LINE, pl.ScoreEntry )

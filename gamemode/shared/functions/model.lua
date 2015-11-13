@@ -38,6 +38,8 @@ end
 
 function meta:LoadRPModel()
 
+	if not self:GetPData("SQLmodel") then return end
+
 	self:SetNWString("rpmodel", self:GetPData("SQLmodel") )
 	self:SetModel(self:GetPData("SQLmodel"))
 	

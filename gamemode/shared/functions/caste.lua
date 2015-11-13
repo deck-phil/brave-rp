@@ -14,6 +14,8 @@ end
 
 function meta:LoadCaste()
 
+	if not self:GetPData("SQLcaste") then return end
+
 	self:SetTeam( self:GetPData("SQLcaste") )
 	
 end

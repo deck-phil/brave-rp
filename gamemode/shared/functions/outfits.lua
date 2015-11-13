@@ -10,7 +10,7 @@ end
 
 function meta:GetOutfitList()
 
-	return self:GetNWString("OutfitList")
+	return self:GetNWString("OutfitList", "")
 
 end
 
@@ -23,7 +23,7 @@ end
 
 function meta:LoadOutfits()
 
-	if not self:GetPData("SQLOutfits") then return end
+	if not self:GetPData("SQLOutfits") then self:SetNWString( "OutfitList", "" ) return end
 
 	self:SetNWString("OutfitList", self:GetPData("SQLOutfits"))
 
@@ -72,7 +72,7 @@ end
 
 function meta:RemoveOutfit(id)
 
-	local ids = self:GetNWString("OutfitList")
+	local ids = self:GetNWString("OutfitList","")
 	
 	local idTable = string.Explode( ";", ids )
 	
@@ -91,7 +91,7 @@ end
 
 function meta:AddOutfit(id)
 
-	local IDS = self:GetNWString("OutfitList")
+	local IDS = self:GetNWString("OutfitList", "")
 	
 	local tbl = string.Explode(IDS, ";")
 	if #tbl+1 > maxOutfits then return end
