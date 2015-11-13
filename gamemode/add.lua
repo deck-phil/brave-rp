@@ -3,32 +3,32 @@
 	
 	{
 		["weapon_stunstick"] = { name = "Stunstick", model = "models/weapons/w_stunbaton.mdl", role = {"headpolice"}, price = 30, clipsize = -1, priammo = "" },
-		["brp_somagun"] = { name = "Soma Air Gun", model = "models/weapons/w_rocket_launcher.mdl", role = {"headpolice"}, price = 0, clipsize = 3, priammo = "RPG_Round" },
-		["weapon_ar2"] = { name = "AR2", model = "models/weapons/w_IRifle.mdl", role = {"headpolice"}, price = 0, clipsize = 30, priammo = "AR2" },
+		["brp_somagun"] = { name = "Soma Air Gun", model = "models/weapons/w_rocket_launcher.mdl", role = {"headpolice"}, price = 50, clipsize = 3, priammo = "RPG_Round" },
+		["weapon_ar2"] = { name = "AR2", model = "models/weapons/w_IRifle.mdl", role = {"headpolice"}, price = 350, clipsize = 30, priammo = "AR2" },
 		//["brp_railgun"] = { name = "Railgun", model = "models/weapons/w_annabelle.mdl", role = {"rebelleader"}, price = 0, clipsize = 24, priammo = "XBowBolt" },	
-		["weapon_smg1"] = { name = "SMG", model = "models/weapons/w_smg1.mdl", role = {"rebelleader"}, price = 0, clipsize = 45, priammo = "SMG1" },
-		["brp_spraygun"] = { name = "Spraygun", model = "models/weapons/w_smg1.mdl", role = {"watcher"}, price = 70, clipsize = 3, priammo = "357" },
-		["brp_launcher"] = { name = "Improvised Launcher", model = "models/weapons/w_rocket_launcher.mdl", role = {"watcher"}, price = 50, clipsize = 5, priammo = "SMG1_Grenade" },
+		["weapon_smg1"] = { name = "SMG", model = "models/weapons/w_smg1.mdl", role = {"rebelleader"}, price = 350, clipsize = 45, priammo = "SMG1" },
+		["brp_spraygun"] = { name = "Spraygun", model = "models/weapons/w_smg1.mdl", role = {"watcher"}, price = 270, clipsize = 3, priammo = "357" },
+		["brp_launcher"] = { name = "Improvised Launcher", model = "models/weapons/w_rocket_launcher.mdl", role = {"watcher"}, price = 150, clipsize = 5, priammo = "SMG1_Grenade" },
 			
 		//m9k Weapons
-		["m9k_usp"] = { name = "HK USP", model = "models/weapons/w_pist_fokkususp.mdl", role = {"headpolice"}, price = 0, clipsize = 15, priammo = "Pistol" }, 	
-		["m9k_hk45"] = { name = "HK 45C", model = "models/weapons/w_hk45c.mdl", role = {"rebelleader"}, price = 0, clipsize = 8, priammo = "Pistol" }, 	
-		["m9k_ak74"] = { name = "AK74", model = "models/weapons/w_ak47_m9k.mdl", role = {"rebelleader"}, price = 0, clipsize = 30, priammo = "AR2" }, 	
-		["m9k_mp5"] = { name = "MP5", model = "models/weapons/w_hk_mp5.mdl", role = {"rebelleader"}, price = 0, clipsize = 30, priammo = "SMG1" }, 	
-		["m9k_m4a1"] = { name = "M4A1", model = "models/weapons/w_m4a1_iron.mdl", role = {"headpolice"}, price = 0, clipsize = 30, priammo = "AR2" }, 	
-		["m9k_m3"] = { name = "BenelliM3", model = "models/weapons/w_benelli_m3.mdl", role = {"rebelleader"}, price = 0, clipsize = 8, priammo = "Buckshot" }, 	
-		["m9k_m24"] = { name = "M24Sniper", model = "models/weapons/w_snip_m24_6.mdl", role = {"headpolice"}, price = 0, clipsize = 5, priammo = "SniperPenetratedRound" },	
-		["m9k_g3a3"] = { name = "HKG3A3", model = "models/weapons/w_hk_g3.mdl", role = {"headpolice"}, price = 0, clipsize = 20, priammo = "AR2" } 	
+		["m9k_usp"] = { name = "HK USP", model = "models/weapons/w_pist_fokkususp.mdl", role = {"headpolice"}, price = 400, clipsize = 15, priammo = "Pistol" }, 	
+		["m9k_hk45"] = { name = "HK 45C", model = "models/weapons/w_hk45c.mdl", role = {"rebelleader"}, price = 400, clipsize = 8, priammo = "Pistol" }, 	
+		["m9k_ak74"] = { name = "AK74", model = "models/weapons/w_ak47_m9k.mdl", role = {"armsdealer"}, price = 600, clipsize = 30, priammo = "AR2" }, 	
+		["m9k_mp5"] = { name = "MP5", model = "models/weapons/w_hk_mp5.mdl", role = {"rebelleader"}, price = 500, clipsize = 30, priammo = "SMG1" }, 	
+		["m9k_m4a1"] = { name = "M4A1", model = "models/weapons/w_m4a1_iron.mdl", role = {"armsdealer"}, price = 600, clipsize = 30, priammo = "AR2" }, 	
+		["m9k_m3"] = { name = "BenelliM3", model = "models/weapons/w_benelli_m3.mdl", role = {"armsdealer"}, price = 750, clipsize = 8, priammo = "Buckshot" }, 	
+		["m9k_m24"] = { name = "M24Sniper", model = "models/weapons/w_snip_m24_6.mdl", role = {"armsdealer"}, price = 750, clipsize = 5, priammo = "SniperPenetratedRound" },	
+		["m9k_g3a3"] = { name = "HKG3A3", model = "models/weapons/w_hk_g3.mdl", role = {"headpolice"}, price = 500, clipsize = 20, priammo = "AR2" } 	
 	}
 
 	//Add Entities
 	RPEnts = 
 	
 	{
-		["brp_soma"] = { name = "Soma", model = "models/healthvial.mdl", role = {"distributer"}, price = 0, crate = true },
-		["brp_healthkit"] = { name = "Health Kits", model = "models/items/healthkit.mdl", role = {"medic"}, price = 0, crate = true },		
-		["brp_geneticswap"] = { name = "Genetic Swapper", model = "models/Items/battery.mdl", role = {"medic"}, price = 0, crate = false },	
-		["durgz_alcohol"] = { name = "Alcohol", model = "models/drug_mod/alcohol_can.mdl", role = {"bartender"}, price = 0, crate = true }
+		["brp_soma"] = { name = "Soma", model = "models/healthvial.mdl", role = {"distributer"}, price = 100, crate = true },
+		["brp_healthkit"] = { name = "Health Kits", model = "models/items/healthkit.mdl", role = {"medic"}, price = 140, crate = true },		
+		["brp_geneticswap"] = { name = "Genetic Swapper", model = "models/Items/battery.mdl", role = {"medic"}, price = 150, crate = false },	
+		["durgz_alcohol"] = { name = "Alcohol", model = "models/drug_mod/alcohol_can.mdl", role = {"bartender"}, price = 80, crate = true }
 	}
 	
 	//Add model with carac
@@ -106,7 +106,7 @@
 			name = "Head Police Outfit",
 			model = "models/dpfilms/metropolice/playermodels/pm_rtb_police.mdl", 
 			role = {"headpolice"}, 
-			weight = 50,
+			weight = 60,
 			gasProof = true, 
 			default = false, 
 			droppable = true,
@@ -274,6 +274,10 @@
 		["medic"] = { name = "Medic", admin = false, weps = {"weapon_medkit"} },
 		
 		["rebel"] = { name = "Rebel", admin = false, weps = {} },
+		
+		["armsdealer"] = { name = "Arms Dealer", admin = false, weps = {} },
+		
+		["blackdealer"] = { name = "Black Dealer", admin = false, weps = {} },
 		
 		["bartender"] = { name = "Bartender", admin = false, weps = {} }
 	

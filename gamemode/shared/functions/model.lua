@@ -32,7 +32,7 @@ end
 
 function meta:SaveRPModel()
 
-	self:SetPData("SQLmodel", self:GetNWString("rpmodel") )
+	self:SetPData("SQLmodel", self:GetNWString("OGmodel") )
 
 end
 
@@ -40,7 +40,7 @@ function meta:LoadRPModel()
 
 	if not self:GetPData("SQLmodel") then return end
 
-	self:SetNWString("rpmodel", self:GetPData("SQLmodel") )
+	self:SetNWString("OGmodel", self:GetPData("SQLmodel") )
 	self:SetModel(self:GetPData("SQLmodel"))
 	
 end
