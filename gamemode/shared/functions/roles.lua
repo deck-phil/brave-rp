@@ -46,15 +46,16 @@ function meta:GetRPRole()
 	
 end
 
-function meta:SaveRPRole()
+function meta:SaveRole()
 
 	self:SetPData("SQLrole", self:GetNWString("rprole") )
 
 end
 
-function meta:LoadRPRole()
-
-	self:SetNWInt("rprole", self:GetPData("SQLrole") )
+function meta:LoadRole()
+	if not self:GetPData("SQLrole") then self:SetNWString("rprole", "citizen")return end
+	self:SetNWString("rprole", self:GetPData("SQLrole") )
+	self:SetRPRole(self:GetPData("SQLrole"))
 	
 end
 

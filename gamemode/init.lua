@@ -152,6 +152,7 @@ function GM:PlayerAuthed( ply, steamID, uniqueID )
 
 	ply:LoadMoney()
 	ply:LoadRPName()
+	ply:LoadRole()
 	ply:LoadRPModel()
 	ply:LoadCaste()
 	ply:LoadOutfits()
@@ -166,6 +167,7 @@ function GM:PlayerDisconnected( ply )
 
 	ply:SaveMoney()
 	ply:SaveRPName()
+	ply:SaveRole()
 	ply:SaveRPModel()
 	ply:SaveCaste()
 	ply:SaveOutfits()
@@ -209,14 +211,18 @@ function GM:DoPlayerDeath( ply, attacker, dmginfo )
 
 	ply:CreateRagdoll()
 	
-	ply:SetRPModel(victim:GetOGModel())	
-	ply:RemoveOutfit(OutfitsGetValue("model", ply:GetRPModel(), "id"))
+	if !(OutfitsGetValue("model", UnConvertOddModel(ply:GetRPModel()),"default")) then 
 	
-	local ent = ents.Create('brp_outfit_base')
-		ent:NewOutfit( ply:GetRPModel() )
-		ent:SetPos( ply:LocalToWorld(Vector(0, 0,20)))
-		ent:Spawn()	
-
+		print(ply:GetRPModel())
+	
+		local id = OutfitsGetValue("model", UnConvertOddModel(ply:GetRPModel()), "id")
+	
+		ply:RemoveOutfit(id)	
+		ply:SetRPModel(ply:GetOGModel())	
+		ply:CreateOutfit( id )	
+		
+	end
+			
 
 	ply:AddDeaths( 1 )
 	

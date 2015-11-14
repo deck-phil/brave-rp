@@ -41,7 +41,7 @@ function meta:LoadRPModel()
 	if not self:GetPData("SQLmodel") then return end
 
 	self:SetNWString("OGmodel", self:GetPData("SQLmodel") )
-	self:SetModel(self:GetPData("SQLmodel"))
+	self:SetOGModel(self:GetPData("SQLmodel"))
 	
 end
 

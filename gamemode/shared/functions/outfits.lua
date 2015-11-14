@@ -72,7 +72,7 @@ end
 
 function meta:RemoveOutfit(id)
 
-	if !(OutfitsGetValue("id", id "default")) then return end
+	if (OutfitsGetValue("id", id, "default")) then return end
 
 	local ids = self:GetNWString("OutfitList","")
 	
@@ -206,6 +206,17 @@ function meta:UseOutfit( path )
 	
 	self:AddOutfit(id)
 
+end
+
+function UnConvertOddModel(path)
+
+	if OutfitsGetValue( "model", path, "diffModel" ) == false then return path end
+
+	local difTbl = string.Explode( "/", path )
+	local newPath = difTbl[1].."/"..difTbl[2].."/"..difTbl[3].."/"
+	
+	return newPath
+		
 end
 
 function meta:ConvertOddOutfits( path )
