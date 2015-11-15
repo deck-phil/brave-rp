@@ -112,7 +112,7 @@ elseif CLIENT then
 			icon:SetSize(64,64)
 			icon:SetColor(Color(0,0,0,0))
 			icon.Paint = function() end
-			icon:SetImage( "vgui/BRP_icons/"..k..".vtf", "vgui/avatar_default" )
+			icon:SetImage( "vgui/brp_icons/"..k..".vtf", "vgui/avatar_default" )
 			icon:SetToolTip( v.name )		
 			icon.DoClick = function( con ) 
 			

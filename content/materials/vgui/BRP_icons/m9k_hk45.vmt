@@ -1,6 +1,6 @@
 "UnlitGeneric"
 {
- "$basetexture" "VGUI/BRP_icons/m9k_hk45"
+ "$basetexture" "VGUI/brp_icons/m9k_hk45"
  "$vertexcolor" 1
  "$vertexalpha" 1
  "$translucent" 1
