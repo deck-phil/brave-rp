@@ -57,9 +57,7 @@ hook.Add( "CanTool", "BlockRemoverandother", function( ply, tr, tool)
 		return (tr.Entity:GetRPOwner() == ply )
 	
 	end
-	
-	print("true")
-	
+
 	return true
 	
 end)

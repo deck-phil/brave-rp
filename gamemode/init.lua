@@ -100,6 +100,8 @@ end
 
 function GM:PlayerSpawn( ply )
 	
+	self:Give("rp_hands")
+	
 	//To avoid spawn clusters
 	ply:SetCollisionGroup( COLLISION_GROUP_WEAPON )
 	
@@ -212,8 +214,6 @@ function GM:DoPlayerDeath( ply, attacker, dmginfo )
 	ply:CreateRagdoll()
 	
 	if !(OutfitsGetValue("model", UnConvertOddModel(ply:GetRPModel()),"default")) then 
-	
-		print(ply:GetRPModel())
 	
 		local id = OutfitsGetValue("model", UnConvertOddModel(ply:GetRPModel()), "id")
 	

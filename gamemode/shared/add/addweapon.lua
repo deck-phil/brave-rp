@@ -38,8 +38,6 @@ if SERVER then
 		if ply:GetActiveWeapon():GetClass() == "weapon_physcannon" then return end
 		if ply:GetActiveWeapon():GetClass() == "weapon_physgun" then return end
 		
-		print(ply:GetActiveWeapon():Clip1())
-		
 		if (RPWeapons[ply:GetActiveWeapon():GetClass()].clipsize > (ply:GetActiveWeapon():Clip1())) then return ply:SendLua("notification.AddLegacy(\"You can't drop a weapon without a full clip.\", NOTIFY_GENERIC, 5)")	end
 		
 		local trace = ply:GetEyeTraceNoCursor()

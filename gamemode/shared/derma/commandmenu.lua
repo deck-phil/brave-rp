@@ -15,8 +15,6 @@ if SERVER then
 elseif CLIENT then
 	function openCommands()
 		
-		print(LocalPlayer():GetActiveWeapon():GetPrimaryAmmoType())
-		
 		local ply = LocalPlayer()
 		
 		local MainMenuFrame = vgui.Create( "DFrame" )
@@ -760,7 +758,6 @@ elseif CLIENT then
 				
 					if RPName == "" then return end
 				
-					//print(GetNamePlayer(RPName))
 					SendDemote(GetNamePlayer(RPName))
 					notification.AddLegacy( "You have demoted "..RPName..".", NOTIFY_HINT, 5 )
 					//victim:demoteRP( )
@@ -1075,14 +1072,5 @@ elseif CLIENT then
 	net.Receive( "commandmenu", function(len)
 		openCommands()
 	end)
-	
-	/*
-	function ClosePanels()
-		
-		print("dasdad")
-		
-	end
-
-	hook.Add("Think", "ClosingPanel", ClosePanels)*/
 end	
 		

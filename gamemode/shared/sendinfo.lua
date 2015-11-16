@@ -86,7 +86,6 @@ if SERVER then
 
 	net.Receive( "dropOutfit", function( len, ply )
 		local path = net.ReadString()
-		print('SNED PALYER' ..path)
 		ply:DropOutfit( path )
 	end )	
 	
@@ -360,7 +359,6 @@ elseif CLIENT then
 	end		
 	
 	function SendWantedRequest( target, reason )
-	print(target)
 	net.Start("WantReq")
 	net.WriteEntity(target)
 	net.WriteString(reason)

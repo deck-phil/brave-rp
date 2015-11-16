@@ -44,12 +44,9 @@ function findRPPlayers( str )
 	
 	for k, v in pairs( player.GetAll() ) do
 	
-		print(v:GetRPName())
-	
 		if v:GetRPName():lower() == name then
 		
 			table.insert( matches, v )
-			print("found player")
 		
 		end
 		
@@ -105,9 +102,7 @@ end
 		//Set target role
 		//!role [role] [Player]
 		if ( command[1] == "!role" ) then
-			print("Start lele")
 			local victim = string.gsub( text,"!role "..command[2].." ", "" )
-			print("as")
 			
 			local target = findRPPlayers( victim )			
 			

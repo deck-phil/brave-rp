@@ -175,7 +175,7 @@ elseif CLIENT then
 			function icon.Entity:GetPlayerColor() return LocalPlayer():GetCasteColor()
 			end
 			
-			timer.Create("changeModel", 1,0,function() icon:SetModel(table.Random(IntroModels)) print(icon.Entity:GetModel()) end)
+			timer.Create("changeModel", 1,0,function() icon:SetModel(table.Random(IntroModels)) end)
 			
 			local CreateButton = vgui.Create( "DButton", f )
 				CreateButton:SetFont( "BebasB" )

@@ -99,18 +99,12 @@ function meta:AddOutfit(id)
 	if #tbl+1 > maxOutfits then return end
 	
 	self:SetNWString("OutfitList", IDS..";"..id)
-	
-	print(self:GetNWString("OutfitList"))
 
 end
 
 
 
 function OutfitsGetValue( Iput, value, Oput )
-/*
-	print("Iput "..Iput)
-	print("value "..value)
-	print("Oput "..Oput)*/
 
 	for k, v in pairs( RPModels ) do
 	
@@ -223,7 +217,6 @@ function meta:ConvertOddOutfits( path )
 	
 	local newPath = path
 	
-	//print("ODDPATHASDWDASDWDSDW"..path)
 	local tbl = OutfitsGetValue( "model", path, "diffModel" )
 	
 	if !tbl then return newPath end
@@ -233,15 +226,6 @@ function meta:ConvertOddOutfits( path )
 		newPath = path..""..self:GetOGModelType()
 		
 	end	
-
-	/* OLD	if path == RPModels["Citizen"]["model"] then
-		newPath = path..""..self:GetOGModelType()
-	elseif path == RPModels["Medic"]["model"] then
-		newPath = path..""..self:GetOGModelType()
-	elseif path  == RPModels["Rebel"]["model"] then
-		newPath = path..""..self:GetOGModelType()
-	end*/
-
 	
 	return newPath
 

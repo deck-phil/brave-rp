@@ -60,7 +60,7 @@ if !(args[2]) then return end
 	
 	ConTarget:TakeMoney( args[1] )
 
-	print( ply:GetName().." took "..victim.."$ From " ..args[1].."'s money")
+	print( ply:GetName().." took "..args[1].."$ From " ..victim.."'s money")
 
 end
 concommand.Add("BRP_TakeMoney", ConTakeMoney)
@@ -205,7 +205,7 @@ function RegisterPlayer(ply, command, args, commandstring)
 								if targetDistance < 5 then
 									
 									target:Register()
-									ply:SendLua("notification.AddLegacy(\"You register"..target:GetRPName()..".\", NOTIFY_GENERIC, 5)") 
+									ply:SendLua("notification.AddLegacy(\"You register "..target:GetRPName().." to #"..target:GetRegister()..".\", NOTIFY_GENERIC, 5)") 
 									
 								
 								end

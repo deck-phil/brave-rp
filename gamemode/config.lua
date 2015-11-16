@@ -35,8 +35,9 @@ defaultSalaryTime = 300
 defaultRunSpeed = 225
 
 defaultWalkSpeed = 130
-
 defaultSlowSpeed = 10
+
+defaultRole = "citizen"
 
 defaultAlphaSalary = 15
 defaultBetaSalary = 12

@@ -22,22 +22,19 @@ end
 
 function meta:GenerateCaste()
 
-local casteChance = math.random(1,100)
-local subChance = math.random(1,2)
-local teamChance = math.random(1,10)
+	local teamChance = math.random(1,10)
 	
 	
 	self:SetWalkSpeed(defaultWalkSpeed)
 	self:SetRunSpeed(defaultRunSpeed)	
-	self:SetRPRole("null")
+	self:SetRPRole(defaultRole)
 	
 	if self:isRPAdmin() then self:SetUpCaste( 11 ) else self:SetUpCaste( teamChance ) end
 	
 	PlayerCol( self )
 
 	CreateRPSalary(self)
-	
-	self:Give("rp_hands")		
+			
 	self:SetMoney( defaultMoney )	
 
 end
